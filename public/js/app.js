@@ -129,13 +129,16 @@
   function switchView(viewName) {
     const viewLogin = document.getElementById('viewLogin');
     const viewDashboard = document.getElementById('viewDashboard');
+    const mainBottomNav = document.getElementById('mainBottomNav');
 
     if (viewName === 'dashboard') {
       viewLogin.classList.add('view-hidden');
       viewDashboard.classList.remove('view-hidden');
+      if (mainBottomNav) mainBottomNav.classList.remove('d-none');
     } else {
       viewDashboard.classList.add('view-hidden');
       viewLogin.classList.remove('view-hidden');
+      if (mainBottomNav) mainBottomNav.classList.add('d-none');
     }
   }
 
@@ -332,6 +335,7 @@
     renderCustomerHeader();
     renderAccountBalanceCard();
     renderMutasiHistory();
+    renderCashflow();
     renderGamificationCard();
     renderRecommendationsFeed();
     renderLifeEventBanner();
@@ -350,6 +354,11 @@
     const bcaIdEl = document.getElementById('dashBcaIdDisplay');
     if (bcaIdEl) {
       bcaIdEl.textContent = state.isBcaIdMasked ? maskBcaId(user.bca_id) : user.bca_id.toUpperCase();
+    }
+
+    const bcaEye = document.getElementById('bcaIdEyeIcon');
+    if (bcaEye) {
+      bcaEye.className = state.isBcaIdMasked ? 'bi bi-eye-slash' : 'bi bi-eye';
     }
 
     const lastLoginEl = document.getElementById('dashLastLogin');
@@ -392,23 +401,37 @@
     const eyeIcon = document.getElementById('balanceEyeIcon');
 
     if (state.isBalanceMasked) {
-      maskedGroup.classList.remove('d-none');
-      numericGroup.classList.add('d-none');
-      eyeIcon.className = 'bi bi-eye-slash-fill';
+      if (maskedGroup) {
+        maskedGroup.classList.remove('d-none');
+        maskedGroup.style.setProperty('display', 'flex', 'important');
+      }
+      if (numericGroup) {
+        numericGroup.classList.add('d-none');
+        numericGroup.style.setProperty('display', 'none', 'important');
+      }
+      if (eyeIcon) eyeIcon.className = 'bi bi-eye-slash-fill';
     } else {
-      maskedGroup.classList.add('d-none');
-      numericGroup.classList.remove('d-none');
-      eyeIcon.className = 'bi bi-eye-fill';
+      if (maskedGroup) {
+        maskedGroup.classList.add('d-none');
+        maskedGroup.style.setProperty('display', 'none', 'important');
+      }
+      if (numericGroup) {
+        numericGroup.classList.remove('d-none');
+        numericGroup.style.setProperty('display', 'inline-block', 'important');
+      }
+      if (eyeIcon) eyeIcon.className = 'bi bi-eye-fill';
     }
   }
 
   function renderMutasiHistory() {
     const tbody = document.getElementById('txTableBody');
     const badge = document.getElementById('txCountBadge');
+    const metaBadge = document.getElementById('txPeriodBadgeMeta');
     if (!tbody) return;
 
     const txs = state.transactions || [];
     if (badge) badge.textContent = `${txs.length} Transaksi (${state.activePeriod.toUpperCase()})`;
+    if (metaBadge) metaBadge.textContent = `${txs.length} Transaksi (${state.activePeriod.toUpperCase()})`;
 
     if (txs.length === 0) {
       tbody.innerHTML = `
@@ -426,21 +449,30 @@
     txs.forEach(tx => {
       const isPos = tx.type === 'CR' || (tx.category && (tx.category.includes('Masuk') || tx.category.includes('Gaji') || tx.category.includes('QRIS')));
       const sign = isPos ? '+' : '-';
-      const colorClass = isPos ? 'text-success' : 'text-danger';
-      const icon = tx.icon || (isPos ? 'bi-arrow-down-left-circle' : 'bi-arrow-up-right-circle');
+      const icon = tx.icon || (isPos ? 'bi-arrow-down-left-circle-fill' : 'bi-arrow-up-right-circle-fill');
 
       html += `
         <tr>
-          <td class="small text-muted text-nowrap">${tx.date}</td>
-          <td>
-            <i class="bi ${icon} text-primary mr-1"></i>
-            <span class="font-weight-semibold text-dark">${tx.description || tx.desc || '-'}</span>
-          </td>
-          <td>
-            <span class="badge badge-light border text-muted small">${tx.category}</span>
-          </td>
-          <td class="text-right font-weight-bold ${colorClass} text-nowrap">
-            ${sign} Rp ${formatIDR(tx.amount)}
+          <td colspan="4" class="p-0 border-0">
+            <div class="m-tx-item">
+              <div class="m-tx-left">
+                <div class="m-tx-icon-box ${isPos ? 'm-tx-icon-cr' : 'm-tx-icon-db'}">
+                  <i class="bi ${icon}"></i>
+                </div>
+                <div class="m-tx-info">
+                  <div class="m-tx-desc">${tx.description || tx.desc || '-'}</div>
+                  <div class="m-tx-meta">
+                    <span>${tx.date}</span> • <span class="badge-cat-tag">${tx.category || 'Transaksi'}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="m-tx-right">
+                <div class="${isPos ? 'm-tx-amount-cr' : 'm-tx-amount-db'}">
+                  ${sign} Rp ${formatIDR(tx.amount)}
+                </div>
+                <span class="badge ${isPos ? 'badge-success' : 'badge-danger'} m-tx-badge">${tx.type || (isPos ? 'CR' : 'DB')}</span>
+              </div>
+            </div>
           </td>
         </tr>
       `;
@@ -448,15 +480,166 @@
 
     tbody.innerHTML = html;
 
-    // Update active state on period tabs
+    // Update active state on period tabs (supports both .m-mutasi-pill and standard buttons)
     const periodButtons = document.querySelectorAll('#txPeriodTabs button');
     periodButtons.forEach(btn => {
-      if (btn.getAttribute('data-period') === state.activePeriod) {
-        btn.className = 'btn btn-primary btn-sm active font-weight-bold';
+      const isActive = btn.getAttribute('data-period') === state.activePeriod;
+      if (btn.classList.contains('m-mutasi-pill')) {
+        btn.classList.toggle('active', isActive);
       } else {
-        btn.className = 'btn btn-outline-primary btn-sm font-weight-bold';
+        btn.className = isActive 
+          ? 'btn btn-primary btn-sm active font-weight-bold' 
+          : 'btn btn-outline-primary btn-sm font-weight-bold';
       }
     });
+  }
+
+  // --- Cashflow Engine: Arus Kas & Analisis Pemasukan vs Pengeluaran ---
+  function renderCashflow() {
+    const txs = state.transactions || [];
+    let totalIn = 0;
+    let totalOut = 0;
+
+    txs.forEach(tx => {
+      const amt = Number(tx.amount) || 0;
+      const isPos = tx.type === 'CR' || (tx.category && (tx.category.includes('Masuk') || tx.category.includes('Gaji') || tx.category.includes('QRIS') || tx.category.includes('Payroll')));
+      if (isPos) totalIn += amt;
+      else totalOut += amt;
+    });
+
+    const net = totalIn - totalOut;
+    const totalFlow = totalIn + totalOut;
+    const inPercent = totalFlow > 0 ? Math.round((totalIn / totalFlow) * 100) : 50;
+    const outPercent = 100 - inPercent;
+
+    // SVG Donut Circle Geometry: r=38, C = 2 * PI * 38 = 238.76
+    const C = 238.76;
+    const inDash = (inPercent / 100) * C;
+    const outDash = (outPercent / 100) * C;
+
+    // 1. Home widget elements
+    const homeIn = document.getElementById('cashflowHomeIn');
+    const homeOut = document.getElementById('cashflowHomeOut');
+    const homeNet = document.getElementById('cashflowHomeNet');
+    const homeBadge = document.getElementById('cashflowHomeBadge');
+    const homeBarIn = document.getElementById('cashflowBarIn');
+    const homeBarOut = document.getElementById('cashflowBarOut');
+
+    if (homeIn) homeIn.textContent = `+ Rp ${formatIDR(totalIn)}`;
+    if (homeOut) homeOut.textContent = `- Rp ${formatIDR(totalOut)}`;
+    if (homeNet) {
+      homeNet.textContent = `${net >= 0 ? '+' : '-'} Rp ${formatIDR(Math.abs(net))}`;
+      homeNet.className = net >= 0 ? 'font-weight-bold text-success mb-0' : 'font-weight-bold text-danger mb-0';
+    }
+    if (homeBadge) {
+      if (net >= 0) {
+        homeBadge.className = 'badge badge-success px-2 py-1 font-weight-bold';
+        homeBadge.innerHTML = '<i class="bi bi-arrow-up-right mr-1"></i>Surplus';
+      } else {
+        homeBadge.className = 'badge badge-danger px-2 py-1 font-weight-bold';
+        homeBadge.innerHTML = '<i class="bi bi-arrow-down-right mr-1"></i>Defisit';
+      }
+    }
+    if (homeBarIn) homeBarIn.style.width = `${inPercent}%`;
+    if (homeBarOut) homeBarOut.style.width = `${outPercent}%`;
+
+    // Home Mini Donut
+    const homeDonutIn = document.getElementById('cfHomeDonutIn');
+    const homeDonutOut = document.getElementById('cfHomeDonutOut');
+    const homeDonutCenterVal = document.getElementById('cfHomeDonutCenterVal');
+
+    if (homeDonutIn) homeDonutIn.setAttribute('stroke-dasharray', `${inDash} ${C - inDash}`);
+    if (homeDonutOut) {
+      homeDonutOut.setAttribute('stroke-dasharray', `${outDash} ${C - outDash}`);
+      homeDonutOut.setAttribute('stroke-dashoffset', `-${inDash}`);
+    }
+    if (homeDonutCenterVal) {
+      homeDonutCenterVal.textContent = totalFlow === 0 ? '0%' : `${net >= 0 ? '+' : ''}${inPercent}%`;
+      homeDonutCenterVal.className = `m-cf-donut-center-val ${net >= 0 ? 'text-success' : 'text-danger'}`;
+    }
+
+    // 2. Detailed Cashflow elements on Mutasi subpage
+    const detIn = document.getElementById('cashflowDetailIn');
+    const detOut = document.getElementById('cashflowDetailOut');
+    const detNet = document.getElementById('cashflowDetailNet');
+    const detStatus = document.getElementById('cashflowDetailStatus');
+
+    if (detIn) detIn.textContent = `+ Rp ${formatIDR(totalIn)}`;
+    if (detOut) detOut.textContent = `- Rp ${formatIDR(totalOut)}`;
+    if (detNet) {
+      detNet.textContent = `${net >= 0 ? '+' : '-'} Rp ${formatIDR(Math.abs(net))}`;
+      detNet.className = net >= 0 ? 'font-weight-bold h5 text-success mb-0' : 'font-weight-bold h5 text-danger mb-0';
+    }
+    if (detStatus) {
+      detStatus.textContent = net >= 0 ? 'Arus Kas Sehat (Surplus)' : 'Defisit Arus Kas';
+      detStatus.className = net >= 0 ? 'badge badge-success px-2 py-1 font-weight-bold' : 'badge badge-danger px-2 py-1 font-weight-bold';
+    }
+
+    // Mutasi Page Full Donut Chart
+    const cfDonutIn = document.getElementById('cfDonutIn');
+    const cfDonutOut = document.getElementById('cfDonutOut');
+    const cfDonutCenterVal = document.getElementById('cfDonutCenterVal');
+
+    if (cfDonutIn) cfDonutIn.setAttribute('stroke-dasharray', `${inDash} ${C - inDash}`);
+    if (cfDonutOut) {
+      cfDonutOut.setAttribute('stroke-dasharray', `${outDash} ${C - outDash}`);
+      cfDonutOut.setAttribute('stroke-dashoffset', `-${inDash}`);
+    }
+    if (cfDonutCenterVal) {
+      cfDonutCenterVal.textContent = totalFlow === 0 ? '0%' : `${inPercent}%`;
+      cfDonutCenterVal.className = `m-cf-donut-center-val ${net >= 0 ? 'text-success' : 'text-danger'}`;
+    }
+
+    // 3. Swipable Cards Deck (Geser Kartu)
+    const cfSlideInVal = document.getElementById('cfSlideInVal');
+    const cfSlideInSub = document.getElementById('cfSlideInSub');
+    const cfSlideOutVal = document.getElementById('cfSlideOutVal');
+    const cfSlideOutSub = document.getElementById('cfSlideOutSub');
+    const cfSlideNetVal = document.getElementById('cfSlideNetVal');
+    const cfSlideNetSub = document.getElementById('cfSlideNetSub');
+
+    if (cfSlideInVal) cfSlideInVal.textContent = `+ Rp ${formatIDR(totalIn)}`;
+    if (cfSlideInSub) cfSlideInSub.textContent = `Porsi ${inPercent}% dari total sirkulasi kas ${state.activePeriod}`;
+    if (cfSlideOutVal) cfSlideOutVal.textContent = `- Rp ${formatIDR(totalOut)}`;
+    if (cfSlideOutSub) cfSlideOutSub.textContent = `Porsi ${outPercent}% dari total sirkulasi kas ${state.activePeriod}`;
+    if (cfSlideNetVal) {
+      cfSlideNetVal.textContent = `${net >= 0 ? '+' : '-'} Rp ${formatIDR(Math.abs(net))}`;
+      cfSlideNetVal.className = `m-cf-slide-amount ${net >= 0 ? 'text-primary' : 'text-danger'}`;
+    }
+    if (cfSlideNetSub) {
+      cfSlideNetSub.textContent = net >= 0 
+        ? 'Arus kas surplus, siap dialokasikan ke Deposito atau Reksadana Welma'
+        : 'Arus kas defisit, optimalkan pengeluaran & manfaatkan voucher hemat';
+    }
+
+    setupCashflowSwipeDots();
+  }
+
+  // --- Horizontal Swipe Dots Indicator Synchronization ---
+  function setupCashflowSwipeDots() {
+    const deck = document.getElementById('cashflowSwipeDeck');
+    const dots = document.querySelectorAll('#cfSwipeDots .m-cf-dot');
+    if (!deck || !dots.length) return;
+
+    if (!deck.dataset.swipeListenerAttached) {
+      deck.dataset.swipeListenerAttached = 'true';
+      deck.addEventListener('scroll', () => {
+        const scrollLeft = deck.scrollLeft;
+        const slideWidth = deck.offsetWidth * 0.84;
+        const activeIdx = Math.min(dots.length - 1, Math.max(0, Math.round(scrollLeft / slideWidth)));
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === activeIdx);
+        });
+      }, { passive: true });
+
+      dots.forEach((dot, idx) => {
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('click', () => {
+          const slideWidth = deck.offsetWidth * 0.84;
+          deck.scrollTo({ left: idx * slideWidth, behavior: 'smooth' });
+        });
+      });
+    }
   }
 
   // ==========================================================================
@@ -1466,13 +1649,27 @@
     const vouchers = state.vouchers || [];
     const readyCount = vouchers.filter(v => v.is_unlocked && !v.is_claimed).length;
 
-    if (metaCount) metaCount.textContent = `${vouchers.length} Voucher Tersedia (${readyCount} Siap Klaim)`;
+    if (metaCount) {
+      metaCount.textContent = readyCount > 0 
+        ? `${vouchers.length} Voucher (${readyCount} Siap Klaim)`
+        : `${vouchers.length} Voucher Tersedia`;
+    }
     if (badgeReady) {
       if (readyCount > 0) {
         badgeReady.textContent = readyCount;
         badgeReady.classList.remove('d-none');
       } else {
         badgeReady.classList.add('d-none');
+      }
+    }
+
+    const navVoucherBadge = document.getElementById('navVoucherBadge');
+    if (navVoucherBadge) {
+      if (readyCount > 0) {
+        navVoucherBadge.textContent = readyCount;
+        navVoucherBadge.classList.remove('d-none');
+      } else {
+        navVoucherBadge.classList.add('d-none');
       }
     }
 
@@ -1484,11 +1681,23 @@
     }
 
     if (filtered.length === 0) {
+      const filterLabel = state.voucherFilter === 'ready' 
+        ? 'Siap Klaim' 
+        : (state.voucherFilter === 'claimed' ? 'Sudah Diklaim' : '');
       grid.innerHTML = `
-        <div class="col-12 text-center py-5">
-          <i class="bi bi-ticket-detailed text-muted" style="font-size: 2.5rem;"></i>
-          <h6 class="font-weight-bold text-dark mt-2 mb-1">Tidak Ada Voucher pada Kategori Ini</h6>
-          <p class="text-muted small">Coba pilih tab filter 'Semua' atau selesaikan target misi finansialmu untuk membuka voucher baru!</p>
+        <div class="m-voucher-empty-card">
+          <div class="m-voucher-empty-icon">
+            <i class="bi bi-ticket-perforated"></i>
+          </div>
+          <h6 class="font-weight-bold text-dark mb-1" style="font-size: 0.9rem;">Tidak Ada Voucher ${filterLabel ? `pada Kategori '${filterLabel}'` : ''}</h6>
+          <p class="text-muted small mb-3" style="font-size: 0.74rem; line-height: 1.4;">
+            ${state.voucherFilter === 'ready' 
+              ? 'Selesaikan target transaksi atau tingkatkan skor finansialmu untuk membuka kupon diskon!'
+              : 'Kamu belum memiliki voucher yang sudah diklaim.'}
+          </p>
+          <button type="button" class="btn btn-sm btn-outline-primary rounded-pill font-weight-bold px-3 py-1" onclick="app.setVoucherFilter('all')" style="font-size: 0.72rem;">
+            <i class="bi bi-grid-fill mr-1"></i> Tampilkan Semua Voucher
+          </button>
         </div>
       `;
       return;
@@ -1499,109 +1708,157 @@
       const isReady = v.is_unlocked && !v.is_claimed;
       const isClaimed = v.is_claimed;
 
-      let borderStyle = 'border: 1px solid #e2e8f0;';
-      let statusBadge = '';
-
+      let cardStateClass = isReady ? 'is-ready' : (isClaimed ? 'is-claimed' : '');
+      
+      let statusPill = '';
       if (isClaimed) {
-        borderStyle = 'border: 1.5px solid #10b981; background: #f0fdf4;';
-        statusBadge = '<span class="badge badge-success px-2 py-1 font-weight-bold"><i class="bi bi-check-circle-fill mr-1"></i>Sudah Diklaim</span>';
+        statusPill = `<span class="m-vcard-pill pill-claimed"><i class="bi bi-check2-circle mr-1"></i>Diklaim</span>`;
       } else if (isReady) {
-        borderStyle = 'border: 2px solid #f59e0b; background: #fffdf5; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.18);';
-        statusBadge = '<span class="badge badge-warning text-dark px-2 py-1 font-weight-bold animate-pulse"><i class="bi bi-gift-fill mr-1"></i>SIAP KLAIM!</span>';
+        statusPill = `<span class="m-vcard-pill pill-ready animate-pulse"><i class="bi bi-gift-fill mr-1"></i>SIAP KLAIM</span>`;
       } else {
-        statusBadge = '<span class="badge badge-light border text-muted px-2 py-1 font-weight-semibold"><i class="bi bi-lock-fill mr-1"></i>Terkunci</span>';
+        statusPill = `<span class="m-vcard-pill pill-locked"><i class="bi bi-lock-fill mr-1"></i>Terkunci</span>`;
       }
 
-      // Format target quest label
-      let questIcon = 'bi-bullseye';
-      let questName = 'Target Finansial:';
+      // Brand Icon theme
+      let brandTheme = 'icon-theme-lifestyle';
+      const mLow = (v.merchant || '').toLowerCase();
+      const cLow = (v.category || '').toLowerCase();
+      if (mLow.includes('indomaret')) {
+        brandTheme = 'icon-theme-indomaret';
+      } else if (mLow.includes('kenangan') || cLow.includes('f&b') || cLow.includes('food')) {
+        brandTheme = 'icon-theme-kenangan';
+      } else if (mLow.includes('welma') || cLow.includes('invest')) {
+        brandTheme = 'icon-theme-welma';
+      } else if (mLow.includes('tokopedia') || mLow.includes('shopee') || cLow.includes('shop')) {
+        brandTheme = 'icon-theme-tokopedia';
+      }
+
+      // Target quest icon & formatted description
+      let questIcon = 'bi-bullseye text-primary';
+      let questTitle = 'Target Finansial:';
       if (v.target_type === 'MIN_HEALTH_SCORE') {
         questIcon = 'bi-shield-heart-fill text-danger';
-        questName = `Raih Skor Kesehatan Finansial minimal ${v.target_value} PTS`;
+        questTitle = `Skor Finansial ≥ ${v.target_value} PTS`;
       } else if (v.target_type === 'CATEGORY_TX_COUNT') {
         questIcon = 'bi-cart-check-fill text-primary';
-        questName = `Lakukan ${v.target_value}x transaksi '${v.target_category || 'Kebutuhan'}'`;
+        questTitle = `${v.target_value}x Belanja '${v.target_category || 'Kebutuhan'}'`;
       } else if (v.target_type === 'MIN_SAVINGS_ALLOC') {
         questIcon = 'bi-piggy-bank-fill text-success';
-        questName = `Alokasikan tabungan/investasi minimal Rp ${formatIDR(v.target_value)}`;
+        questTitle = `Alokasi Simpanan ≥ Rp ${formatIDR(v.target_value)}`;
       } else if (v.target_type === 'ACTIVE_FEATURE_COUNT') {
         questIcon = 'bi-lightning-charge-fill text-warning';
-        questName = `Aktifkan minimal ${v.target_value} fitur kesehatan finansial`;
+        questTitle = `Aktifkan ${v.target_value} Fitur Adaptif`;
       } else if (v.target_type === 'TOTAL_TX_COUNT') {
         questIcon = 'bi-receipt-cutoff text-info';
-        questName = `Lakukan total minimal ${v.target_value} transaksi`;
+        questTitle = `Lakukan total ${v.target_value}x Transaksi`;
       } else {
-        questName = `Target: ${v.target_type} (${v.target_value})`;
+        questTitle = `Target: ${v.target_type} (${v.target_value})`;
       }
 
-      const rewardFormatted = v.reward_type === 'POINTS' ? `${formatIDR(v.reward_value)} Poin BCA` : `Rp ${formatIDR(v.reward_value)}`;
-      const rewardBadgeType = v.reward_type === 'CASHBACK' ? 'badge-info' : 'badge-primary';
+      // Reward display text
+      let rewardFormatted = '';
+      let rewardTypeLabel = 'Diskon Belanja';
+      if (v.reward_type === 'POINTS') {
+        rewardFormatted = `+${formatIDR(v.reward_value)} Poin BCA`;
+        rewardTypeLabel = 'Reward Poin';
+      } else if (v.reward_type === 'CASHBACK') {
+        rewardFormatted = `Rp ${formatIDR(v.reward_value)}`;
+        rewardTypeLabel = 'Cashback';
+      } else {
+        rewardFormatted = `Rp ${formatIDR(v.reward_value)}`;
+        rewardTypeLabel = 'Diskon Mitra';
+      }
 
+      // Format date nicely
+      let expDisplay = v.expiry_date || '31 Des 2026';
+      if (expDisplay.includes('-')) {
+        const parts = expDisplay.split('-');
+        if (parts.length === 3) {
+          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+          const mIdx = parseInt(parts[1], 10) - 1;
+          expDisplay = `${parseInt(parts[2], 10)} ${months[mIdx] || parts[1]} ${parts[0]}`;
+        }
+      }
+
+      // Action button
       let actionBtn = '';
       if (isClaimed) {
         actionBtn = `
-          <button type="button" class="btn btn-outline-success btn-sm btn-block font-weight-bold" onclick="app.viewVoucherSlip('${v.id}')">
-            <i class="bi bi-ticket-perforated mr-1"></i> Lihat E-Voucher (${v.code})
+          <button type="button" class="btn m-vbtn-claimed" onclick="app.viewVoucherSlip('${v.id}')">
+            <i class="bi bi-ticket-perforated-fill"></i> Lihat Kode E-Voucher (${v.code})
           </button>
         `;
       } else if (isReady) {
         actionBtn = `
-          <button type="button" class="btn btn-success btn-sm btn-block font-weight-bold shadow-sm" onclick="app.claimVoucher('${v.id}')">
-            <i class="bi bi-gift-fill mr-1"></i> Klaim Voucher Sekarang!
+          <button type="button" class="btn m-vbtn-claim" onclick="app.claimVoucher('${v.id}')">
+            <i class="bi bi-gift-fill"></i> Klaim Voucher Sekarang!
           </button>
         `;
       } else {
         actionBtn = `
-          <button type="button" class="btn btn-light border btn-sm btn-block text-muted" disabled style="cursor: not-allowed;">
-            <i class="bi bi-lock-fill mr-1"></i> Target Belum Tercapai
+          <button type="button" class="btn m-vbtn-locked" disabled>
+            <i class="bi bi-lock-fill"></i> Misi Belum Tercapai (${v.progress_label})
           </button>
         `;
       }
 
       html += `
-        <div class="col-12 col-md-6 col-xl-4 mb-3">
-          <div class="card h-100 rounded-lg p-3 d-flex flex-column justify-content-between" style="${borderStyle}; border-radius: 14px;">
-            <div>
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="rounded-circle p-1 bg-light border d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
-                    <i class="bi ${v.icon || 'bi-gift'} text-primary h5 mb-0"></i>
-                  </div>
-                  <div>
-                    <span class="font-weight-bold small text-dark d-block" style="line-height: 1.1;">${v.merchant}</span>
-                    <span class="text-muted" style="font-size: 0.68rem;">${v.category}</span>
-                  </div>
+        <div class="m-vcard ${cardStateClass}">
+          <!-- Top Reward & Merchant Info -->
+          <div class="m-vcard-top">
+            <div class="m-vcard-header">
+              <div class="m-vcard-brand">
+                <div class="m-vcard-icon ${brandTheme}">
+                  <i class="bi ${v.icon || 'bi-gift-fill'}"></i>
                 </div>
-                ${statusBadge}
+                <div class="m-vcard-brand-info">
+                  <span class="m-vcard-merchant">${v.merchant || 'BCA Partner'}</span>
+                  <span class="m-vcard-cat">${v.category || 'Promo'}</span>
+                </div>
               </div>
-
-              <h6 class="font-weight-bold text-dark mb-1" style="font-size: 0.95rem;">${v.title}</h6>
-              <div class="d-flex align-items-center gap-2 mb-2">
-                <span class="badge ${rewardBadgeType} font-weight-bold px-2 py-1" style="font-size: 0.8rem;">
-                  ${v.reward_type}: ${rewardFormatted}
-                </span>
-                <span class="text-muted" style="font-size: 0.72rem;">s/d ${v.expiry_date}</span>
-              </div>
-              <p class="text-muted small mb-3" style="font-size: 0.78rem; min-height: 38px;">${v.description}</p>
-
-              <!-- Target Quest Box -->
-              <div class="p-2 rounded mb-3" style="background: ${isReady ? '#fef3c7' : '#f8fafc'}; border: 1px solid ${isReady ? '#fde68a' : '#e2e8f0'};">
-                <div class="d-flex align-items-center gap-1 small font-weight-bold ${isReady ? 'text-dark' : 'text-primary'} mb-1" style="font-size: 0.76rem;">
-                  <i class="bi ${questIcon}"></i>
-                  <span>${questName}</span>
-                </div>
-                
-                <div class="d-flex justify-content-between small text-muted mb-1" style="font-size: 0.7rem;">
-                  <span>Progress Nasabah:</span>
-                  <strong class="${v.is_unlocked ? 'text-success' : 'text-dark'}">${v.progress_label} (${v.progress_percent}%)</strong>
-                </div>
-                <div class="progress" style="height: 6px; border-radius: 4px; background: #e2e8f0;">
-                  <div class="progress-bar ${v.is_unlocked ? 'bg-success' : 'bg-primary'}" role="progressbar" style="width: ${v.progress_percent}%;" aria-valuenow="${v.progress_percent}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+              <div>
+                ${statusPill}
               </div>
             </div>
 
-            <div class="mt-2 pt-2 border-top">
+            <div class="m-vcard-offer">
+              <div class="m-vcard-reward-row">
+                <span class="m-vcard-reward-type">${rewardTypeLabel}</span>
+                <span class="m-vcard-reward-val">${rewardFormatted}</span>
+              </div>
+              <div class="m-vcard-title">${v.title}</div>
+            </div>
+
+            <div class="m-vcard-expiry">
+              <i class="bi bi-calendar2-check mr-1 text-muted"></i>
+              <span>Berlaku s/d ${expDisplay}</span>
+            </div>
+          </div>
+
+          <!-- Real Perforated Ticket Notches & Dashed Line -->
+          <div class="m-vcard-perforation">
+            <span class="m-vcard-notch notch-left"></span>
+            <span class="m-vcard-dash"></span>
+            <span class="m-vcard-notch notch-right"></span>
+          </div>
+
+          <!-- Bottom Quest Progress & Action Button -->
+          <div class="m-vcard-bottom">
+            <div class="m-vcard-quest-box">
+              <div class="m-vcard-quest-head">
+                <span class="m-vcard-quest-title">
+                  <i class="bi ${questIcon} mr-1"></i> ${questTitle}
+                </span>
+                <span class="m-vcard-quest-ratio ${v.is_unlocked ? 'text-success' : 'text-primary'}">
+                  ${v.progress_label} (${v.progress_percent}%)
+                </span>
+              </div>
+              <div class="m-vcard-prog-track">
+                <div class="m-vcard-prog-fill ${v.is_unlocked ? 'fill-success' : 'fill-primary'}" style="width: ${v.progress_percent}%"></div>
+              </div>
+            </div>
+
+            <div class="m-vcard-action">
               ${actionBtn}
             </div>
           </div>
@@ -1610,6 +1867,18 @@
     });
 
     grid.innerHTML = html;
+  }
+
+  function setVoucherFilter(filter) {
+    state.voucherFilter = filter || 'all';
+    document.querySelectorAll('#voucherFilterTabs .m-vfilter-pill, #voucherFilterTabs button').forEach(b => {
+      if ((b.getAttribute('data-vfilter') || 'all') === state.voucherFilter) {
+        b.classList.add('active');
+      } else {
+        b.classList.remove('active');
+      }
+    });
+    renderVouchersSection();
   }
 
   async function claimVoucher(voucherId) {
@@ -1679,6 +1948,36 @@
     closeUserClaimModal();
     if (state.selectedClaimedVoucher) {
       showToast(`Membuka voucher "${state.selectedClaimedVoucher.title}" di mitra ${state.selectedClaimedVoucher.merchant}...`, 'info');
+    }
+  }
+
+  // --- Privacy & AI Settings Modal (UU PDP - Bab 4.3.f) ---
+
+  function openPrivacyModal() {
+    const modal = document.getElementById('privacySettingsModal');
+    if (modal) {
+      modal.style.display = 'block';
+      modal.classList.add('show');
+    }
+  }
+
+  function closePrivacyModal() {
+    const modal = document.getElementById('privacySettingsModal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('show');
+    }
+  }
+
+  function togglePrivacySetting(settingKey, isEnabled) {
+    if (settingKey === 'personalization') {
+      showToast(isEnabled 
+        ? 'Personalisasi Transaksi (Algoritma 1) aktif.' 
+        : 'Personalisasi Transaksi dijeda (Privasi UU PDP).', 'info');
+    } else if (settingKey === 'lifeEvent') {
+      showToast(isEnabled 
+        ? 'Deteksi Life Event (Algoritma 2) aktif.' 
+        : 'Deteksi Life Event dijeda (Privasi UU PDP).', 'info');
     }
   }
 
@@ -1921,6 +2220,7 @@
         const period = e.currentTarget.getAttribute('data-period');
         await fetchTransactions(period);
         renderMutasiHistory();
+        renderCashflow();
       });
     });
 
@@ -1967,14 +2267,10 @@
     if (cancelOnboardingBtn) cancelOnboardingBtn.addEventListener('click', closeOnboardingModal);
 
     // Voucher Filter Tabs Controls
-    document.querySelectorAll('#voucherFilterTabs button').forEach(btn => {
+    document.querySelectorAll('#voucherFilterTabs .m-vfilter-pill, #voucherFilterTabs button').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        document.querySelectorAll('#voucherFilterTabs button').forEach(b => {
-          b.className = 'btn btn-outline-primary btn-sm font-weight-bold';
-        });
-        e.currentTarget.className = 'btn btn-primary btn-sm active font-weight-bold';
-        state.voucherFilter = e.currentTarget.getAttribute('data-vfilter') || 'all';
-        renderVouchersSection();
+        const filterVal = e.currentTarget.getAttribute('data-vfilter') || 'all';
+        setVoucherFilter(filterVal);
       });
     });
 
@@ -2036,6 +2332,47 @@
     const dismissUserClaimBtn = document.getElementById('btnDismissUserClaim');
     if (dismissUserClaimBtn) dismissUserClaimBtn.addEventListener('click', closeUserClaimModal);
 
+    // Frame View Mode Toggle (iPhone 14 / Full Width)
+    const toggleFrameBtn = document.getElementById('btnToggleFrameMode');
+    if (toggleFrameBtn) {
+      toggleFrameBtn.addEventListener('click', () => {
+        const frame = document.getElementById('deviceFrame');
+        const icon = document.getElementById('frameToggleIcon');
+        const text = document.getElementById('frameToggleText');
+        if (frame) {
+          frame.classList.toggle('full-width-mode');
+          const isFull = frame.classList.contains('full-width-mode');
+          if (icon) icon.className = isFull ? 'bi bi-phone-fill' : 'bi bi-phone';
+          if (text) text.textContent = isFull ? 'iPhone 14' : 'Full Width';
+          showToast(isFull ? 'Mode Layar Diperlebar' : 'Mode Presisi iPhone 14');
+        }
+      });
+    }
+
+    // Modal background dismiss for User Voucher Modal
+    const userVoucherModal = document.getElementById('userVoucherClaimModal');
+    if (userVoucherModal) {
+      userVoucherModal.addEventListener('click', (e) => {
+        if (e.target === userVoucherModal) closeUserClaimModal();
+      });
+    }
+
+    // Modal background dismiss for Admin Voucher Modal
+    const adminVoucherModal = document.getElementById('adminVoucherModal');
+    if (adminVoucherModal) {
+      adminVoucherModal.addEventListener('click', (e) => {
+        if (e.target === adminVoucherModal) closeAdminVoucherModal();
+      });
+    }
+
+    // Modal background dismiss for Privacy Settings Modal (UU PDP)
+    const privacyModal = document.getElementById('privacySettingsModal');
+    if (privacyModal) {
+      privacyModal.addEventListener('click', (e) => {
+        if (e.target === privacyModal) closePrivacyModal();
+      });
+    }
+
     // 4. Session Auto-Restore
     if (state.token) {
       try {
@@ -2077,9 +2414,13 @@
     closeAdminVoucherModal,
     claimVoucher,
     viewVoucherSlip,
+    setVoucherFilter,
     closeUserClaimModal,
     copyVoucherCode,
     useVoucherNow,
+    openPrivacyModal,
+    closePrivacyModal,
+    togglePrivacySetting,
     deleteAdminVoucher,
     quickSimulateAction: function (actionName) {
       if (actionName === 'Investasi' || actionName === 'Welma') {
