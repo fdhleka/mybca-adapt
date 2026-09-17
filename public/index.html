@@ -16,51 +16,6 @@
 <body class="pace-done no-breadcrumb">
 
   <!-- ===================================================================== -->
-  <!-- 0. TOP JUDGE & EVALUATOR UTILITY BAR                                  -->
-  <!-- ===================================================================== -->
-  <header class="judge-ribbon-bar">
-    <div class="d-flex align-items-center gap-2">
-      <a class="judge-ribbon-brand" href="javascript:void(0);">
-        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="8" fill="#005caa"/>
-          <path d="M10 28V12L20 22L30 12V28" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>myBCA <span class="badge badge-info text-white font-weight-bold ml-1" style="font-size: 0.65rem;">iPHONE 14 MOBILE</span></span>
-      </a>
-
-      <!-- Quick Persona Switcher in Top Bar -->
-      <div class="d-flex align-items-center ml-2">
-        <span class="text-white-50 small mr-1 font-weight-bold d-none d-md-inline"><i class="bi bi-person-circle"></i> Persona:</span>
-        <select id="dashPersonaSelect" class="judge-persona-select" aria-label="Ganti Persona Nasabah">
-          <!-- Populated dynamically via JS -->
-        </select>
-      </div>
-    </div>
-
-    <div class="d-flex align-items-center gap-2" style="gap: 0.4rem;">
-      <!-- Mode Juri (Audit AI) Toggle Button -->
-      <button id="btnToggleInspector" class="btn btn-warning btn-sm font-weight-bold shadow-sm py-1 px-2" title="Buka Mode Juri (Audit Engine AI)">
-        <i class="bi bi-cpu-fill"></i> <span class="d-none d-sm-inline">Mode Juri</span>
-      </button>
-
-      <!-- Admin Voucher Portal Button -->
-      <button id="btnOpenAdminVouchers" class="btn btn-outline-warning btn-sm font-weight-bold shadow-sm py-1 px-2" title="Admin Portal: Set Voucher & Target Finansial" onclick="app.openAdminVoucherModal()">
-        <i class="bi bi-ticket-perforated-fill"></i> <span class="d-none d-lg-inline">Admin Voucher</span>
-      </button>
-
-      <!-- Reset Database Button -->
-      <button id="btnResetDbTop" class="btn btn-outline-light btn-sm font-weight-bold py-1 px-2" title="Reset Database ke Initial Seeds">
-        <i class="bi bi-arrow-counterclockwise"></i> <span class="d-none d-lg-inline">Reset DB</span>
-      </button>
-
-      <!-- Frame View Mode Toggle -->
-      <button type="button" id="btnToggleFrameMode" class="btn btn-outline-info btn-sm font-weight-bold py-1 px-2" title="Ubah Ukuran Tampilan (iPhone 14 / Full Width)">
-        <i class="bi bi-phone" id="frameToggleIcon"></i> <span class="d-none d-lg-inline" id="frameToggleText">Full Width</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ===================================================================== -->
   <!-- SMARTPHONE DEVICE CONTAINER (IPHONE 14 FRAME)                         -->
   <!-- ===================================================================== -->
   <main class="mobile-viewport-container">
@@ -805,6 +760,113 @@
 
           </div>
 
+          <!-- =============================================================== -->
+          <!-- SUB-PAGE 4: ADMIN & EVALUATOR HUB (PORTAL ADMIN DI WEB APP)     -->
+          <!-- =============================================================== -->
+          <div id="subpageAdmin" class="m-subpage m-dashboard-body">
+
+            <!-- Sleek Admin Header Card -->
+            <div class="m-admin-header-card">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="m-voucher-pill-tag" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">
+                  <i class="bi bi-shield-lock-fill mr-1"></i> CONTROL PANEL
+                </span>
+                <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">
+                  Admin & Juri
+                </span>
+              </div>
+              <h5 class="m-mutasi-header-title mb-1">Portal Admin & Evaluator</h5>
+              <p class="m-mutasi-header-sub mb-0">
+                Pusat kontrol sistem simulasi, ganti persona, audit engine AI, dan konfigurasi voucher myBCA ADAPT.
+              </p>
+            </div>
+
+            <!-- 1. Persona Switcher Card -->
+            <div class="adapt-card">
+              <div class="adapt-card-header">
+                <h6 class="adapt-card-title">
+                  <i class="bi bi-person-bounding-box text-primary"></i> Ganti Persona Pengguna
+                </h6>
+                <span class="badge badge-light border text-muted small" style="font-size: 0.68rem;">1-Click</span>
+              </div>
+              <div class="form-group mb-2">
+                <label class="small font-weight-bold text-muted mb-1" style="font-size: 0.72rem;">Pilih Profil Nasabah:</label>
+                <select id="dashPersonaSelect" class="form-control form-control-sm font-weight-bold text-primary" aria-label="Ganti Persona Nasabah" style="font-size: 0.82rem; border-radius: 8px;">
+                  <!-- Populated dynamically via JS -->
+                </select>
+              </div>
+              <div class="small text-muted" style="font-size: 0.7rem;">
+                Tersedia 5 persona nasabah (Dimas, Ayu, Hj. Sari, Rina, Drs. Bambang) + Akun Admin PM.
+              </div>
+            </div>
+
+            <!-- 2. Admin Tools & System Controls -->
+            <div class="adapt-card">
+              <div class="adapt-card-header">
+                <h6 class="adapt-card-title">
+                  <i class="bi bi-sliders text-warning"></i> Menu Manajemen Sistem
+                </h6>
+              </div>
+              
+              <div class="d-flex flex-column gap-2" style="gap: 0.65rem;">
+                <!-- Mode Juri (Audit AI Engine) -->
+                <button type="button" id="btnToggleInspector" class="btn btn-outline-primary btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" style="border-radius: 10px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-cpu-fill text-warning h5 mb-0"></i>
+                    <div>
+                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Mode Juri (Audit Engine AI)</div>
+                      <div class="small text-muted" style="font-size: 0.68rem;">Buka panel audit prompt, reasoning, & 3 Algoritma AI</div>
+                    </div>
+                  </div>
+                  <i class="bi bi-chevron-right text-muted"></i>
+                </button>
+
+                <!-- Admin Voucher Portal -->
+                <button type="button" id="btnOpenAdminVouchers" class="btn btn-outline-warning btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" onclick="app.openAdminVoucherModal()" style="border-radius: 10px; border-color: #f59e0b; color: #b45309;">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-ticket-perforated-fill text-warning h5 mb-0"></i>
+                    <div>
+                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Kelola Target & Misi Voucher</div>
+                      <div class="small text-muted" style="font-size: 0.68rem;">Buat reward diskon belanja & tentukan syarat klaim</div>
+                    </div>
+                  </div>
+                  <i class="bi bi-chevron-right text-muted"></i>
+                </button>
+
+                <!-- Reset Database -->
+                <button type="button" id="btnResetDbTop" class="btn btn-outline-danger btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" style="border-radius: 10px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-counterclockwise text-danger h5 mb-0"></i>
+                    <div>
+                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Reset Database ke Seeds Awal</div>
+                      <div class="small text-muted" style="font-size: 0.68rem;">Kembalikan seluruh saldo, histori transaksi, & voucher</div>
+                    </div>
+                  </div>
+                  <i class="bi bi-chevron-right text-muted"></i>
+                </button>
+
+                <!-- Frame View Mode Toggle -->
+                <button type="button" id="btnToggleFrameMode" class="btn btn-outline-secondary btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" style="border-radius: 10px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-phone text-info h5 mb-0" id="frameToggleIcon"></i>
+                    <div>
+                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Ubah Ukuran Layar: <span id="frameToggleText">Full Width</span></div>
+                      <div class="small text-muted" style="font-size: 0.68rem;">Beralih antara presisi bezel iPhone 14 dan mode lebar</div>
+                    </div>
+                  </div>
+                  <i class="bi bi-arrows-expand text-muted"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Footer Notice -->
+            <div class="p-2 rounded bg-white border text-muted small text-center mb-3" style="font-size: 0.68rem; line-height: 1.4;">
+              <strong>myBCA ADAPT Simulation System</strong> • SQLite WAL & Express Server<br>
+              PT Bank Central Asia Tbk berizin & diawasi oleh OJK & Bank Indonesia.
+            </div>
+
+          </div>
+
         </section>
 
       </div>
@@ -839,10 +901,10 @@
           <span class="badge badge-warning badge-pill m-nav-badge d-none" id="navVoucherBadge">0</span>
         </button>
 
-        <!-- Mode Juri / Audit AI -->
-        <button type="button" class="m-nav-tab" id="navTabAudit" title="Mode Juri (Audit AI)">
-          <i class="bi bi-cpu-fill text-warning"></i>
-          <span class="text-warning font-weight-bold">Mode Juri</span>
+        <!-- Admin / Mode Juri -->
+        <button type="button" class="m-nav-tab" id="navTabAudit" data-target="subpageAdmin" title="Portal Admin & Juri">
+          <i class="bi bi-shield-lock-fill text-warning"></i>
+          <span class="text-warning font-weight-bold">Admin</span>
         </button>
       </nav>
 
@@ -1380,10 +1442,7 @@
 
       const tabAudit = document.getElementById('navTabAudit');
       if (tabAudit) {
-        tabAudit.addEventListener('click', () => {
-          const btnInsp = document.getElementById('btnToggleInspector');
-          if (btnInsp) btnInsp.click();
-        });
+        tabAudit.addEventListener('click', () => switchSubpage('subpageAdmin', tabAudit));
       }
 
       // Expose switchSubpage globally so cards can jump to tabs
