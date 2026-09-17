@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myBCA ADAPT — Prototype Interaktif & Engine Simulator</title>
+  
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom Prototype Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER NAVBAR -->
+  <header class="bca-header">
+    <div class="header-container">
+      <div class="brand-logo">
+        <!-- SVG myBCA Icon / Text -->
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="white"/>
+          <path d="M10 28V12L20 22L30 12V28" stroke="#005BAA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span style="font-weight: 800; font-size: 1.35rem; letter-spacing: -0.5px;">myBCA</span>
+        <span class="brand-badge">ADAPT AI ENGINE</span>
+      </div>
+
+      <div class="header-actions">
+        <!-- Persona Quick Selector -->
+        <div class="persona-select-box">
+          <label for="personaSelect"><i class="bi bi-person-circle"></i> Persona Database:</label>
+          <select id="personaSelect">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <!-- Inspector Toggle Button -->
+        <button id="inspectorToggle" class="inspector-toggle-btn">
+          <i class="bi bi-cpu-fill"></i> Tampilkan Audit Inspector (Mode Juri)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (LAYOUT GRID WITH INSPECTOR) -->
+  <div id="mainWrapper" class="main-wrapper inspector-open">
+
+    <!-- LEFT AREA: APP INTERFACE & SIMULATOR -->
+    <main class="app-area">
+
+      <!-- PERSONA BANNER & ACCOUNT SUMMARY -->
+      <section class="persona-card">
+        <div class="persona-info">
+          <img id="personaAvatar" src="" alt="Avatar" class="persona-avatar">
+          <div class="persona-details">
+            <h2 id="personaName">Dimas Prasetyo</h2>
+            <p id="personaTitle">Fresh Graduate • Junior Software Engineer</p>
+          </div>
+        </div>
+
+        <div class="persona-stats">
+          <div class="stat-item">
+            <div class="stat-label">Nomor Rekening BCA</div>
+            <div id="personaAccountNo" class="stat-val" style="font-family: monospace; font-size: 1rem; color: var(--bca-text);">8820491823</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Saldo Utama (Tahapan)</div>
+            <div id="personaBalance" class="stat-val">Rp 14.500.000</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIFE EVENT SMART BUNDLING BANNER (ALGORITMA 2) -->
+      <section id="lifeEventContainer">
+        <!-- Rendered dynamically by JS -->
+      </section>
+
+      <!-- DASHBOARD GRID: GAMIFICATION (ALG 3) & RECOMMENDATIONS (ALG 1) -->
+      <div class="dashboard-grid">
+        
+        <!-- GAMIFICATION SCORE CARD (ALGORITMA 3) -->
+        <div class="card-box">
+          <div class="card-title">
+            <span><i class="bi bi-shield-heart-fill"></i> Skor Kesehatan Keuangan</span>
+            <span id="tierBadge" class="tier-badge badge-bronze"><i class="bi bi-award-fill"></i> Level Bronze</span>
+          </div>
+
+          <div class="score-display-box">
+            <div class="score-circle">
+              <span id="scoreNum" class="score-num">55</span>
+              <span class="score-max">DARI 100</span>
+            </div>
+
+            <div style="flex-grow: 1;">
+              <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem;">
+                <span>Progres Kesehatan</span>
+                <span id="rewardPoints" class="text-primary">1,000 Poin</span>
+              </div>
+              <div class="progress-bar-container">
+                <div id="scoreProgressFill" class="progress-bar-fill"></div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--bca-muted);">
+                Tingkatkan skor dengan mengaktifkan fitur yang direkomendasikan & rutin menabung.
+              </div>
+            </div>
+          </div>
+
+          <div id="scoreBreakdown" class="score-breakdown-list">
+            <!-- Score component breakdown populated via JS -->
+          </div>
+        </div>
+
+        <!-- TRANSACTION PERSONALIZATION RECOMMENDATIONS (ALGORITMA 1) -->
+        <div class="card-box">
+          <div class="card-title">
+            <span><i class="bi bi-stars"></i> Rekomendasi Fitur Terkontekstual</span>
+            <span class="badge bg-primary-subtle text-primary">Rule-Based AI</span>
+          </div>
+          <div style="font-size: 0.825rem; color: var(--bca-muted); margin-bottom: 1rem;">
+            Fitur berikut diprediksi paling relevan berdasarkan pola nominal & frekuensi transaksi Anda:
+          </div>
+
+          <div id="recommendationsList" class="rec-list">
+            <!-- Dynamically populated recommendations -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SIMULATION SANDBOX & MANUAL DATA INJECTOR -->
+      <section class="card-box" style="margin-bottom: 1.5rem;">
+        <div class="card-title">
+          <span><i class="bi bi-sliders"></i> Simulation Lab & Data Injector (Uji Coba Juri)</span>
+          <span class="badge bg-warning-subtle text-warning-emphasis">Interactive Sandbox</span>
+        </div>
+
+        <!-- Quick Scenario Injectors for Presentation -->
+        <div style="margin-bottom: 1.25rem;">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--bca-text); margin-bottom: 0.5rem;">
+            ⚡ Quick Demo Skenario (Klik untuk Menyuntikkan Transaksi Skenario Nyata):
+          </div>
+          <div id="scenariosContainer" class="scenario-buttons-flex">
+            <!-- Scenario buttons populated via JS -->
+          </div>
+        </div>
+
+        <!-- Custom Manual Transaction Input Form -->
+        <div style="background: #f8fafc; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--bca-border);">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--bca-text); margin-bottom: 0.75rem;">
+            ➕ Suntikkan Transaksi Manual (Uji Coba Respon Algoritma Secara Live):
+          </div>
+
+          <form id="addTxForm" class="row g-2 align-items-center">
+            <div class="col-md-4">
+              <input type="text" id="txDesc" class="form-control form-control-sm" placeholder="Deskripsi Transaksi (cth: Gaji, Sewa Kos, KPR)" required>
+            </div>
+            <div class="col-md-3">
+              <select id="txCat" class="form-select form-select-sm" required>
+                <option value="Gaji Bulanan">Gaji Bulanan</option>
+                <option value="Sewa Kos / Housing">Sewa Kos / Housing</option>
+                <option value="Cicilan KPR / Rumah">Cicilan KPR / Rumah</option>
+                <option value="Transfer Pasangan">Transfer Pasangan</option>
+                <option value="Terima QRIS Merchant">Terima QRIS Merchant</option>
+                <option value="Transfer Supplier">Transfer Supplier</option>
+                <option value="Bayar Kampus / UKT">Bayar Kampus / UKT</option>
+                <option value="Investasi Reksa Dana">Investasi Reksa Dana</option>
+                <option value="Paylater">Paylater / Cicilan</option>
+                <option value="Jajan & Lifestyle">Jajan & Lifestyle</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="number" id="txAmount" class="form-control form-control-sm" placeholder="Nominal (Rp)" min="1000" required>
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-primary btn-sm w-100 font-semibold">
+                <i class="bi bi-cpu"></i> Simulasikan
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Current Period Transactions Table -->
+        <div style="margin-top: 1.5rem;">
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--bca-text); margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+            <span><i class="bi bi-clock-history"></i> Histori Transaksi Periode Berjalan</span>
+            <span class="text-muted" style="font-size: 0.8rem; font-weight: 400;">Data di bawah ini dianalisis oleh AI Engine</span>
+          </div>
+          <div class="table-responsive">
+            <table class="tx-table">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Keterangan Transaksi</th>
+                  <th>Kategori Detected</th>
+                  <th>Nominal (Rp)</th>
+                </tr>
+              </thead>
+              <tbody id="txTableBody">
+                <!-- Transaction rows populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT AREA: JUDGE ENGINE AUDIT INSPECTOR -->
+    <aside id="inspectorPanel" class="inspector-panel">
+      <div class="inspector-header">
+        <div class="inspector-title">
+          <i class="bi bi-cpu-fill"></i> AUDIT ENGINE INSPECTOR
+        </div>
+        <span class="badge bg-warning text-dark font-monospace">LIVE TRACE</span>
+      </div>
+
+      <!-- FORMULA CARD: ALGORITMA 1 -->
+      <div class="formula-card">
+        <div class="formula-title">Algoritma 1: Rule-Based Propensity Vector</div>
+        <div class="formula-math">
+          S(f) = w_freq * Norm(Freq) + w_amt * Norm(Amt)
+        </div>
+        <div style="font-size: 0.725rem; color: #94a3b8; margin-top: 0.35rem;">
+          Menghitung vektor kecenderungan adopsi fitur dari frekuensi & nominal transaksi.
+        </div>
+      </div>
+
+      <!-- FORMULA CARD: ALGORITMA 2 -->
+      <div class="formula-card" style="border-left-color: #f59e0b;">
+        <div class="formula-title">Algoritma 2: Life Event Pattern Shift</div>
+        <div class="formula-math">
+          Confidence(E) = Σ (w_c * min(1, N_curr / N_thresh))
+        </div>
+        <div style="font-size: 0.725rem; color: #94a3b8; margin-top: 0.35rem;">
+          Mendeteksi kemunculan sinyal transaksi baru secara konsisten antar-periode (Threshold >= 60%).
+        </div>
+      </div>
+
+      <!-- FORMULA CARD: ALGORITMA 3 -->
+      <div class="formula-card" style="border-left-color: #10b981;">
+        <div class="formula-title">Algoritma 3: Financial Health Weighted Score</div>
+        <div class="formula-math">
+          Score = Base(20) + Σ P_features + Bonus_time + Bonus_save
+        </div>
+        <div style="font-size: 0.725rem; color: #94a3b8; margin-top: 0.35rem;">
+          Bobot terukur: Auto-Save (+20), Asuransi (+20), Paylater (+10), Ketepatan Bayar (+15).
+        </div>
+      </div>
+
+      <!-- LOG STREAM BOX -->
+      <div style="flex-grow: 1;">
+        <div style="font-size: 0.8rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+          <span><i class="bi bi-terminal-fill"></i> Real-time Decision Log Stream:</span>
+          <span style="font-size: 0.7rem; color: #64748b;">Auto-scrolling</span>
+        </div>
+        <div id="logStream" class="log-stream-box">
+          <!-- Logs appended dynamically by JS -->
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="seed-data.js"></script>
+  <script src="algorithms.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

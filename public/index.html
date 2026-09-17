@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <title>myBCA ADAPT — Platform Perbankan Adaptif & Simulasi AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="myBCA ADAPT merupakan inovasi platform perbankan digital BCA yang secara cerdas dan adaptif menyesuaikan seluruh layanan dengan kebutuhan finansial nasabah melalui 3 Engine AI.">
+  
+  <!-- Official myBCA Stylesheet -->
+  <link rel="stylesheet" href="/combined-styles-komplit.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom ADAPT Theme Stylesheet -->
+  <link rel="stylesheet" href="/css/custom-adapt.css">
+</head>
+<body class="pace-done no-breadcrumb">
+
+  <!-- ===================================================================== -->
+  <!-- 1. VIEW LOGIN (Milestone 2: Authentic Login & Judge Quick Switcher)  -->
+  <!-- ===================================================================== -->
+  <section id="viewLogin" class="login-hero-section">
+    <!-- Authentic Header -->
+    <header class="login-header-nav">
+      <div class="container-lg d-flex justify-content-between align-items-center">
+        <a class="login-brand-box" href="/">
+          <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="white"/>
+            <path d="M10 28V12L20 22L30 12V28" stroke="#005caa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-white font-weight-bold h4 mb-0" style="letter-spacing: -0.5px;">myBCA</span>
+        </a>
+        <div class="text-white small font-weight-bold d-flex align-items-center gap-2">
+          <i class="bi bi-shield-check text-warning h5 mb-0"></i>
+          <span>Secure Banking Portal</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Login Content -->
+    <main class="container-lg my-auto py-4">
+      <div class="row align-items-center justify-content-center">
+        <!-- Hero Left Info (Desktop) -->
+        <div class="col-lg-6 d-none d-lg-block text-white pr-lg-5">
+          <div class="badge badge-light text-primary font-weight-bold px-3 py-2 rounded-pill mb-3" style="font-size: 0.85rem;">
+            <i class="bi bi-cpu-fill text-warning mr-1"></i> myBCA ADAPT AI Ecosystem
+          </div>
+          <h1 class="display-4 font-weight-bold mb-3" style="color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+            Satu BCA ID,<br>Adaptif untuk Anda.
+          </h1>
+          <p class="lead text-white-50 mb-4" style="font-size: 1.15rem; line-height: 1.7;">
+            Pengalaman perbankan generasi baru yang secara dinamis dan reaktif menyesuaikan layanan, rekomendasi, dan kesehatan finansial Anda melalui teknologi 3 Engine AI terintegrasi.
+          </p>
+          <div class="d-flex flex-wrap gap-2 text-white small" style="gap: 0.75rem;">
+            <div class="d-flex align-items-center"><i class="bi bi-check-circle-fill text-warning mr-2"></i> Personalisasi Fitur</div>
+            <div class="d-flex align-items-center"><i class="bi bi-check-circle-fill text-warning mr-2"></i> Smart Life-Stage Bundling</div>
+            <div class="d-flex align-items-center"><i class="bi bi-check-circle-fill text-warning mr-2"></i> Gamifikasi Skor Kesehatan</div>
+          </div>
+        </div>
+
+        <!-- Login Card Right -->
+        <div class="col-12 col-md-8 col-lg-5">
+          <div class="login-card">
+            <div class="login-card-header">
+              <i class="bi bi-lock-fill"></i>
+              <span>Masuk ke myBCA</span>
+            </div>
+            <div class="p-4 p-md-4 bg-white">
+              
+              <!-- Login Alert Container -->
+              <div id="loginErrorAlert" class="alert alert-danger py-2 small d-none" role="alert"></div>
+
+              <!-- Form Login Authentic -->
+              <form id="loginForm" autocomplete="off">
+                <!-- BCA ID Input -->
+                <div class="form-group-bca">
+                  <label for="inputBcaId">BCA ID</label>
+                  <input 
+                    type="text" 
+                    id="inputBcaId" 
+                    name="bca_id" 
+                    class="form-control form-control-underline font-weight-bold" 
+                    placeholder="Masukkan BCA ID Anda" 
+                    required
+                  >
+                </div>
+
+                <!-- Password Input with Toggle -->
+                <div class="form-group-bca">
+                  <label for="inputPassword">Password</label>
+                  <input 
+                    type="password" 
+                    id="inputPassword" 
+                    name="password" 
+                    class="form-control form-control-underline" 
+                    placeholder="Masukkan Password" 
+                    required
+                  >
+                  <button type="button" id="toggleLoginPassword" class="pwd-toggle-btn" aria-label="Toggle Password Visibility">
+                    <i class="bi bi-eye-slash" id="loginEyeIcon"></i>
+                  </button>
+                </div>
+
+                <!-- Remember & Forgot -->
+                <div class="d-flex justify-content-between align-items-center mb-4 small">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberBcaId">
+                    <label class="form-check-label text-muted" for="rememberBcaId">Ingat BCA ID</label>
+                  </div>
+                  <a href="javascript:void(0);" class="text-primary font-weight-bold">Lupa Password?</a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="loginSubmitBtn" class="btn btn-bca-primary btn-block py-2">
+                  <i class="bi bi-box-arrow-in-right mr-1"></i> Masuk
+                </button>
+              </form>
+
+              <!-- Judge Quick Switcher / Persona Helper -->
+              <div class="judge-quick-box">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="small font-weight-bold text-dark">
+                    <i class="bi bi-lightning-charge-fill text-warning"></i> Mode Penguji (Quick Login):
+                  </span>
+                  <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">1-Click</span>
+                </div>
+                <div class="persona-chips-list">
+                  <button type="button" class="persona-chip-btn bg-warning text-dark font-weight-bold" data-persona="admin" style="border: 1px solid #d97706 !important;">
+                    <span><i class="bi bi-shield-lock-fill mr-1 text-dark"></i><strong>Admin Portal</strong> (BCA Product Manager)</span>
+                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
+                  </button>
+                  <button type="button" class="persona-chip-btn" data-persona="dimas">
+                    <span><strong>Dimas</strong> (Fresh Graduate / Jr Dev)</span>
+                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
+                  </button>
+                  <button type="button" class="persona-chip-btn" data-persona="ayu">
+                    <span><strong>Ayu</strong> (Rumah Tangga Baru / Marketing)</span>
+                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
+                  </button>
+                  <button type="button" class="persona-chip-btn" data-persona="sari">
+                    <span><strong>Sari</strong> (Merchant / Bisnis Catering)</span>
+                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
+                  </button>
+                  <button type="button" class="persona-chip-btn" data-persona="rina">
+                    <span><strong>Rina</strong> (Mahasiswa Aktif S1)</span>
+                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
+                  </button>
+                  <button type="button" class="persona-chip-btn" data-persona="bambang">
+                    <span><strong>Bambang</strong> (Senior Mgr / Pre-Retirement)</span>
+                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Authentic Footer -->
+    <footer class="py-3 text-center text-white-50 small border-top" style="border-color: rgba(255,255,255,0.15) !important;">
+      <div class="container-lg">
+        PT Bank Central Asia Tbk berizin dan diawasi oleh Otoritas Jasa Keuangan (OJK) & Bank Indonesia. myBCA All Rights Reserved.
+      </div>
+    </footer>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. VIEW DASHBOARD (Milestones 3–5: Reactive Dashboard & AI Engines)    -->
+  <!-- ===================================================================== -->
+  <section id="viewDashboard" class="view-hidden">
+    
+    <!-- Authentic Navbar Header -->
+    <header class="bca-main-navbar">
+      <div class="container-lg d-flex justify-content-between align-items-center">
+        
+        <!-- Left: Brand Logo -->
+        <div class="d-flex align-items-center gap-3">
+          <a class="bca-nav-brand" href="javascript:void(0);">
+            <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="8" fill="white"/>
+              <path d="M10 28V12L20 22L30 12V28" stroke="#005caa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="font-weight-bold h5 mb-0 text-white" style="letter-spacing: -0.5px;">myBCA</span>
+            <span class="brand-badge-pill d-none d-sm-inline-block">ADAPT AI ENGINE</span>
+          </a>
+        </div>
+
+        <!-- Right: Actions, Persona Switcher, Audit Drawer Toggle, Reset DB & Logout -->
+        <div class="d-flex align-items-center gap-2" style="gap: 0.5rem;">
+          
+          <!-- Quick Persona Switcher in Navbar -->
+          <div class="nav-persona-select-container d-none d-md-flex">
+            <span class="small font-weight-bold text-white-50 mr-1"><i class="bi bi-person-circle"></i> Persona:</span>
+            <select id="dashPersonaSelect" aria-label="Ganti Persona Nasabah">
+              <!-- Populated dynamically via JS -->
+            </select>
+          </div>
+
+          <!-- Admin Voucher Portal Button -->
+          <button id="btnOpenAdminVouchers" class="btn btn-warning btn-sm font-weight-bold shadow-sm" title="Admin Portal: Set Voucher & Target Finansial" onclick="app.openAdminVoucherModal()">
+            <i class="bi bi-ticket-perforated-fill"></i> <span class="d-none d-lg-inline">Admin Voucher</span>
+          </button>
+
+          <!-- Reset DB Button -->
+          <button id="btnResetDbTop" class="btn btn-outline-light btn-sm font-weight-bold" title="Reset Database ke Initial Seeds">
+            <i class="bi bi-arrow-counterclockwise"></i> <span class="d-none d-lg-inline">Reset DB</span>
+          </button>
+
+          <!-- Audit Inspector Toggle Button (Mode Juri) -->
+          <button id="btnToggleInspector" class="btn btn-warning btn-sm font-weight-bold shadow-sm" title="Buka Panel Mode Juri">
+            <i class="bi bi-cpu-fill"></i> <span class="d-none d-sm-inline">Mode Juri (Audit AI)</span>
+          </button>
+
+          <!-- Logout Button -->
+          <button id="btnLogout" class="btn btn-outline-light btn-sm font-weight-bold ml-1" title="Keluar dari Sesi">
+            <i class="bi bi-box-arrow-right"></i> <span class="d-none d-sm-inline">Keluar</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="main my-3 mt-4 container-lg">
+      
+      <!-- Greeting & Profile Summary Card -->
+      <div class="adapt-card mb-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-12 col-md-8 d-flex align-items-center gap-3">
+            <img id="dashUserAvatar" src="" alt="Avatar" class="rounded-circle border" width="56" height="56" style="border-width: 3px !important; border-color: #005caa !important; object-fit: cover;">
+            <div>
+              <h4 class="font-weight-bold mb-0 text-dark">
+                Hello, <span id="dashCustomerName">DIMAS PRASETYO</span>
+              </h4>
+              <div class="d-flex align-items-center text-muted small mt-1">
+                <span class="mr-2">BCA ID:</span>
+                <strong id="dashBcaIdDisplay" class="font-weight-bold text-primary mr-2">DI*********8</strong>
+                <button type="button" id="toggleBcaIdMask" class="btn p-0 border-0 text-muted" title="Tampilkan/Sembunyikan BCA ID">
+                  <i class="bi bi-eye-slash" id="bcaIdEyeIcon"></i>
+                </button>
+                <span class="mx-2">•</span>
+                <span id="dashLastLogin">Last login 11 Sep 2026 21:18:54 UTC+7</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 text-md-right mt-2 mt-md-0">
+            <span id="dashUserTitleBadge" class="badge badge-light text-primary border font-weight-bold px-3 py-2" style="font-size: 0.85rem;">
+              Fresh Graduate
+            </span>
+          </div>
+        </div>
+
+        <!-- Account Balance & Quick Menus Grid -->
+        <div class="row">
+          
+          <!-- Left: Account Balance Card (Authentic v2 Card) -->
+          <div class="col-12 col-lg-5 mb-3 mb-lg-0">
+            <div class="bca-balance-card h-100 d-flex flex-column justify-content-between">
+              
+              <!-- Card Top: Account Type & Account Number -->
+              <div class="bca-balance-card-header">
+                <div>
+                  <div class="font-weight-semibold text-primary small" id="dashAccountType">TAHAPAN - IDR</div>
+                  <strong class="h5 mb-0 text-dark font-weight-bold" id="dashAccountNo">8820491823</strong>
+                </div>
+                <i class="bi bi-credit-card-2-front text-primary h4 mb-0"></i>
+              </div>
+
+              <!-- Card Bottom: Balance & Masking Eye Toggle -->
+              <div class="bca-balance-card-body">
+                <div>
+                  <div class="text-muted small mb-1">Saldo Rekening Utama:</div>
+                  <div class="d-flex align-items-center">
+                    <span class="h5 mb-0 mr-2 font-weight-normal text-muted">IDR</span>
+                    <!-- Masked State (Default) -->
+                    <div id="balanceMaskedGroup" class="d-flex align-items-center">
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                    </div>
+                    <!-- Unmasked State -->
+                    <div id="balanceNumericGroup" class="d-none font-weight-bold h4 mb-0 text-primary">
+                      <span id="dashBalanceValue">14.500.000</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Balance Visibility Eye Toggle -->
+                <button type="button" id="btnToggleBalance" class="btn-eye-toggle" title="Tampilkan/Sembunyikan Saldo">
+                  <i class="bi bi-eye-slash-fill" id="balanceEyeIcon"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right: 6 Quick Banking Feature Shortcuts -->
+          <div class="col-12 col-lg-7">
+            <div class="banking-feature-grid">
+              <!-- 1. Transfer -->
+              <a href="javascript:void(0);" class="banking-feature-item" onclick="app.quickSimulateAction('Transfer')">
+                <div class="feature-icon-wrapper bg-primary text-white">
+                  <i class="bi bi-arrow-left-right"></i>
+                </div>
+                <div>
+                  <div class="font-weight-bold small">Transfer</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Kirim & Terima</div>
+                </div>
+              </a>
+
+              <!-- 2. Welma Investment -->
+              <a href="javascript:void(0);" class="banking-feature-item" onclick="app.quickSimulateAction('Welma Investment')">
+                <div class="feature-icon-wrapper" style="background: #28bab7; color: #ffffff;">
+                  <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <div>
+                  <div class="font-weight-bold small">Welma</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Portofolio Investasi</div>
+                </div>
+              </a>
+
+              <!-- 3. Protection -->
+              <a href="javascript:void(0);" class="banking-feature-item" onclick="app.quickSimulateAction('Proteksi')">
+                <div class="feature-icon-wrapper" style="background: #28bab7; color: #ffffff;">
+                  <i class="bi bi-shield-check"></i>
+                </div>
+                <div>
+                  <div class="font-weight-bold small">Proteksi</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Asuransi Jiwa</div>
+                </div>
+              </a>
+
+              <!-- 4. Lifestyle -->
+              <a href="javascript:void(0);" class="banking-feature-item" onclick="app.quickSimulateAction('Gaya Hidup')">
+                <div class="feature-icon-wrapper" style="background: #00b5f0; color: #ffffff;">
+                  <i class="bi bi-bag-check-fill"></i>
+                </div>
+                <div>
+                  <div class="font-weight-bold small">Gaya Hidup</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Tiket & Belanja</div>
+                </div>
+              </a>
+
+              <!-- 5. Paylater -->
+              <a href="javascript:void(0);" class="banking-feature-item" onclick="app.quickSimulateAction('Paylater')">
+                <div class="feature-icon-wrapper" style="background: #f37c30; color: #ffffff;">
+                  <i class="bi bi-wallet2"></i>
+                </div>
+                <div>
+                  <div class="font-weight-bold small">Paylater</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Limit & Cicilan</div>
+                </div>
+              </a>
+
+              <!-- 6. More -->
+              <a href="javascript:void(0);" class="banking-feature-item" onclick="app.quickSimulateAction('Lainnya')">
+                <div class="feature-icon-wrapper bg-light text-primary border">
+                  <i class="bi bi-grid-fill"></i>
+                </div>
+                <div>
+                  <div class="font-weight-bold small">Lainnya</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Fitur Lengkap</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Life Event Smart Bundling Banner (Algoritma 2) -->
+      <section id="lifeEventContainer">
+        <!-- Dynamically mounted banner via JS -->
+      </section>
+
+      <!-- 2-Column Dashboard Grid: Gamification (Alg 3) & Recommendations (Alg 1) -->
+      <div class="row">
+        
+        <!-- Algoritma 3: Financial Health Gamification Score Card -->
+        <div class="col-12 col-lg-6">
+          <div class="adapt-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="adapt-card-header">
+                <h5 class="adapt-card-title">
+                  <i class="bi bi-shield-heart-fill"></i> Skor Kesehatan Finansial
+                </h5>
+                <span id="tierBadge" class="tier-badge badge-bronze">
+                  <i class="bi bi-award-fill"></i> Level Bronze
+                </span>
+              </div>
+
+              <!-- Score Circle & Progress -->
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="score-circle">
+                  <span id="scoreNum" class="score-num">45</span>
+                  <span class="score-max-text">DARI 100</span>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between font-weight-bold small mb-1">
+                    <span>Progres Fitur Sehat</span>
+                    <span id="rewardPoints" class="text-primary">1,000 Poin BCA</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div id="scoreProgressFill" class="progress-bar-fill"></div>
+                  </div>
+                  <div class="small text-muted" style="font-size: 0.75rem;">
+                    Tingkatkan level dengan mengaktifkan fitur finansial rekomendasi & konsistensi menabung.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Granular Breakdown -->
+              <div class="small font-weight-bold text-muted mb-1">Rincian Komponen Skor:</div>
+              <div id="scoreBreakdown" class="score-breakdown-box">
+                <!-- Breakdown populated via JS -->
+              </div>
+            </div>
+
+            <div class="mt-3 pt-2 border-top text-muted small d-flex justify-content-between">
+              <span>Status: <strong class="text-success">Aktif Terhitung Live</strong></span>
+              <span class="text-primary font-weight-bold">Engine Algoritma 3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Algoritma 1: Contextual Feature Recommendations Feed -->
+        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+          <div class="adapt-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="adapt-card-header">
+                <h5 class="adapt-card-title">
+                  <i class="bi bi-stars"></i> Rekomendasi Fitur Terkontekstual
+                </h5>
+                <span class="badge badge-primary font-weight-bold"><i class="bi bi-robot mr-1"></i>Groq AI + Propensity</span>
+              </div>
+              <div class="small text-muted mb-3">
+                Algoritma 1 terintegrasi <strong>Groq AI Agent</strong> menganalisis profil nasabah, saldo rekening, dan pola mutasi transaksi untuk memberikan rekomendasi fitur dengan penalaran finansial cerdas:
+              </div>
+
+              <!-- Recommendations List -->
+              <div id="recommendationsList">
+                <!-- Dynamically populated recommendations via JS -->
+              </div>
+            </div>
+
+            <div class="mt-3 pt-2 border-top text-muted small d-flex justify-content-between">
+              <span>Sistem Rekomendasi: <strong class="text-primary">Pull Not Push</strong></span>
+              <span class="text-primary font-weight-bold">Engine Algoritma 1</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2-Column Grid: Simulation Lab (Injector & Scenarios) & Mutasi History -->
+      <div class="row mt-3">
+        
+        <!-- Simulation Lab & Interactive Data Injector -->
+        <div class="col-12 col-lg-6">
+          <div class="adapt-card h-100">
+            <div class="adapt-card-header">
+              <h5 class="adapt-card-title text-dark">
+                <i class="bi bi-sliders text-warning"></i> Simulation Lab (Uji Coba Juri)
+              </h5>
+              <span class="badge badge-warning text-dark font-weight-bold">Sandbox Live</span>
+            </div>
+
+            <!-- Quick Demo Scenario Buttons -->
+            <div class="mb-3">
+              <div class="small font-weight-bold mb-2 text-dark">
+                ⚡ Quick Demo Skenario (Suntikkan Paket Transaksi Nyata):
+              </div>
+              <div id="scenariosContainer" class="d-flex flex-wrap gap-2" style="gap: 0.5rem;">
+                <!-- Scenarios buttons populated via JS -->
+              </div>
+            </div>
+
+            <!-- Manual Transaction Form with Groq AI Agent -->
+            <div class="p-3 bg-light rounded border mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="small font-weight-bold text-primary">
+                  <i class="bi bi-robot text-info mr-1"></i> AI Smart Injector (Uji Coba Mutasi Real-Time):
+                </span>
+                <span class="badge badge-info text-white font-weight-bold" style="font-size: 0.75rem; background: linear-gradient(135deg, #0284c7, #0369a1);">
+                  <i class="bi bi-lightning-charge-fill text-warning"></i> Powered by Groq AI
+                </span>
+              </div>
+              <form id="addTxForm">
+                <div class="form-row mb-2">
+                  <div class="col-12 col-md-8 mb-2 mb-md-0">
+                    <input type="text" id="txDesc" class="form-control form-control-sm" placeholder="Nama transaksi (cth: Gaji bulanan, Kopi kenangan siang, Kos jaksel)" required autocomplete="off">
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text font-weight-bold">Rp</span>
+                      </div>
+                      <input type="number" id="txAmount" class="form-control form-control-sm" placeholder="Nominal" min="1000" step="1000" required>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hidden / Behind the Scenes Category & Type Container -->
+                <div id="aiCategoryPreview" class="p-2 mb-2 rounded bg-white border small d-none align-items-center justify-content-between">
+                  <div>
+                    <span class="text-muted">Kategori Terdeteksi AI:</span>
+                    <strong id="previewCatName" class="text-primary ml-1">Jajan & Lifestyle</strong>
+                    <span id="previewCatType" class="badge badge-danger ml-1">DB (Keluar -)</span>
+                  </div>
+                  <span id="previewReason" class="text-muted font-italic" style="font-size: 0.72rem;"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <span class="small text-muted" style="font-size: 0.78rem;">
+                    <i class="bi bi-magic text-primary mr-1"></i> Kategori & Tipe ditentukan otomatis di balik layar oleh Groq AI
+                  </span>
+                  <button type="submit" id="btnSubmitTx" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm">
+                    <i class="bi bi-cpu mr-1"></i> Simulasikan Transaksi
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Reset Database Button -->
+            <div class="d-flex justify-content-between align-items-center p-2 rounded bg-white border">
+              <div>
+                <strong class="small text-dark">Reset State Demonstrasi:</strong>
+                <div class="small text-muted">Mengembalikan seluruh data transaksi & fitur ke kondisi awal seed.</div>
+              </div>
+              <button type="button" id="btnResetDb" class="btn btn-outline-danger btn-sm font-weight-bold ml-2">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset DB
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Mutasi / Transaction Activity History -->
+        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+          <div class="adapt-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="adapt-card-header">
+                <h5 class="adapt-card-title">
+                  <i class="bi bi-clock-history"></i> Histori Mutasi Rekening
+                </h5>
+                <!-- Period Filter Tabs -->
+                <div class="btn-group btn-group-sm" role="group" id="txPeriodTabs">
+                  <button type="button" class="btn btn-primary btn-sm active font-weight-bold" data-period="current">Current (T)</button>
+                  <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" data-period="baseline">Baseline (T-1)</button>
+                  <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" data-period="all">Semua</button>
+                </div>
+              </div>
+
+              <div class="small text-muted mb-2">
+                Data mutasi di bawah tersimpan persisten pada database SQLite dan menjadi input live bagi ketiga engine AI:
+              </div>
+
+              <!-- Transaction List Table -->
+              <div class="table-responsive" style="max-height: 420px; overflow-y: auto;">
+                <table class="table table-sm table-hover align-middle mb-0">
+                  <thead class="thead-light">
+                    <tr class="small text-muted">
+                      <th>Tanggal</th>
+                      <th>Keterangan</th>
+                      <th>Kategori</th>
+                      <th class="text-right">Nominal (Rp)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="txTableBody">
+                    <!-- Transactions populated dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mt-3 pt-2 border-top text-muted small d-flex justify-content-between">
+              <span>Status Mutasi: <strong class="text-success">Persisten SQLite (WAL)</strong></span>
+              <span id="txCountBadge" class="badge badge-light border">0 Transaksi</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- 4. VOUCHER & FINANCIAL QUESTS CATALOG (Target yang Harus Dicapai) -->
+      <!-- ================================================================= -->
+      <section class="mt-4 mb-3" id="voucherSection">
+        <div class="adapt-card">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge badge-danger px-2 py-1 font-weight-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                  <i class="bi bi-gift-fill mr-1"></i> REWARD & TARGET QUESTS
+                </span>
+                <span class="badge badge-light border text-muted small" id="voucherCountMeta">5 Voucher Tersedia</span>
+              </div>
+              <h4 class="font-weight-bold text-dark mb-1 mt-1">
+                <i class="bi bi-ticket-perforated text-primary mr-1"></i> Katalog Voucher & Target Finansial
+              </h4>
+              <div class="text-muted small">
+                Selesaikan target finansial (skor kesehatan, frekuensi transaksi, atau alokasi tabungan) untuk membuka dan mengklaim e-voucher belanja!
+              </div>
+            </div>
+
+            <!-- Filter Buttons & Admin Quick Button -->
+            <div class="d-flex align-items-center gap-2 mt-2 mt-md-0">
+              <div class="btn-group btn-group-sm" role="group" id="voucherFilterTabs">
+                <button type="button" class="btn btn-primary btn-sm active font-weight-bold" data-vfilter="all">Semua</button>
+                <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" data-vfilter="ready">
+                  Siap Klaim <span id="badgeReadyCount" class="badge badge-warning text-dark ml-1 d-none">0</span>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" data-vfilter="claimed">Sudah Diklaim</button>
+              </div>
+              <button type="button" class="btn btn-outline-warning btn-sm font-weight-bold ml-2" onclick="app.openAdminVoucherModal()" title="Buka Admin Voucher Portal">
+                <i class="bi bi-gear-fill mr-1"></i> Set Voucher Admin
+              </button>
+            </div>
+          </div>
+
+          <!-- Voucher Cards Grid -->
+          <div class="row" id="vouchersGrid">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Dashboard Footer -->
+    <footer class="py-4 text-center text-muted small border-top bg-white mt-4">
+      <div class="container-lg">
+        PT Bank Central Asia Tbk berizin dan diawasi oleh Otoritas Jasa Keuangan (OJK) & Bank Indonesia. myBCA All Rights Reserved.
+      </div>
+    </footer>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. AUDIT ENGINE INSPECTOR DRAWER (MODE JURI)                          -->
+  <!-- ===================================================================== -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  <aside id="inspectorDrawer" class="inspector-drawer">
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-2" style="border-color: #334155 !important;">
+      <div class="d-flex align-items-center gap-2">
+        <h5 class="font-weight-bold text-warning mb-0"><i class="bi bi-cpu-fill mr-1"></i> AUDIT ENGINE INSPECTOR</h5>
+        <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">LIVE TRACE</span>
+      </div>
+      <button type="button" id="btnCloseInspector" class="btn btn-sm btn-outline-light py-0 px-2" aria-label="Tutup Inspector">✕</button>
+    </div>
+
+    <!-- Mathematical Formula 1 (Algoritma 1) -->
+    <div class="formula-box" style="border-left: 4px solid #00a3e0 !important;">
+      <div class="small font-weight-bold text-info"><i class="bi bi-calculator"></i> Algoritma 1: Rule-Based Propensity Vector</div>
+      <div class="formula-math-display">S(f) = w_freq * Norm(Freq) + w_amt * Norm(Amt)</div>
+      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
+        Menghitung vektor kecenderungan adopsi fitur dari frekuensi (60%) & nominal (40%) transaksi.
+      </div>
+    </div>
+
+    <!-- Mathematical Formula 2 (Algoritma 2) -->
+    <div class="formula-box" style="border-left: 4px solid #f59e0b !important;">
+      <div class="small font-weight-bold text-warning"><i class="bi bi-calculator"></i> Algoritma 2: Life Event Pattern Shift</div>
+      <div class="formula-math-display">Confidence(E) = Σ (w_c * min(1, N_curr / N_thresh))</div>
+      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
+        Mendeteksi kemunculan sinyal transaksi baru secara konsisten antar-periode (Threshold >= 60%).
+      </div>
+    </div>
+
+    <!-- Mathematical Formula 3 (Algoritma 3) -->
+    <div class="formula-box" style="border-left: 4px solid #10b981 !important;">
+      <div class="small font-weight-bold text-success"><i class="bi bi-calculator"></i> Algoritma 3: Financial Health Weighted Score</div>
+      <div class="formula-math-display">Score = Base(20) + Σ P_features + Bonus_time + Bonus_save</div>
+      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
+        Bobot terukur: Base (20), Fitur Aktif (+10-20), Ketepatan Bayar (+15), Konsistensi Menabung (+15). Max: 100.
+      </div>
+    </div>
+
+    <!-- Real-time Decision Log Stream Box -->
+    <div class="d-flex flex-column flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <span class="small font-weight-bold text-warning"><i class="bi bi-terminal-fill"></i> Live Decision Trace Logs:</span>
+        <button type="button" id="btnRefreshLogs" class="btn btn-outline-secondary btn-sm py-0 text-white-50" style="font-size: 0.7rem;">
+          <i class="bi bi-arrow-repeat"></i> Refresh
+        </button>
+      </div>
+      <div id="logStream" class="log-stream-container">
+        <!-- Logs dynamically appended via JS -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- 4. SMART BUNDLE DETAILED MODAL                                       -->
+  <!-- ===================================================================== -->
+  <div class="modal fade" id="smartBundleModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.6);">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 12px; overflow: hidden;">
+        <div class="modal-header bg-primary text-white py-3">
+          <h5 class="modal-title font-weight-bold text-white">
+            <i class="bi bi-gift-fill text-warning mr-1"></i> Penawaran Smart Bundle myBCA ADAPT
+          </h5>
+          <button type="button" class="close text-white" id="btnCloseModal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-4" id="modalBundleContent">
+          <!-- Modal content populated dynamically -->
+        </div>
+        <div class="modal-footer bg-light py-2">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnDismissModal">Tutup</button>
+          <button type="button" class="btn btn-primary btn-sm font-weight-bold" id="btnClaimModalBundle">
+            <i class="bi bi-lightning-charge-fill mr-1"></i> Aktifkan Bundle Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4.1 FEATURE ONBOARDING & SALDO REGISTRATION MODAL                     -->
+  <!-- ===================================================================== -->
+  <div class="modal fade" id="featureOnboardingModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1060;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+        
+        <!-- Modal Header -->
+        <div class="modal-header text-white py-3 px-4" style="background: linear-gradient(135deg, #005caa 0%, #0088ff 100%);">
+          <div class="d-flex align-items-center gap-2">
+            <div class="bg-white text-primary p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i id="onboardingHeaderIcon" class="bi bi-graph-up h5 mb-0"></i>
+            </div>
+            <div>
+              <h5 class="modal-title font-weight-bold text-white mb-0" id="onboardingModalTitle">Pendaftaran & Pembukaan Fitur</h5>
+              <div class="text-white-50 small" id="onboardingModalSubtitle">myBCA Welma & Financial Solution</div>
+            </div>
+          </div>
+          <button type="button" class="close text-white" id="btnCloseOnboardingModal" aria-label="Close" style="opacity: 0.85;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal Body: Step 1 (Setup & Products) / Step 2 (e-Receipt) -->
+        <div class="modal-body p-4" id="onboardingModalBody" style="max-height: 75vh; overflow-y: auto;">
+          <!-- Dynamic Content -->
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer bg-light py-2 px-4 d-flex justify-content-between" id="onboardingModalFooter">
+          <button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold" id="btnCancelOnboarding">Batal</button>
+          <button type="button" class="btn btn-bca-primary btn-sm font-weight-bold" id="btnConfirmOnboarding">
+            <i class="bi bi-check2-circle mr-1"></i> Konfirmasi & Buka Layanan
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4.2 ADMIN VOUCHER & TARGET QUEST MANAGER MODAL                        -->
+  <!-- ===================================================================== -->
+  <div class="modal fade" id="adminVoucherModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1070;">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+        
+        <!-- Modal Header -->
+        <div class="modal-header text-white py-3 px-4" style="background: linear-gradient(135deg, #002e5b 0%, #005caa 100%);">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-warning text-dark p-2 rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 42px; height: 42px;">
+              <i class="bi bi-ticket-perforated-fill h4 mb-0"></i>
+            </div>
+            <div>
+              <div class="badge badge-warning text-dark font-weight-bold px-2 py-1 mb-1" style="font-size: 0.72rem;">
+                <i class="bi bi-shield-lock-fill mr-1"></i> ADMIN PORTAL myBCA ADAPT
+              </div>
+              <h5 class="modal-title font-weight-bold text-white mb-0">Pengaturan Voucher & Target Quest Nasabah</h5>
+              <div class="text-white-50 small">Buat voucher reward promo dan tentukan target finansial yang wajib dicapai pengguna sebelum klaim.</div>
+            </div>
+          </div>
+          <button type="button" class="close text-white" id="btnCloseAdminVoucherModal" aria-label="Close" style="opacity: 0.85;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal Body with Sub-Tabs -->
+        <div class="modal-body p-4" style="max-height: 80vh; overflow-y: auto;">
+          <ul class="nav nav-pills mb-3 border-bottom pb-2" id="adminVoucherTabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active font-weight-bold" id="tab-create-voucher" data-toggle="pill" href="#paneCreateVoucher" role="tab">
+                <i class="bi bi-plus-circle-fill mr-1 text-warning"></i> 1. Set Voucher & Target Baru
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link font-weight-bold" id="tab-list-voucher" data-toggle="pill" href="#paneListVoucher" role="tab">
+                <i class="bi bi-list-check mr-1 text-primary"></i> 2. Katalog & Metrik Klaim (<span id="adminVoucherListCount">0</span>)
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="adminVoucherTabsContent">
+            
+            <!-- Tab 1: Form Create Voucher & Target -->
+            <div class="tab-pane fade show active" id="paneCreateVoucher" role="tabpanel">
+              <form id="adminCreateVoucherForm">
+                
+                <div class="row">
+                  <!-- General Voucher Info -->
+                  <div class="col-12 col-lg-6">
+                    <div class="card border mb-3">
+                      <div class="card-header bg-light py-2 font-weight-bold small text-primary">
+                        <i class="bi bi-info-circle mr-1"></i> Informasi Dasar Voucher
+                      </div>
+                      <div class="card-body p-3">
+                        <div class="form-group mb-2">
+                          <label class="small font-weight-bold text-dark mb-1">Judul / Nama Voucher <span class="text-danger">*</span></label>
+                          <input type="text" id="adminVoucherTitle" class="form-control form-control-sm" placeholder="cth: Diskon Belanja Indomaret Rp 50.000" required>
+                        </div>
+                        <div class="form-row mb-2">
+                          <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <label class="small font-weight-bold text-dark mb-1">Mitra / Merchant <span class="text-danger">*</span></label>
+                            <input type="text" id="adminVoucherMerchant" class="form-control form-control-sm" placeholder="cth: Indomaret, Kopi Kenangan" required>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <label class="small font-weight-bold text-dark mb-1">Kategori Voucher</label>
+                            <select id="adminVoucherCategory" class="form-control form-control-sm">
+                              <option value="Shopping">Shopping / Retail</option>
+                              <option value="F&B">F&B / Kuliner</option>
+                              <option value="Investment">Investment / Welma</option>
+                              <option value="Lifestyle">Lifestyle & Entertainment</option>
+                              <option value="Travel">Travel & Transportasi</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-row mb-2">
+                          <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <label class="small font-weight-bold text-dark mb-1">Tipe Reward</label>
+                            <select id="adminVoucherRewardType" class="form-control form-control-sm">
+                              <option value="DISCOUNT">Potongan Diskon (Rp)</option>
+                              <option value="CASHBACK">Cashback Rekening (Rp)</option>
+                              <option value="POINTS">Bonus Poin BCA</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <label class="small font-weight-bold text-dark mb-1">Nilai Reward (Rp) <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
+                              <div class="input-group-prepend"><span class="input-group-text font-weight-bold">Rp</span></div>
+                              <input type="number" id="adminVoucherRewardValue" class="form-control form-control-sm" placeholder="50000" min="5000" step="5000" required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <label class="small font-weight-bold text-dark mb-1">Kode Voucher Kustom (Opsional)</label>
+                            <input type="text" id="adminVoucherCode" class="form-control form-control-sm" placeholder="cth: BCA-INDO-50K (kosongkan utk auto)">
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <label class="small font-weight-bold text-dark mb-1">Masa Berlaku (Expiry Date)</label>
+                            <input type="date" id="adminVoucherExpiry" class="form-control form-control-sm" value="2026-12-31">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Financial Target / Quest Definition -->
+                  <div class="col-12 col-lg-6">
+                    <div class="card border border-warning mb-3 shadow-sm" style="background: #fffdf6;">
+                      <div class="card-header bg-warning text-dark py-2 font-weight-bold small d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-bullseye mr-1"></i> Target Finansial yang Harus Dicapai Nasabah</span>
+                        <span class="badge badge-dark">Quest Engine</span>
+                      </div>
+                      <div class="card-body p-3">
+                        <div class="form-group mb-2">
+                          <label class="small font-weight-bold text-dark mb-1">Pilih Tipe Target Finansial (Quest Criteria) <span class="text-danger">*</span></label>
+                          <select id="adminVoucherTargetType" class="form-control form-control-sm font-weight-semibold">
+                            <option value="MIN_HEALTH_SCORE">🎯 Minimum Skor Kesehatan Finansial (PTS Gamifikasi)</option>
+                            <option value="CATEGORY_TX_COUNT">🛒 Frekuensi Transaksi Pos Kategori Tertentu (Jumlah Kali)</option>
+                            <option value="MIN_SAVINGS_ALLOC">💰 Alokasi Tabungan / Investasi Minimal (Rp)</option>
+                            <option value="ACTIVE_FEATURE_COUNT">⚡ Jumlah Fitur Kesehatan Finansial Aktif</option>
+                            <option value="TOTAL_TX_COUNT">📊 Total Jumlah Seluruh Transaksi Akun</option>
+                            <option value="MIN_SPEND_AMOUNT">💳 Minimum Akumulasi Pengeluaran Belanja (Rp)</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group mb-2">
+                          <label class="small font-weight-bold text-dark mb-1">Nilai Target yang Harus Dicapai <span class="text-danger">*</span></label>
+                          <input type="number" id="adminVoucherTargetValue" class="form-control form-control-sm" placeholder="cth: 70 (utk Skor), 2 (utk Transaksi), 500000 (utk Tabungan)" min="1" required>
+                          <small class="text-muted" id="adminTargetHelpText">Contoh: Isi 70 jika target adalah skor gamifikasi minimal 70 PTS.</small>
+                        </div>
+
+                        <div class="form-group mb-2" id="adminCategoryContainer">
+                          <label class="small font-weight-bold text-dark mb-1">Pilihan Kategori Transaksi Spesifik</label>
+                          <select id="adminVoucherTargetCategory" class="form-control form-control-sm">
+                            <option value="Belanja Kebutuhan Pokok">Belanja Kebutuhan Pokok (Supermarket / Groceries)</option>
+                            <option value="Jajan & Gaya Hidup">Jajan & Gaya Hidup (Kuliner / F&B)</option>
+                            <option value="Hunian & Kos">Hunian & Kos (Housing / Rental)</option>
+                            <option value="Tagihan & Utilitas">Tagihan & Utilitas (Listrik / Internet)</option>
+                            <option value="Cicilan & Paylater">Cicilan & Paylater</option>
+                            <option value="Investasi / Tabungan">Investasi / Tabungan</option>
+                            <option value="Operasional & Bisnis">Operasional & Bisnis</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group mb-0">
+                          <label class="small font-weight-bold text-dark mb-1">Deskripsi Tambahan / Narasi Syarat</label>
+                          <textarea id="adminVoucherDesc" class="form-control form-control-sm" rows="2" placeholder="Kosongkan jika ingin dibuatkan deskripsi narasi otomatis oleh sistem."></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-end align-items-center gap-2 pt-2 border-top">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" id="btnCancelAdminVoucher">Batal</button>
+                  <button type="submit" class="btn btn-warning btn-sm font-weight-bold px-4 shadow-sm" id="btnSubmitAdminVoucher">
+                    <i class="bi bi-broadcast mr-1"></i> Rilis & Aktifkan Voucher ke Seluruh Nasabah
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Tab 2: Existing Vouchers Table & Claim Metrics -->
+            <div class="tab-pane fade" id="paneListVoucher" role="tabpanel">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="small font-weight-bold text-muted">Daftar Voucher yang sedang aktif di sistem & metrik klaim:</span>
+                <button type="button" class="btn btn-outline-primary btn-sm" id="btnRefreshAdminVouchers">
+                  <i class="bi bi-arrow-clockwise mr-1"></i> Segarkan Data
+                </button>
+              </div>
+
+              <div class="table-responsive border rounded" style="max-height: 480px; overflow-y: auto;">
+                <table class="table table-sm table-hover align-middle mb-0">
+                  <thead class="thead-light">
+                    <tr class="small text-muted">
+                      <th>Kode & Mitra</th>
+                      <th>Nama Voucher</th>
+                      <th>Target Quest Admin</th>
+                      <th>Reward</th>
+                      <th>Status & Klaim</th>
+                      <th class="text-center">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminVouchersTableBody">
+                    <!-- Populated dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer bg-light py-2 px-4 d-flex justify-content-between">
+          <span class="text-muted small">
+            <i class="bi bi-info-circle mr-1 text-primary"></i> Setiap voucher yang dirilis langsung dievaluasi live terhadap seluruh persona nasabah.
+          </span>
+          <button type="button" class="btn btn-secondary btn-sm font-weight-bold" id="btnCloseAdminVoucherFooter">Tutup</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4.3 USER VOUCHER CLAIM CELEBRATION & E-VOUCHER MODAL                 -->
+  <!-- ===================================================================== -->
+  <div class="modal fade" id="userVoucherClaimModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1080;">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 480px;">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+        
+        <!-- Celebration Top Banner -->
+        <div class="text-center text-white py-4 px-3 position-relative" style="background: linear-gradient(135deg, #005caa 0%, #0088ff 100%);">
+          <div class="bg-warning text-dark rounded-circle mx-auto d-flex align-items-center justify-content-center shadow" style="width: 58px; height: 58px; font-size: 1.8rem; margin-top: -10px;">
+            🎉
+          </div>
+          <h4 class="font-weight-bold mt-3 mb-1 text-white">Target Finansial Tercapai!</h4>
+          <div class="text-white-50 small">Voucher Spesial Berhasil Kamu Buka & Diklaim</div>
+          <button type="button" class="close text-white position-absolute" id="btnCloseUserClaimModal" aria-label="Close" style="top: 12px; right: 16px; opacity: 0.9;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- E-Voucher Digital Coupon Card -->
+        <div class="p-4" style="background: #f8fafc;">
+          <div class="bg-white border p-3 rounded shadow-sm text-center position-relative" style="border: 2px dashed #005caa !important;">
+            <span class="badge badge-primary px-3 py-1 font-weight-bold mb-2" id="claimModalMerchantBadge">INDOMARET</span>
+            <h5 class="font-weight-bold text-dark mb-1" id="claimModalTitle">Voucher Belanja Rp 50.000</h5>
+            <div class="text-muted small mb-3" id="claimModalDesc">Potongan belanja langsung di seluruh gerai Indomaret.</div>
+
+            <!-- Monospace Voucher Code Box -->
+            <div class="p-3 bg-light rounded border mb-2 d-flex align-items-center justify-content-between">
+              <div class="text-left">
+                <div class="text-muted" style="font-size: 0.7rem;">KODE E-VOUCHER:</div>
+                <strong class="h4 mb-0 text-primary font-monospace tracking-wide" id="claimModalCode" style="letter-spacing: 2px;">BCA-INDO-50K</strong>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" id="btnCopyVoucherCode" onclick="app.copyVoucherCode()">
+                <i class="bi bi-clipboard mr-1"></i> Salin
+              </button>
+            </div>
+
+            <!-- Barcode Simulation -->
+            <div class="py-2 opacity-75">
+              <div style="font-family: monospace; letter-spacing: 5px; font-size: 1.3rem; color: #333;">||||| | |||| ||| |||| |</div>
+              <div class="text-muted" style="font-size: 0.65rem;" id="claimModalBarcodeText">BCA-INDO-50K-2026</div>
+            </div>
+
+            <!-- Target Achieved Notice -->
+            <div class="mt-2 pt-2 border-top small text-success font-weight-bold">
+              <i class="bi bi-check-circle-fill mr-1"></i> Target Terpenuhi: <span id="claimModalTargetAchieved">2x Transaksi Belanja Kebutuhan Pokok</span>
+            </div>
+            <div class="text-muted" style="font-size: 0.72rem; margin-top: 2px;">
+              Berlaku hingga: <span id="claimModalExpiry">31 Des 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer bg-light py-2 px-4 d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold" id="btnDismissUserClaim">Tutup</button>
+          <button type="button" class="btn btn-primary btn-sm font-weight-bold" id="btnUseVoucherNow" onclick="app.useVoucherNow()">
+            <i class="bi bi-bag-check-fill mr-1"></i> Gunakan Voucher Sekarang
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toastContainer"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 5. JAVASCRIPT APPLICATION CONTROLLER                                 -->
+  <!-- ===================================================================== -->
+  <script src="/js/app.js"></script>
+
+</body>
+</html>

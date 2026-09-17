@@ -1,0 +1,761 @@
+/* ==========================================================================
+   myBCA ADAPT — Custom Styling Extension
+   Inherits from combined-styles-komplit.css with ADAPT AI Extensions
+   ========================================================================== */
+
+:root {
+  --bca-primary: #005caa;
+  --bca-primary-dark: #003d75;
+  --bca-primary-light: #0088ff;
+  --bca-cyan: #00a3e0;
+  --bca-accent-blue: #00b5f0;
+  --bca-bg-light: #f5f9fa;
+  --bca-border: #eaecf0;
+  --bca-text: #212529;
+  --bca-muted: #667085;
+
+  /* AI Gamification Tier Gradients */
+  --bronze-grad: linear-gradient(135deg, #cd7f32 0%, #a05a2c 100%);
+  --silver-grad: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+  --gold-grad: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --diamond-grad: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+
+  --teal: #28bab7;
+  --orange: #f37c30;
+  --green: #29b821;
+  --red: #e25757;
+}
+
+body {
+  background-color: var(--bca-bg-light);
+  color: var(--bca-text);
+  font-family: "BCA Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* View State Switcher */
+.view-hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   AUTHENTIC LOGIN VIEW
+   -------------------------------------------------------------------------- */
+.login-hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #005caa 0%, #0094d6 50%, #00b5f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-hero-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.login-header-nav {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.login-brand-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.login-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 40, 80, 0.25);
+  border: none;
+  overflow: hidden;
+}
+
+.login-card-header {
+  background: #005caa;
+  color: #ffffff;
+  padding: 1.25rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Underline Inputs (Authentic myBCA Signature) */
+.form-control-underline {
+  border-width: 0 0 1.5px 0 !important;
+  border-color: #dee2e6 !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0 !important;
+  font-size: 1rem !important;
+  background-color: transparent !important;
+  color: #212529 !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, border-width 0.1s ease;
+}
+
+.form-control-underline:focus {
+  border-color: #005caa !important;
+  border-width: 0 0 2px 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.form-group-bca {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group-bca label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #005caa;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.pwd-toggle-btn {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  cursor: pointer;
+  color: #667085;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  padding: 0 0.25rem;
+}
+
+.pwd-toggle-btn:hover {
+  color: #005caa;
+}
+
+.btn-bca-primary {
+  background-color: #005caa;
+  border-color: #005caa;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0.65rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-bca-primary:hover, .btn-bca-primary:focus {
+  background-color: #003d75;
+  border-color: #003d75;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 91, 170, 0.3);
+}
+
+/* Judge Quick Switcher in Login */
+.judge-quick-box {
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #eaecf0;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+.persona-chip-btn {
+  border: 1px solid #bfdbfe;
+  background: #ffffff;
+  color: #1e3a8a;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.4rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.persona-chip-btn:hover {
+  background: #eff6ff;
+  border-color: #005caa;
+  color: #005caa;
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   AUTHENTIC DASHBOARD VIEW
+   -------------------------------------------------------------------------- */
+.bca-main-navbar {
+  background: #005caa;
+  color: #ffffff;
+  padding: 0.65rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+.bca-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.bca-nav-brand:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.brand-badge-pill {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-persona-select-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.nav-persona-select-container select {
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.nav-persona-select-container select option {
+  background: #003d75;
+  color: #ffffff;
+}
+
+/* Cards & Shell */
+.adapt-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.35rem;
+  border: 1px solid var(--bca-border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1.25rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.adapt-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.adapt-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.adapt-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1d2939;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0;
+}
+
+.adapt-card-title i {
+  color: #005caa;
+}
+
+/* Account Balance Card (Authentic v2 style) */
+.bca-balance-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--bca-border);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.bca-balance-card-header {
+  background: #f8fafc;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--bca-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bca-balance-card-body {
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.masked-bullet-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #343a40;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.btn-eye-toggle {
+  background: none;
+  border: none;
+  color: #5d86a0;
+  cursor: pointer;
+  padding: 0.4rem;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-eye-toggle:hover {
+  background-color: #f0f4f8;
+  color: #005caa;
+}
+
+/* Quick Banking Feature Actions */
+.banking-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .banking-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.banking-feature-item {
+  border: 1px solid var(--bca-border);
+  border-radius: 10px;
+  padding: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  text-decoration: none;
+  color: #1d2939;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.banking-feature-item:hover {
+  text-decoration: none;
+  color: #005caa;
+  border-color: #93c5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 91, 170, 0.08);
+}
+
+.feature-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3 AI ENGINES REAL-TIME UI
+   -------------------------------------------------------------------------- */
+
+/* Algoritma 3: Gamification Health Score */
+.score-circle {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #005caa;
+  box-shadow: 0 4px 15px rgba(0, 91, 170, 0.15);
+  flex-shrink: 0;
+  transition: border-color 0.3s ease;
+}
+
+.score-num {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #003d75;
+  line-height: 1;
+}
+
+.score-max-text {
+  font-size: 0.65rem;
+  color: #667085;
+  font-weight: 700;
+}
+
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge-bronze { background: var(--bronze-grad); }
+.badge-silver { background: var(--silver-grad); }
+.badge-gold { background: var(--gold-grad); }
+.badge-diamond { background: var(--diamond-grad); }
+
+.progress-bar-container {
+  height: 9px;
+  background: #e2e8f0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #005caa 0%, #00b5f0 100%);
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.score-breakdown-box {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.825rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Algoritma 2: Life Event Smart Bundling Banner */
+.life-event-banner-box {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 1.35rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: pulseHighlight 2s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+  0% { border-color: rgba(255, 255, 255, 0.1); }
+  100% { border-color: rgba(245, 158, 11, 0.5); }
+}
+
+.btn-claim-bundle-lg {
+  background: linear-gradient(90deg, #00a3e0 0%, #005caa 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.35rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 163, 224, 0.4);
+}
+
+.btn-claim-bundle-lg:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 163, 224, 0.6);
+  color: #ffffff;
+}
+
+/* Algoritma 1: Contextual Recommendations */
+.rec-item-card {
+  background: #f8fafc;
+  border: 1px solid var(--bca-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.rec-item-card:hover {
+  border-color: #005caa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.rec-feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  color: #005caa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.btn-activate-rec {
+  background-color: #005caa;
+  color: #ffffff;
+  border: none;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-activate-rec:hover {
+  background-color: #003d75;
+}
+
+/* --------------------------------------------------------------------------
+   AUDIT ENGINE INSPECTOR DRAWER (MODE JURI)
+   -------------------------------------------------------------------------- */
+.inspector-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 440px;
+  max-width: 100vw;
+  height: 100vh;
+  background: #0f172a;
+  color: #f8fafc;
+  z-index: 1060;
+  box-shadow: -6px 0 30px rgba(0, 0, 0, 0.4);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inspector-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1055;
+  display: none;
+}
+
+.drawer-backdrop.show {
+  display: block;
+}
+
+.formula-box {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid #334155;
+}
+
+.formula-math-display {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  background: #020617;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  color: #38bdf8;
+  word-break: break-all;
+  margin-top: 0.35rem;
+}
+
+.log-stream-container {
+  background: #020617;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  flex-grow: 1;
+  max-height: 380px;
+  overflow-y: auto;
+  border: 1px solid #334155;
+}
+
+.log-item-row {
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Toast Notifications */
+.toast-adapt {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #16a34a;
+  color: #ffffff;
+  padding: 0.85rem 1.35rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 1080;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: slideInToast 0.3s ease-out;
+}
+
+@keyframes slideInToast {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   FEATURE ONBOARDING & INVESTMENT PRODUCT CATALOG STYLES
+   ========================================================================== */
+.onboarding-product-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.onboarding-product-card:hover {
+  border-color: #93c5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 92, 170, 0.08);
+}
+
+.onboarding-product-card.active-product {
+  border-color: #005caa;
+  background-color: #f0f7ff;
+  box-shadow: 0 0 0 1px #005caa;
+}
+
+.product-select-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.onboarding-product-card.active-product .product-select-indicator {
+  border-color: #005caa;
+  background-color: #005caa;
+  color: #ffffff;
+}
+
+.source-account-preview {
+  background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+.preset-chip-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.preset-chip-btn:hover {
+  border-color: #005caa;
+  color: #005caa;
+  background: #f0f7ff;
+}
+
+.preset-chip-btn.active-preset {
+  background: #005caa;
+  color: #ffffff;
+  border-color: #005caa;
+}
+
+/* Official myBCA e-Receipt Card */
+.bca-receipt-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.bca-receipt-header {
+  text-align: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px dashed #e2e8f0;
+}
+
+.bca-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0;
+  font-size: 0.85rem;
+}
+
+.bca-receipt-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.bca-receipt-value {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+}
+

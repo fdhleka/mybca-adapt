@@ -1,0 +1,25 @@
+{
+  "name": "mybca-adapt",
+  "version": "1.0.0",
+  "description": "myBCA ADAPT - Fullstack Interactive Simulation System",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "seed": "node server/db/seed.js",
+    "test": "node server/test_m1.js"
+  },
+  "keywords": [
+    "mybca",
+    "banking",
+    "simulation",
+    "sqlite",
+    "express"
+  ],
+  "author": "myBCA ADAPT Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
