@@ -26,8 +26,8 @@
   --cf-out: #dc2626;
   --cf-out-bg: #fef2f2;
 
-  /* iPhone 14 Dimensions (Official Specs: 390px x 844px, 47px radius) */
-  --iphone14-width: 390px;
+  /* iPhone 14 Dimensions (Width widened to 425px for spacious readable layout) */
+  --iphone14-width: 425px;
   --iphone14-height: 844px;
   --iphone14-radius: 47px;
 }
@@ -189,11 +189,10 @@ body {
 }
 
 .smartphone-device {
-  width: auto;
+  width: 100%;
   max-width: var(--iphone14-width);
   height: min(var(--iphone14-height), calc(100vh - 16px));
   max-height: calc(100vh - 16px);
-  aspect-ratio: 390 / 844;
   background: #ffffff;
   border-radius: var(--iphone14-radius);
   border: 10px solid #1e293b;
@@ -446,13 +445,15 @@ body {
    -------------------------------------------------------------------------- */
 .mobile-login-container {
   min-height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: linear-gradient(165deg, #005caa 0%, #0077d8 45%, #00b5f0 100%);
-  padding: 1.15rem 1.15rem 1.75rem 1.15rem;
+  padding: 1rem 1.15rem 2.5rem 1.15rem;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-login-container::before {
@@ -577,9 +578,9 @@ body {
 }
 
 .persona-chips-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
 }
 
 .persona-chip-btn {
@@ -587,8 +588,8 @@ body {
   background: #ffffff;
   color: #1e3a8a;
   border-radius: 10px;
-  padding: 0.4rem 0.65rem;
-  font-size: 0.775rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.74rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -596,6 +597,10 @@ body {
   width: 100%;
   transition: all 0.15s ease;
   cursor: pointer;
+}
+
+.persona-chip-btn[data-persona="admin"] {
+  grid-column: span 2;
 }
 
 .persona-chip-btn:hover {
