@@ -130,15 +130,21 @@
     const viewLogin = document.getElementById('viewLogin');
     const viewDashboard = document.getElementById('viewDashboard');
     const mainBottomNav = document.getElementById('mainBottomNav');
+    const deviceFrame = document.getElementById('deviceFrame');
+    const mobileStatusBar = document.getElementById('mobileStatusBar');
 
     if (viewName === 'dashboard') {
       viewLogin.classList.add('view-hidden');
       viewDashboard.classList.remove('view-hidden');
       if (mainBottomNav) mainBottomNav.classList.remove('d-none');
+      if (deviceFrame) deviceFrame.classList.remove('login-mode-frame');
+      if (mobileStatusBar) mobileStatusBar.classList.add('status-bar-dark');
     } else {
       viewDashboard.classList.add('view-hidden');
       viewLogin.classList.remove('view-hidden');
       if (mainBottomNav) mainBottomNav.classList.add('d-none');
+      if (deviceFrame) deviceFrame.classList.add('login-mode-frame');
+      if (mobileStatusBar) mobileStatusBar.classList.remove('status-bar-dark');
     }
   }
 
@@ -2191,6 +2197,36 @@
           pwdInput.type = 'password';
           eyeIcon.className = 'bi bi-eye-slash';
         }
+      });
+    }
+
+    // Login Segmented Tab Switcher (Form Login vs Persona Demo)
+    const tabBtnFormLogin = document.getElementById('tabBtnFormLogin');
+    const tabBtnPersonaDemo = document.getElementById('tabBtnPersonaDemo');
+    const cardFormLogin = document.getElementById('cardFormLogin');
+    const cardPersonaDemo = document.getElementById('cardPersonaDemo');
+
+    if (tabBtnFormLogin && tabBtnPersonaDemo && cardFormLogin && cardPersonaDemo) {
+      tabBtnFormLogin.addEventListener('click', () => {
+        tabBtnFormLogin.classList.add('active');
+        tabBtnPersonaDemo.classList.remove('active');
+        cardFormLogin.classList.remove('d-none');
+        cardPersonaDemo.classList.add('d-none');
+      });
+
+      tabBtnPersonaDemo.addEventListener('click', () => {
+        tabBtnPersonaDemo.classList.add('active');
+        tabBtnFormLogin.classList.remove('active');
+        cardPersonaDemo.classList.remove('d-none');
+        cardFormLogin.classList.add('d-none');
+      });
+    }
+
+    // Biometric 1-Tap Quick Access Button
+    const btnBiometricLogin = document.getElementById('btnBiometricLogin');
+    if (btnBiometricLogin) {
+      btnBiometricLogin.addEventListener('click', () => {
+        handleQuickLogin('dimas');
       });
     }
 

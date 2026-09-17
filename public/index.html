@@ -19,7 +19,7 @@
   <!-- SMARTPHONE DEVICE CONTAINER (IPHONE 14 FRAME)                         -->
   <!-- ===================================================================== -->
   <main class="mobile-viewport-container">
-    <div id="deviceFrame" class="smartphone-device">
+    <div id="deviceFrame" class="smartphone-device login-mode-frame">
       
       <!-- iPhone 14 Notch / Dynamic Island -->
       <div class="smartphone-island">
@@ -42,130 +42,249 @@
         <!-- ================================================================= -->
         <!-- 1. VIEW LOGIN (Mobile Web App Style)                              -->
         <!-- ================================================================= -->
+        <!-- ================================================================= -->
+        <!-- 1. VIEW LOGIN (Modern Authentic myBCA Mobile Style)               -->
+        <!-- ================================================================= -->
         <section id="viewLogin" class="mobile-login-container">
-          <div>
-            <!-- Hero Header -->
-            <div class="mobile-login-hero">
-              <div class="d-inline-flex align-items-center justify-content-center p-2 rounded-circle bg-white shadow-sm mb-2" style="width: 54px; height: 54px;">
-                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="40" height="40" rx="8" fill="white"/>
-                  <path d="M10 28V12L20 22L30 12V28" stroke="#005caa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h4 class="font-weight-bold text-white mb-0" style="letter-spacing: -0.5px;">myBCA</h4>
-              <div class="badge badge-light text-primary font-weight-bold px-2 py-0 rounded-pill mb-2" style="font-size: 0.68rem;">
-                <i class="bi bi-cpu-fill text-warning mr-1"></i> ADAPT AI Ecosystem
-              </div>
-              <p class="text-white-50 small mb-0 px-2" style="font-size: 0.75rem; line-height: 1.35;">
-                Satu BCA ID, Adaptif untuk Anda. Layanan finansial generasi baru terintegrasi AI.
-              </p>
+
+          <!-- Hero Brand Header -->
+          <div class="mobile-login-hero">
+            <div class="login-brand-icon-wrap mb-2">
+              <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="10" fill="#005caa"/>
+                <path d="M10 28V12L20 22L30 12V28" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="login-brand-title">myBCA</h3>
+            <div class="login-brand-tag mb-1">
+              <i class="bi bi-stars text-warning mr-1"></i> ADAPT AI Ecosystem
+            </div>
+            <p class="login-brand-sub">
+              Satu BCA ID, Adaptif untuk Anda.<br>Solusi perbankan masa depan terintegrasi AI.
+            </p>
+          </div>
+
+          <!-- Login Segmented Tabs: Form Login vs Akun Demo / Persona -->
+          <div class="login-tab-switcher mb-2">
+            <button type="button" class="login-tab-btn active" id="tabBtnFormLogin">
+              <i class="bi bi-person-fill mr-1"></i> Masuk Akun
+            </button>
+            <button type="button" class="login-tab-btn" id="tabBtnPersonaDemo">
+              <i class="bi bi-lightning-charge-fill mr-1 text-warning"></i> Akun Demo / Juri
+            </button>
+          </div>
+
+          <!-- Card 1: Form Login Authentic -->
+          <div class="mobile-login-card" id="cardFormLogin">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+              <span class="font-weight-bold text-dark small" style="font-size: 0.85rem;">
+                <i class="bi bi-shield-lock-fill text-primary mr-1"></i> Masuk dengan BCA ID
+              </span>
+              <span class="badge badge-light border text-muted" style="font-size: 0.65rem;">
+                <i class="bi bi-shield-check text-success mr-1"></i>256-bit SSL
+              </span>
             </div>
 
-            <!-- Mobile Login Card -->
-            <div class="mobile-login-card">
-              <div class="d-flex align-items-center justify-content-between mb-2 border-bottom pb-2">
-                <span class="font-weight-bold text-dark small"><i class="bi bi-lock-fill text-primary mr-1"></i> Masuk ke Akun</span>
-                <span class="badge badge-light text-muted" style="font-size: 0.65rem;"><i class="bi bi-shield-check text-success"></i> 256-bit SSL</span>
-              </div>
+            <!-- Login Alert Container -->
+            <div id="loginErrorAlert" class="alert alert-danger py-2 px-3 small d-none" role="alert" style="font-size: 0.75rem; border-radius: 10px;"></div>
 
-              <!-- Login Alert Container -->
-              <div id="loginErrorAlert" class="alert alert-danger py-1 small d-none" role="alert" style="font-size: 0.75rem;"></div>
-
-              <!-- Form Login Authentic -->
-              <form id="loginForm" autocomplete="off">
-                <!-- BCA ID Input -->
-                <div class="form-group-bca">
-                  <label for="inputBcaId">BCA ID</label>
+            <!-- Form Login Authentic -->
+            <form id="loginForm" autocomplete="off">
+              <!-- BCA ID Input -->
+              <div class="form-group-modern mb-3">
+                <label for="inputBcaId" class="form-label-modern">BCA ID</label>
+                <div class="input-modern-wrap">
+                  <i class="bi bi-person input-leading-icon"></i>
                   <input 
                     type="text" 
                     id="inputBcaId" 
                     name="bca_id" 
-                    class="form-control form-control-underline font-weight-bold" 
+                    class="form-control-modern" 
                     placeholder="Masukkan BCA ID Anda" 
+                    value="dimas.prasetyo"
                     required
                   >
                 </div>
+              </div>
 
-                <!-- Password Input with Toggle -->
-                <div class="form-group-bca">
-                  <label for="inputPassword">Password</label>
+              <!-- Password Input with Toggle -->
+              <div class="form-group-modern mb-3">
+                <label for="inputPassword" class="form-label-modern">Password</label>
+                <div class="input-modern-wrap">
+                  <i class="bi bi-lock input-leading-icon"></i>
                   <input 
                     type="password" 
                     id="inputPassword" 
                     name="password" 
-                    class="form-control form-control-underline" 
+                    class="form-control-modern" 
                     placeholder="Masukkan Password" 
+                    value="Bca@12345"
                     required
                   >
-                  <button type="button" id="toggleLoginPassword" class="pwd-toggle-btn" aria-label="Toggle Password Visibility">
+                  <button type="button" id="toggleLoginPassword" class="pwd-toggle-modern" aria-label="Toggle Password Visibility">
                     <i class="bi bi-eye-slash" id="loginEyeIcon"></i>
-                  </button>
-                </div>
-
-                <!-- Remember & Forgot -->
-                <div class="d-flex justify-content-between align-items-center mb-3 small">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberBcaId">
-                    <label class="form-check-label text-muted" for="rememberBcaId" style="font-size: 0.75rem;">Ingat BCA ID</label>
-                  </div>
-                  <a href="javascript:void(0);" class="text-primary font-weight-bold" style="font-size: 0.75rem;">Lupa Password?</a>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" id="loginSubmitBtn" class="btn btn-bca-primary btn-block py-2 font-weight-bold">
-                  <i class="bi bi-box-arrow-in-right mr-1"></i> Masuk Sekarang
-                </button>
-              </form>
-
-              <!-- Biometric 1-Tap Quick Access -->
-              <button type="button" id="btnBiometricLogin" class="btn-biometric-access" title="Simulasi Akses Cepat Biometrik">
-                <i class="bi bi-fingerprint text-primary h5 mb-0"></i>
-                <span>Masuk Cepat Biometrik (Dimas)</span>
-              </button>
-
-              <!-- Judge Quick Switcher / Persona Helper -->
-              <div class="judge-quick-box">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="small font-weight-bold text-dark" style="font-size: 0.725rem;">
-                    <i class="bi bi-lightning-charge-fill text-warning"></i> Mode Penguji (1-Click):
-                  </span>
-                  <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.62rem;">1-Click</span>
-                </div>
-                <div class="persona-chips-list">
-                  <button type="button" class="persona-chip-btn bg-warning text-dark font-weight-bold" data-persona="admin" style="border: 1px solid #d97706 !important;">
-                    <span><i class="bi bi-shield-lock-fill mr-1"></i><strong>Admin Portal</strong> (PM)</span>
-                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
-                  </button>
-                  <button type="button" class="persona-chip-btn" data-persona="dimas">
-                    <span><strong>Dimas</strong> (Fresh Graduate / Jr Dev)</span>
-                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
-                  </button>
-                  <button type="button" class="persona-chip-btn" data-persona="ayu">
-                    <span><strong>Ayu</strong> (Rumah Tangga Baru)</span>
-                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
-                  </button>
-                  <button type="button" class="persona-chip-btn" data-persona="sari">
-                    <span><strong>Sari</strong> (Merchant / Catering)</span>
-                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
-                  </button>
-                  <button type="button" class="persona-chip-btn" data-persona="rina">
-                    <span><strong>Rina</strong> (Mahasiswa Aktif S1)</span>
-                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
-                  </button>
-                  <button type="button" class="persona-chip-btn" data-persona="bambang">
-                    <span><strong>Bambang</strong> (Pre-Retirement)</span>
-                    <i class="bi bi-arrow-right-short font-weight-bold"></i>
                   </button>
                 </div>
               </div>
 
+              <!-- Remember & Forgot -->
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-check d-flex align-items-center mb-0">
+                  <input type="checkbox" class="form-check-input" id="rememberBcaId" checked style="margin-top: 0;">
+                  <label class="form-check-label text-muted ml-1" for="rememberBcaId" style="font-size: 0.75rem; cursor: pointer;">
+                    Ingat BCA ID
+                  </label>
+                </div>
+                <a href="javascript:void(0);" class="text-primary font-weight-bold" onclick="showToast('Fitur reset password melalui HaloBCA 1500888')" style="font-size: 0.75rem;">
+                  Lupa Password?
+                </a>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="loginSubmitBtn" class="btn btn-bca-primary btn-block py-2 font-weight-bold shadow-sm">
+                <i class="bi bi-box-arrow-in-right mr-1"></i> Masuk Sekarang
+              </button>
+            </form>
+
+            <!-- Biometric 1-Tap Quick Access -->
+            <button type="button" id="btnBiometricLogin" class="btn-biometric-access" title="Simulasi Akses Cepat Biometrik">
+              <i class="bi bi-fingerprint text-primary h5 mb-0"></i>
+              <span>Masuk Cepat Biometrik (Dimas)</span>
+            </button>
+
+            <!-- Quick Persona Bar at bottom of form -->
+            <div class="mt-3 pt-2 border-top text-center">
+              <div class="text-muted small font-weight-bold mb-2" style="font-size: 0.7rem;">
+                <i class="bi bi-lightning-charge-fill text-warning mr-1"></i> 1-Klik Masuk sebagai Akun Demo:
+              </div>
+              <div class="d-flex flex-wrap justify-content-center gap-1" style="gap: 0.35rem;">
+                <button type="button" class="btn btn-sm btn-light border py-1 px-2 persona-chip-btn" data-persona="dimas" style="font-size: 0.72rem; border-radius: 8px;">
+                  👨‍💻 Dimas
+                </button>
+                <button type="button" class="btn btn-sm btn-light border py-1 px-2 persona-chip-btn" data-persona="ayu" style="font-size: 0.72rem; border-radius: 8px;">
+                  👩‍🍳 Ayu
+                </button>
+                <button type="button" class="btn btn-sm btn-light border py-1 px-2 persona-chip-btn" data-persona="sari" style="font-size: 0.72rem; border-radius: 8px;">
+                  🛍️ Sari
+                </button>
+                <button type="button" class="btn btn-sm btn-light border py-1 px-2 persona-chip-btn" data-persona="rina" style="font-size: 0.72rem; border-radius: 8px;">
+                  🎓 Rina
+                </button>
+                <button type="button" class="btn btn-sm btn-light border py-1 px-2 persona-chip-btn" data-persona="bambang" style="font-size: 0.72rem; border-radius: 8px;">
+                  👴 Bambang
+                </button>
+                <button type="button" class="btn btn-sm btn-warning font-weight-bold py-1 px-2 persona-chip-btn text-dark" data-persona="admin" style="font-size: 0.72rem; border-radius: 8px;">
+                  🛡️ Admin
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Mobile Login Footer -->
-          <div class="text-center text-white-50 small mt-2" style="font-size: 0.68rem; line-height: 1.35;">
-            <div>PT Bank Central Asia Tbk berizin & diawasi OJK dan Bank Indonesia.</div>
-            <div class="text-white-50">myBCA ADAPT Simulation System.</div>
+          <!-- Card 2: Dedicated Persona & Evaluator Hub (Tab 2) -->
+          <div class="mobile-login-card d-none" id="cardPersonaDemo">
+            <div class="d-flex align-items-center justify-content-between mb-2 border-bottom pb-2">
+              <span class="font-weight-bold text-dark small" style="font-size: 0.85rem;">
+                <i class="bi bi-people-fill text-warning mr-1"></i> Pilihan Profil Demo
+              </span>
+              <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">
+                Mode Penguji
+              </span>
+            </div>
+            <p class="text-muted small mb-3" style="font-size: 0.72rem; line-height: 1.35;">
+              Pilih profil di bawah untuk langsung masuk dan mengevaluasi simulasi AI masing-masing persona:
+            </p>
+
+            <div class="demo-personas-grid">
+              <!-- Admin PM -->
+              <div class="demo-persona-card persona-chip-btn admin-demo-card" data-persona="admin">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="demo-persona-avatar bg-warning text-dark">
+                    <i class="bi bi-shield-lock-fill"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Admin Portal & PM</div>
+                    <div class="text-muted small" style="font-size: 0.68rem;">Kontrol Voucher, Target, & Mode Juri</div>
+                  </div>
+                </div>
+                <i class="bi bi-arrow-right-circle-fill text-warning h5 mb-0"></i>
+              </div>
+
+              <!-- Dimas -->
+              <div class="demo-persona-card persona-chip-btn" data-persona="dimas">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="demo-persona-avatar bg-primary text-white">
+                    <i class="bi bi-laptop"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Dimas Prasetyo</div>
+                    <div class="text-muted small" style="font-size: 0.68rem;">Fresh Graduate • Rp 14.500.000</div>
+                  </div>
+                </div>
+                <i class="bi bi-chevron-right text-primary"></i>
+              </div>
+
+              <!-- Ayu -->
+              <div class="demo-persona-card persona-chip-btn" data-persona="ayu">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="demo-persona-avatar" style="background: #ec4899; color: #ffffff;">
+                    <i class="bi bi-house-heart"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Ayu Ratnasari</div>
+                    <div class="text-muted small" style="font-size: 0.68rem;">Rumah Tangga Baru • Rp 68.000.000</div>
+                  </div>
+                </div>
+                <i class="bi bi-chevron-right text-primary"></i>
+              </div>
+
+              <!-- Sari -->
+              <div class="demo-persona-card persona-chip-btn" data-persona="sari">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="demo-persona-avatar" style="background: #10b981; color: #ffffff;">
+                    <i class="bi bi-shop"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Hj. Sari Wijaya</div>
+                    <div class="text-muted small" style="font-size: 0.68rem;">Merchant UMKM • Rp 185.000.000</div>
+                  </div>
+                </div>
+                <i class="bi bi-chevron-right text-primary"></i>
+              </div>
+
+              <!-- Rina -->
+              <div class="demo-persona-card persona-chip-btn" data-persona="rina">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="demo-persona-avatar" style="background: #8b5cf6; color: #ffffff;">
+                    <i class="bi bi-mortarboard"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Rina Kartika</div>
+                    <div class="text-muted small" style="font-size: 0.68rem;">Mahasiswa S1 • Rp 2.450.000</div>
+                  </div>
+                </div>
+                <i class="bi bi-chevron-right text-primary"></i>
+              </div>
+
+              <!-- Bambang -->
+              <div class="demo-persona-card persona-chip-btn" data-persona="bambang">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="demo-persona-avatar" style="background: #d97706; color: #ffffff;">
+                    <i class="bi bi-pie-chart"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Drs. Bambang Hariyanto</div>
+                    <div class="text-muted small" style="font-size: 0.68rem;">Prapensiun • Rp 320.000.000</div>
+                  </div>
+                </div>
+                <i class="bi bi-chevron-right text-primary"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Login Footer Notice -->
+          <div class="text-center text-white-50 small mt-2 mb-3" style="font-size: 0.68rem; line-height: 1.4;">
+            <div>PT Bank Central Asia Tbk berizin & diawasi oleh OJK dan Bank Indonesia.</div>
+            <div class="text-white-50 opacity-75">myBCA ADAPT Simulation System.</div>
           </div>
         </section>
 
