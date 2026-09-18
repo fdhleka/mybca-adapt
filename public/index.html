@@ -183,100 +183,141 @@
           <!-- Card 2: Dedicated Persona & Evaluator Hub (Tab 2) -->
           <div class="mobile-login-card d-none" id="cardPersonaDemo">
             <div class="d-flex align-items-center justify-content-between mb-2 border-bottom pb-2">
-              <span class="font-weight-bold text-dark small" style="font-size: 0.85rem;">
-                <i class="bi bi-people-fill text-warning mr-1"></i> Pilihan Profil Demo
-              </span>
+              <div>
+                <span class="font-weight-bold text-dark" style="font-size: 0.85rem;">
+                  <i class="bi bi-people-fill text-primary mr-1"></i> Akun Demo & Penguji
+                </span>
+                <div class="text-muted" style="font-size: 0.68rem;">1-Klik Masuk tanpa password</div>
+              </div>
               <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">
-                Mode Penguji
+                <i class="bi bi-lightning-charge-fill mr-1"></i>Mode Juri
               </span>
             </div>
-            <p class="text-muted small mb-3" style="font-size: 0.72rem; line-height: 1.35;">
-              Pilih profil di bawah untuk langsung masuk dan mengevaluasi simulasi AI masing-masing persona:
-            </p>
+
+            <!-- Section 1: Admin Evaluator Card -->
+            <div class="demo-section-label">
+              <span>ADMIN & SISTEM KONTROL</span>
+            </div>
+            <div class="demo-persona-card persona-chip-btn admin-demo-card mb-2" data-persona="admin">
+              <div class="demo-persona-avatar bg-warning text-dark">
+                <i class="bi bi-shield-lock-fill"></i>
+              </div>
+              <div class="demo-persona-body">
+                <div class="d-flex align-items-center justify-content-between">
+                  <strong class="text-dark" style="font-size: 0.82rem;">Admin Portal & PM</strong>
+                  <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.6rem;">ADMIN</span>
+                </div>
+                <div class="demo-persona-desc">Kelola Voucher, Target Misi, & Audit Engine AI</div>
+              </div>
+              <div class="demo-persona-arrow">
+                <span class="demo-select-btn admin-select-btn">Masuk <i class="bi bi-arrow-right-short"></i></span>
+              </div>
+            </div>
+
+            <!-- Section 2: 5 Customer Personas -->
+            <div class="demo-section-label">
+              <span>PILIHAN 5 PERSONA NASABAH (AI ADAPT)</span>
+            </div>
 
             <div class="demo-personas-grid">
-              <!-- Admin PM -->
-              <div class="demo-persona-card persona-chip-btn admin-demo-card" data-persona="admin">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="demo-persona-avatar bg-warning text-dark">
-                    <i class="bi bi-shield-lock-fill"></i>
-                  </div>
-                  <div class="flex-grow-1">
-                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Admin Portal & PM</div>
-                    <div class="text-muted small" style="font-size: 0.68rem;">Kontrol Voucher, Target, & Mode Juri</div>
-                  </div>
-                </div>
-                <i class="bi bi-arrow-right-circle-fill text-warning h5 mb-0"></i>
-              </div>
-
               <!-- Dimas -->
               <div class="demo-persona-card persona-chip-btn" data-persona="dimas">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="demo-persona-avatar bg-primary text-white">
-                    <i class="bi bi-laptop"></i>
+                <div class="demo-persona-avatar" style="background: #e0f2fe; color: #0284c7;">
+                  <i class="bi bi-laptop"></i>
+                </div>
+                <div class="demo-persona-body">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong class="text-dark" style="font-size: 0.82rem;">Dimas Prasetyo</strong>
+                    <span class="badge badge-light border text-primary" style="font-size: 0.6rem;">Fresh Graduate</span>
                   </div>
-                  <div class="flex-grow-1">
-                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Dimas Prasetyo</div>
-                    <div class="text-muted small" style="font-size: 0.68rem;">Fresh Graduate • Rp 14.500.000</div>
+                  <div class="demo-persona-meta">
+                    <span class="text-success font-weight-bold">Rp 14.500.000</span>
+                    <span class="text-muted">• Mulai Bekerja</span>
                   </div>
                 </div>
-                <i class="bi bi-chevron-right text-primary"></i>
+                <div class="demo-persona-arrow">
+                  <span class="demo-select-btn">Pilih <i class="bi bi-arrow-right-short"></i></span>
+                </div>
               </div>
 
               <!-- Ayu -->
               <div class="demo-persona-card persona-chip-btn" data-persona="ayu">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="demo-persona-avatar" style="background: #ec4899; color: #ffffff;">
-                    <i class="bi bi-house-heart"></i>
+                <div class="demo-persona-avatar" style="background: #fce7f3; color: #db2777;">
+                  <i class="bi bi-house-heart-fill"></i>
+                </div>
+                <div class="demo-persona-body">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong class="text-dark" style="font-size: 0.82rem;">Ayu Ratnasari</strong>
+                    <span class="badge badge-light border" style="font-size: 0.6rem; color: #db2777;">Rumah Tangga</span>
                   </div>
-                  <div class="flex-grow-1">
-                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Ayu Ratnasari</div>
-                    <div class="text-muted small" style="font-size: 0.68rem;">Rumah Tangga Baru • Rp 68.000.000</div>
+                  <div class="demo-persona-meta">
+                    <span class="text-success font-weight-bold">Rp 68.000.000</span>
+                    <span class="text-muted">• Menikah & KPR</span>
                   </div>
                 </div>
-                <i class="bi bi-chevron-right text-primary"></i>
+                <div class="demo-persona-arrow">
+                  <span class="demo-select-btn">Pilih <i class="bi bi-arrow-right-short"></i></span>
+                </div>
               </div>
 
               <!-- Sari -->
               <div class="demo-persona-card persona-chip-btn" data-persona="sari">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="demo-persona-avatar" style="background: #10b981; color: #ffffff;">
-                    <i class="bi bi-shop"></i>
+                <div class="demo-persona-avatar" style="background: #d1fae5; color: #059669;">
+                  <i class="bi bi-shop"></i>
+                </div>
+                <div class="demo-persona-body">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong class="text-dark" style="font-size: 0.82rem;">Hj. Sari Wijaya</strong>
+                    <span class="badge badge-light border text-success" style="font-size: 0.6rem;">Merchant UMKM</span>
                   </div>
-                  <div class="flex-grow-1">
-                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Hj. Sari Wijaya</div>
-                    <div class="text-muted small" style="font-size: 0.68rem;">Merchant UMKM • Rp 185.000.000</div>
+                  <div class="demo-persona-meta">
+                    <span class="text-success font-weight-bold">Rp 185.000.000</span>
+                    <span class="text-muted">• Usaha Kuliner</span>
                   </div>
                 </div>
-                <i class="bi bi-chevron-right text-primary"></i>
+                <div class="demo-persona-arrow">
+                  <span class="demo-select-btn">Pilih <i class="bi bi-arrow-right-short"></i></span>
+                </div>
               </div>
 
               <!-- Rina -->
               <div class="demo-persona-card persona-chip-btn" data-persona="rina">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="demo-persona-avatar" style="background: #8b5cf6; color: #ffffff;">
-                    <i class="bi bi-mortarboard"></i>
+                <div class="demo-persona-avatar" style="background: #ede9fe; color: #7c3aed;">
+                  <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <div class="demo-persona-body">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong class="text-dark" style="font-size: 0.82rem;">Rina Kartika</strong>
+                    <span class="badge badge-light border" style="font-size: 0.6rem; color: #7c3aed;">Mahasiswa S1</span>
                   </div>
-                  <div class="flex-grow-1">
-                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Rina Kartika</div>
-                    <div class="text-muted small" style="font-size: 0.68rem;">Mahasiswa S1 • Rp 2.450.000</div>
+                  <div class="demo-persona-meta">
+                    <span class="text-success font-weight-bold">Rp 2.450.000</span>
+                    <span class="text-muted">• Kuliah & UKT</span>
                   </div>
                 </div>
-                <i class="bi bi-chevron-right text-primary"></i>
+                <div class="demo-persona-arrow">
+                  <span class="demo-select-btn">Pilih <i class="bi bi-arrow-right-short"></i></span>
+                </div>
               </div>
 
               <!-- Bambang -->
               <div class="demo-persona-card persona-chip-btn" data-persona="bambang">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="demo-persona-avatar" style="background: #d97706; color: #ffffff;">
-                    <i class="bi bi-pie-chart"></i>
+                <div class="demo-persona-avatar" style="background: #fef3c7; color: #d97706;">
+                  <i class="bi bi-pie-chart-fill"></i>
+                </div>
+                <div class="demo-persona-body">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <strong class="text-dark" style="font-size: 0.82rem;">Drs. Bambang Hariyanto</strong>
+                    <span class="badge badge-light border font-weight-bold" style="font-size: 0.6rem; color: #b45309 !important;">Prapensiun</span>
                   </div>
-                  <div class="flex-grow-1">
-                    <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Drs. Bambang Hariyanto</div>
-                    <div class="text-muted small" style="font-size: 0.68rem;">Prapensiun • Rp 320.000.000</div>
+                  <div class="demo-persona-meta">
+                    <span class="text-success font-weight-bold">Rp 320.000.000</span>
+                    <span class="text-muted">• Dana Pensiun</span>
                   </div>
                 </div>
-                <i class="bi bi-chevron-right text-primary"></i>
+                <div class="demo-persona-arrow">
+                  <span class="demo-select-btn">Pilih <i class="bi bi-arrow-right-short"></i></span>
+                </div>
               </div>
             </div>
           </div>
