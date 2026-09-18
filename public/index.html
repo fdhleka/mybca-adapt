@@ -949,60 +949,77 @@
 
             <!-- 2. Admin Tools & System Controls -->
             <div class="adapt-card">
-              <div class="adapt-card-header">
+              <div class="adapt-card-header mb-2">
                 <h6 class="adapt-card-title">
                   <i class="bi bi-sliders text-warning"></i> Menu Manajemen Sistem
                 </h6>
+                <span class="badge badge-light border text-muted small" style="font-size: 0.65rem;">
+                  4 Kontrol
+                </span>
+              </div>
+              <div class="small text-muted mb-2" style="font-size: 0.72rem;">
+                Akses cepat instrumen audit, voucher, reset data, dan mode layar:
               </div>
               
-              <div class="d-flex flex-column gap-2" style="gap: 0.65rem;">
-                <!-- Mode Juri (Audit AI Engine) -->
-                <button type="button" id="btnToggleInspector" class="btn btn-outline-primary btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" style="border-radius: 10px;">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-cpu-fill text-warning h5 mb-0"></i>
-                    <div>
-                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Mode Juri (Audit Engine AI)</div>
-                      <div class="small text-muted" style="font-size: 0.68rem;">Buka panel audit prompt, reasoning, & 3 Algoritma AI</div>
-                    </div>
+              <div class="admin-settings-list">
+                <!-- 1. Mode Juri (Audit AI Engine) -->
+                <div class="admin-menu-card" id="btnToggleInspector" role="button" tabindex="0">
+                  <div class="admin-menu-icon" style="background: #f5f3ff; color: #7c3aed;">
+                    <i class="bi bi-cpu-fill"></i>
                   </div>
-                  <i class="bi bi-chevron-right text-muted"></i>
-                </button>
+                  <div class="admin-menu-content">
+                    <div class="admin-menu-title">Mode Juri (Audit AI Engine)</div>
+                    <div class="admin-menu-desc">Panel audit prompt, reasoning, & 3 Algoritma AI</div>
+                  </div>
+                  <div class="admin-menu-action">
+                    <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.62rem;">Live Trace</span>
+                    <i class="bi bi-chevron-right text-muted" style="font-size: 0.8rem;"></i>
+                  </div>
+                </div>
 
-                <!-- Admin Voucher Portal -->
-                <button type="button" id="btnOpenAdminVouchers" class="btn btn-outline-warning btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" onclick="app.openAdminVoucherModal()" style="border-radius: 10px; border-color: #f59e0b; color: #b45309;">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-ticket-perforated-fill text-warning h5 mb-0"></i>
-                    <div>
-                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Kelola Target & Misi Voucher</div>
-                      <div class="small text-muted" style="font-size: 0.68rem;">Buat reward diskon belanja & tentukan syarat klaim</div>
-                    </div>
+                <!-- 2. Admin Voucher Portal -->
+                <div class="admin-menu-card" id="btnOpenAdminVouchers" role="button" tabindex="0" onclick="app.openAdminVoucherModal()">
+                  <div class="admin-menu-icon" style="background: #fffbeb; color: #d97706;">
+                    <i class="bi bi-ticket-perforated-fill"></i>
                   </div>
-                  <span class="badge badge-warning text-dark font-weight-bold" id="adminVoucherAccessBadge" style="font-size: 0.65rem;">Khusus Admin</span>
-                </button>
+                  <div class="admin-menu-content">
+                    <div class="admin-menu-title">Kelola Target & Misi Voucher</div>
+                    <div class="admin-menu-desc">Buat reward diskon & tentukan syarat klaim</div>
+                  </div>
+                  <div class="admin-menu-action">
+                    <span class="badge badge-warning text-dark font-weight-bold" id="adminVoucherAccessBadge" style="font-size: 0.62rem;">Khusus Admin</span>
+                    <i class="bi bi-chevron-right text-muted" style="font-size: 0.8rem;"></i>
+                  </div>
+                </div>
 
-                <!-- Reset Database -->
-                <button type="button" id="btnResetDbTop" class="btn btn-outline-danger btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" style="border-radius: 10px;">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-arrow-counterclockwise text-danger h5 mb-0"></i>
-                    <div>
-                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Reset Database ke Seeds Awal</div>
-                      <div class="small text-muted" style="font-size: 0.68rem;">Kembalikan seluruh saldo, histori transaksi, & voucher</div>
-                    </div>
+                <!-- 3. Reset Database -->
+                <div class="admin-menu-card" id="btnResetDbTop" role="button" tabindex="0">
+                  <div class="admin-menu-icon" style="background: #fef2f2; color: #dc2626;">
+                    <i class="bi bi-arrow-counterclockwise"></i>
                   </div>
-                  <i class="bi bi-chevron-right text-muted"></i>
-                </button>
+                  <div class="admin-menu-content">
+                    <div class="admin-menu-title">Reset Database Seeds</div>
+                    <div class="admin-menu-desc">Kembalikan saldo, histori transaksi, & voucher awal</div>
+                  </div>
+                  <div class="admin-menu-action">
+                    <span class="badge badge-light border text-danger font-weight-bold" style="font-size: 0.62rem;">1-Click</span>
+                    <i class="bi bi-chevron-right text-muted" style="font-size: 0.8rem;"></i>
+                  </div>
+                </div>
 
-                <!-- Frame View Mode Toggle -->
-                <button type="button" id="btnToggleFrameMode" class="btn btn-outline-secondary btn-sm btn-block text-left d-flex align-items-center justify-content-between py-2 px-3" style="border-radius: 10px;">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-phone text-info h5 mb-0" id="frameToggleIcon"></i>
-                    <div>
-                      <div class="font-weight-bold text-dark" style="font-size: 0.82rem;">Ubah Ukuran Layar: <span id="frameToggleText">Full Width</span></div>
-                      <div class="small text-muted" style="font-size: 0.68rem;">Beralih antara presisi bezel iPhone 14 dan mode lebar</div>
-                    </div>
+                <!-- 4. Frame View Mode Toggle -->
+                <div class="admin-menu-card" id="btnToggleFrameMode" role="button" tabindex="0">
+                  <div class="admin-menu-icon" style="background: #f0f9ff; color: #0284c7;">
+                    <i class="bi bi-phone" id="frameToggleIcon"></i>
                   </div>
-                  <i class="bi bi-arrows-expand text-muted"></i>
-                </button>
+                  <div class="admin-menu-content">
+                    <div class="admin-menu-title">Ukuran Layar: <span id="frameToggleText" class="text-primary font-weight-bold">Full Width</span></div>
+                    <div class="admin-menu-desc">Beralih presisi bezel iPhone 14 / mode lebar</div>
+                  </div>
+                  <div class="admin-menu-action">
+                    <i class="bi bi-arrows-expand text-muted" style="font-size: 0.85rem;"></i>
+                  </div>
+                </div>
               </div>
             </div>
 
