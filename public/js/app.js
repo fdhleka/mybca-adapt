@@ -387,6 +387,34 @@
     if (personaSelect && state.personas.length > 0) {
       personaSelect.value = user.id;
     }
+
+    // Role-based voucher management UI visibility
+    const voucherPageAdminShortcut = document.getElementById('voucherPageAdminShortcut');
+    if (voucherPageAdminShortcut) {
+      if (user.id === 'admin') {
+        voucherPageAdminShortcut.classList.remove('d-none');
+      } else {
+        voucherPageAdminShortcut.classList.add('d-none');
+      }
+    }
+
+    const adminVoucherBtn = document.getElementById('btnOpenAdminVouchers');
+    const adminVoucherBadge = document.getElementById('adminVoucherAccessBadge');
+    if (adminVoucherBtn) {
+      if (user.id === 'admin') {
+        adminVoucherBtn.style.opacity = '1';
+        if (adminVoucherBadge) {
+          adminVoucherBadge.className = 'badge badge-success font-weight-bold ml-auto';
+          adminVoucherBadge.innerHTML = '<i class="bi bi-shield-check mr-1"></i>Akses Penuh';
+        }
+      } else {
+        adminVoucherBtn.style.opacity = '0.75';
+        if (adminVoucherBadge) {
+          adminVoucherBadge.className = 'badge badge-warning text-dark font-weight-bold ml-auto';
+          adminVoucherBadge.innerHTML = '<i class="bi bi-lock-fill mr-1"></i>Khusus Admin';
+        }
+      }
+    }
   }
 
   function renderAccountBalanceCard() {
@@ -745,12 +773,6 @@
       const icon = feat.icon || 'bi-stars';
       const desc = feat.description || feat.desc || 'Fitur perbankan terpersonalisasi myBCA.';
       const score = Math.round(item.score || 70);
-      const reason = item.reason || 'Dianalisis dari pola mutasi rekening berjalan.';
-      const isGroq = item.source === 'groq';
-
-      const aiBadge = isGroq 
-        ? '<span class="badge badge-success small font-weight-bold py-1 px-2" style="font-size: 0.7rem;"><i class="bi bi-robot mr-1"></i>Groq AI Advisor</span>' 
-        : '<span class="badge badge-light border text-primary small py-1 px-2" style="font-size: 0.7rem;"><i class="bi bi-cpu mr-1"></i>Algoritma 1 Propensity</span>';
 
       html += `
         <div class="rec-item-card">
@@ -759,22 +781,18 @@
           </div>
           <div class="flex-grow-1">
             <div class="d-flex justify-content-between align-items-center mb-1">
-              <strong class="text-dark small">${featName}</strong>
-              <span class="badge badge-light border text-primary font-weight-bold" style="font-size: 0.75rem;">
-                Match: ${score}%
+              <strong class="text-dark small" style="font-size: 0.83rem;">${featName}</strong>
+              <span class="badge badge-light border text-primary font-weight-bold" style="font-size: 0.7rem; background: #e0f2fe; color: #0284c7; border-color: #bae6fd !important;">
+                <i class="bi bi-stars text-warning mr-1"></i>${score}% Relevan
               </span>
             </div>
-            <div class="mb-1">
-              ${aiBadge}
-            </div>
-            <div class="small mb-1" style="font-size: 0.775rem; line-height: 1.35; color: #1e293b; background: #f8fafc; padding: 0.35rem 0.55rem; border-radius: 6px; border-left: 3px solid #005caa;">
-              <i class="bi bi-chat-quote-fill text-primary mr-1"></i> "${reason}"
-            </div>
-            <div class="small text-muted mb-2" style="font-size: 0.75rem;">${desc}</div>
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="small text-success font-weight-bold">+${points} Poin Kesehatan</span>
+            <div class="small text-muted mb-2" style="font-size: 0.75rem; line-height: 1.35;">${desc}</div>
+            <div class="d-flex justify-content-between align-items-center pt-1 border-top" style="border-color: #f1f5f9 !important;">
+              <span class="small text-success font-weight-bold" style="font-size: 0.72rem;">
+                <i class="bi bi-plus-circle-fill mr-1"></i>+${points} Poin Kesehatan
+              </span>
               <button type="button" class="btn-activate-rec" onclick="app.activateFeature('${featId}', '${featName}')">
-                <i class="bi bi-plus-lg mr-1"></i> Buka / Daftar Fitur (+${points} PTS)
+                <i class="bi bi-arrow-right-short mr-1 font-weight-bold"></i> Buka Fitur
               </button>
             </div>
           </div>
@@ -794,17 +812,19 @@
 
     if (!lifeEvent || !lifeEvent.detected || lifeEvent.confidence < 60) {
       container.innerHTML = `
-        <div class="p-3 bg-white rounded border mb-3 d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center gap-3">
-            <div class="bg-light p-2 rounded-circle text-muted">
-              <i class="bi bi-radar h4 mb-0"></i>
+        <div class="m-monitoring-card mb-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="m-monitoring-icon">
+              <i class="bi bi-radar"></i>
             </div>
-            <div>
-              <strong class="text-dark small d-block">AI Monitoring Sinyal Transaksi</strong>
-              <span class="text-muted small">Algoritma 2 terus menganalisis pergeseran pola baseline vs periode berjalan (Threshold: 60%).</span>
+            <div class="flex-grow-1">
+              <div class="font-weight-bold text-dark small" style="font-size: 0.78rem;">Pemantauan Pola Hidup Cerdas (AI)</div>
+              <div class="text-muted" style="font-size: 0.68rem; line-height: 1.3;">Mendeteksi perubahan pola keuangan & siap menyarankan paket terintegrasi.</div>
             </div>
+            <span class="badge badge-light border text-muted small" style="font-size: 0.65rem;">
+              <i class="bi bi-activity text-success mr-1"></i>Aktif
+            </span>
           </div>
-          <span class="badge badge-light border text-muted">Status: Memantau</span>
         </div>
       `;
       state.activeBundle = null;
@@ -819,33 +839,34 @@
     const desc = lifeEvent.description || 'Terdeteksi pergeseran pola finansial signifikan pada akun Anda.';
     const signals = lifeEvent.detected_signals || [];
 
-    const signalBadges = signals.map(s => `<span class="badge badge-warning text-dark font-weight-bold mr-1 mb-1"><i class="bi bi-check mr-1"></i>${s}</span>`).join('');
+    const signalBadges = signals.map(s => `<span class="badge badge-light border mr-1 mb-1 font-weight-normal" style="font-size: 0.68rem; background: rgba(255,255,255,0.14); color: #ffffff; border-color: rgba(255,255,255,0.2) !important;"><i class="bi bi-check-circle-fill text-warning mr-1"></i>${s}</span>`).join('');
 
     container.innerHTML = `
       <div class="life-event-banner-box">
-        <div class="d-flex justify-content-between align-items-start mb-2">
-          <div>
-            <span class="badge badge-warning text-dark font-weight-bold mb-1">
-              <i class="bi bi-stars mr-1"></i> Momen Hidup Terdeteksi (${confidence}% Confidence)
-            </span>
-            <h4 class="font-weight-bold text-white mb-1">
-              <i class="bi bi-gift-fill text-warning mr-2"></i> ${bundleName}
-            </h4>
-            <p class="text-white-50 small mb-2">${desc}</p>
-          </div>
-          <button type="button" class="btn btn-outline-light btn-sm font-weight-bold text-nowrap" onclick="app.openBundleModal()">
-            <i class="bi bi-info-circle mr-1"></i> Rincian Paket
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.68rem; border-radius: 6px;">
+            <i class="bi bi-stars mr-1"></i> Smart Bundle Terdeteksi (${confidence}% Match)
+          </span>
+          <button type="button" class="btn btn-outline-light btn-sm font-weight-bold py-0 px-2" style="font-size: 0.7rem; border-radius: 6px;" onclick="app.openBundleModal()">
+            <i class="bi bi-info-circle mr-1"></i> Rincian
           </button>
         </div>
 
-        <div class="mb-3">
-          <span class="small text-white-50 mr-2">Sinyal Transaksi Terverifikasi:</span>
-          ${signalBadges}
+        <h5 class="font-weight-bold text-white mb-1" style="font-size: 0.95rem; line-height: 1.3;">
+          <i class="bi bi-gift-fill text-warning mr-1"></i> ${bundleName}
+        </h5>
+        <p class="text-white-50 small mb-2" style="font-size: 0.72rem; line-height: 1.35;">${desc}</p>
+
+        <div class="mb-2">
+          <div class="small text-white-50 mb-1" style="font-size: 0.68rem;">Sinyal Transaksi Terverifikasi:</div>
+          <div class="d-flex flex-wrap">${signalBadges}</div>
         </div>
 
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-2 border-top" style="border-color: rgba(255,255,255,0.15) !important;">
-          <div class="small text-warning font-weight-bold">
-            🎁 Bonus Spesial: +${bonusPts} Poin Kesehatan Finansial saat diaktifkan sekaligus!
+        <div class="pt-2 border-top" style="border-color: rgba(255,255,255,0.15) !important;">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="small text-warning font-weight-bold" style="font-size: 0.72rem;">
+              🎁 Reward: +${bonusPts} Poin Kesehatan Finansial
+            </span>
           </div>
           <button type="button" class="btn-claim-bundle-lg" onclick="app.claimBundle('${ruleId}', '${bundleName}')">
             <i class="bi bi-lightning-charge-fill mr-1"></i> Aktifkan Paket Bundle Sekaligus (+${bonusPts} PTS Bonus)
@@ -1481,13 +1502,13 @@
         previewCatType.textContent = tx.type === 'CR' ? 'CR (Masuk +)' : 'DB (Keluar -)';
         previewCatType.className = tx.type === 'CR' ? 'badge badge-success ml-1' : 'badge badge-danger ml-1';
         if (previewReason) {
-          previewReason.textContent = `Klasifikasi otomatis oleh Groq AI`;
+          previewReason.textContent = `Klasifikasi otomatis oleh AI Engine`;
         }
         previewBox.classList.remove('d-none');
         previewBox.classList.add('d-flex');
       }
 
-      showToast(`🤖 Groq AI mendeteksi: "${catName}" • ${txType} • Transaksi berhasil dicatat!`);
+      showToast(`✨ AI mendeteksi: "${catName}" • ${txType} • Transaksi berhasil dicatat!`);
 
       // Clear input fields
       descInput.value = '';
@@ -1990,6 +2011,10 @@
   // --- Admin Voucher Management Functions ---
 
   async function openAdminVoucherModal() {
+    if (state.user?.id !== 'admin') {
+      showToast('Akses ditolak: Hanya akun Administrator (Admin Portal & PM) yang dapat mengelola voucher & target misi.', 'warning');
+      return;
+    }
     const modal = document.getElementById('adminVoucherModal');
     if (modal) {
       modal.style.display = 'block';
@@ -2263,6 +2288,41 @@
     // Manual Transaction Form
     const addTxForm = document.getElementById('addTxForm');
     if (addTxForm) addTxForm.addEventListener('submit', handleAddTransactionSubmit);
+
+    // AI Smart Injector Example Chips
+    document.querySelectorAll('.example-tx-chip').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const desc = e.currentTarget.getAttribute('data-desc');
+        const amount = e.currentTarget.getAttribute('data-amount');
+        const txDesc = document.getElementById('txDesc');
+        const txAmount = document.getElementById('txAmount');
+        if (txDesc) txDesc.value = desc;
+        if (txAmount) txAmount.value = amount;
+        showToast(`💡 Contoh dipilih: ${desc} (${formatIDR(Number(amount))})`);
+
+        const previewBox = document.getElementById('aiCategoryPreview');
+        const previewCatName = document.getElementById('previewCatName');
+        const previewCatType = document.getElementById('previewCatType');
+        const previewReason = document.getElementById('previewReason');
+        if (previewBox && previewCatName && previewCatType) {
+          const isCr = desc.toLowerCase().includes('gaji');
+          let cat = 'Belanja & Lainnya';
+          if (isCr) cat = 'Gaji & Payroll';
+          else if (desc.toLowerCase().includes('kos')) cat = 'Hunian & Kos';
+          else if (desc.toLowerCase().includes('kopi') || desc.toLowerCase().includes('kafe')) cat = 'Jajan & Gaya Hidup';
+          else if (desc.toLowerCase().includes('belanja')) cat = 'Belanja Kebutuhan Pokok';
+          else if (desc.toLowerCase().includes('investasi')) cat = 'Investasi & Tabungan';
+          else if (desc.toLowerCase().includes('asuransi')) cat = 'Proteksi Asuransi';
+
+          previewCatName.textContent = cat;
+          previewCatType.textContent = isCr ? 'CR (Masuk +)' : 'DB (Keluar -)';
+          previewCatType.className = isCr ? 'badge badge-success ml-1' : 'badge badge-danger ml-1';
+          if (previewReason) previewReason.textContent = 'Deteksi otomatis AI Engine';
+          previewBox.classList.remove('d-none');
+          previewBox.classList.add('d-flex');
+        }
+      });
+    });
 
     // Reset Database Buttons
     const resetDbBtn = document.getElementById('btnResetDb');

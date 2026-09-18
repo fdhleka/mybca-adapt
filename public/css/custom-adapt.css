@@ -2163,66 +2163,20 @@ body {
 }
 
 /* Life Event Banner */
-.life-event-banner-box {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  color: #ffffff;
-  border-radius: 16px;
-  padding: 1.1rem 0.95rem;
-  margin-bottom: 0.85rem;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-  animation: pulseHighlight 2s infinite alternate;
+.m-monitoring-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-@keyframes pulseHighlight {
-  0% { border-color: rgba(255, 255, 255, 0.1); }
-  100% { border-color: rgba(245, 158, 11, 0.5); }
-}
-
-.btn-claim-bundle-lg {
-  background: linear-gradient(90deg, #00a3e0 0%, #005caa 100%);
-  color: #ffffff;
-  border: none;
-  padding: 0.5rem 1.15rem;
+.m-monitoring-icon {
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.825rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 163, 224, 0.4);
-  width: 100%;
-}
-
-.btn-claim-bundle-lg:hover {
-  transform: translateY(-2px);
-  color: #ffffff;
-}
-
-/* Recommendations Card */
-.rec-item-card {
-  background: #f8fafc;
-  border: 1px solid var(--bca-border);
-  border-radius: 12px;
-  padding: 0.8rem;
-  margin-bottom: 0.6rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
-  transition: all 0.2s ease;
-}
-
-.rec-item-card:hover {
-  border-color: #005caa;
-}
-
-.rec-feature-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: #e0f2fe;
-  color: #005caa;
+  background: #f0fdf4;
+  color: #16a34a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2230,15 +2184,106 @@ body {
   flex-shrink: 0;
 }
 
-.btn-activate-rec {
-  background-color: #005caa;
+.life-event-banner-box {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 0.95rem 0.95rem;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  position: relative;
+  overflow: hidden;
+  animation: pulseHighlight 2.5s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+  0% { border-color: rgba(245, 158, 11, 0.25); box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25); }
+  100% { border-color: rgba(245, 158, 11, 0.6); box-shadow: 0 6px 22px rgba(245, 158, 11, 0.2); }
+}
+
+.btn-claim-bundle-lg {
+  background: linear-gradient(90deg, #00a3e0 0%, #005caa 100%);
   color: #ffffff;
   border: none;
-  padding: 0.28rem 0.7rem;
-  border-radius: 6px;
-  font-size: 0.725rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.825rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 163, 224, 0.4);
+  width: 100%;
+}
+
+.btn-claim-bundle-lg:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 163, 224, 0.55);
+  color: #ffffff;
+}
+
+/* AI Smart Injector Example Chips */
+.example-tx-chip {
+  transition: all 0.15s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.example-tx-chip:hover {
+  background: #eff6ff !important;
+  border-color: #005caa !important;
+  color: #005caa !important;
+  transform: translateY(-1px);
+}
+
+/* Recommendations Card */
+.rec-item-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.85rem;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.rec-item-card:hover {
+  border-color: #005caa;
+  box-shadow: 0 4px 12px rgba(0, 92, 170, 0.08);
+}
+
+.rec-feature-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: #f0f7ff;
+  color: #005caa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  border: 1px solid #dbeafe;
+}
+
+.btn-activate-rec {
+  background: linear-gradient(135deg, #005caa 0%, #0077d8 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.32rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.73rem;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-activate-rec:hover {
+  background: linear-gradient(135deg, #004b8c 0%, #005caa 100%);
+  transform: translateY(-1px);
 }
 
 /* --------------------------------------------------------------------------

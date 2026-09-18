@@ -574,8 +574,8 @@
                 <h6 class="adapt-card-title">
                   <i class="bi bi-stars text-warning"></i> Rekomendasi Fitur Cerdas
                 </h6>
-                <span class="badge badge-primary font-weight-bold" style="font-size: 0.65rem;">
-                  <i class="bi bi-robot mr-1"></i>Groq AI
+                <span class="badge badge-light border text-primary font-weight-bold" style="font-size: 0.65rem;">
+                  <i class="bi bi-stars text-warning mr-1"></i>AI Engine
                 </span>
               </div>
               <div class="small text-muted mb-2" style="font-size: 0.725rem;">
@@ -781,16 +781,44 @@
                 </div>
               </div>
 
-              <!-- Manual Transaction Form with Groq AI Agent -->
+              <!-- Manual Transaction Form with AI Smart Injector -->
               <div class="p-2 bg-light rounded border mb-2">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="small font-weight-bold text-primary" style="font-size: 0.75rem;">
-                    <i class="bi bi-robot text-info mr-1"></i> AI Smart Injector:
+                  <span class="small font-weight-bold text-primary" style="font-size: 0.78rem;">
+                    <i class="bi bi-cpu-fill text-primary mr-1"></i> AI Smart Injector:
                   </span>
-                  <span class="badge badge-info text-white font-weight-bold" style="font-size: 0.65rem; background: #0284c7;">
-                    Groq AI
+                  <span class="badge badge-primary font-weight-bold" style="font-size: 0.65rem; background: #005caa;">
+                    Live Detection
                   </span>
                 </div>
+
+                <!-- Contoh Transaksi Cepat (Examples) -->
+                <div class="mb-2">
+                  <div class="text-muted font-weight-bold mb-1" style="font-size: 0.68rem;">
+                    <i class="bi bi-lightning-charge-fill text-warning mr-1"></i> Contoh Cepat (Klik untuk Coba):
+                  </div>
+                  <div class="d-flex flex-wrap gap-1" style="gap: 0.3rem;">
+                    <button type="button" class="btn btn-sm btn-white border py-1 px-2 example-tx-chip" data-desc="Gaji Bulanan PT Tech" data-amount="8500000" style="font-size: 0.7rem; border-radius: 8px; background: #ffffff;">
+                      💼 Gaji (8.5 Jt)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-white border py-1 px-2 example-tx-chip" data-desc="Bayar Sewa Kos Bulanan" data-amount="1800000" style="font-size: 0.7rem; border-radius: 8px; background: #ffffff;">
+                      🏠 Kos (1.8 Jt)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-white border py-1 px-2 example-tx-chip" data-desc="Kopi & Makan Siang Kafe" data-amount="65000" style="font-size: 0.7rem; border-radius: 8px; background: #ffffff;">
+                      ☕ Kafe (65 Rb)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-white border py-1 px-2 example-tx-chip" data-desc="Belanja Bulanan Supermarket" data-amount="420000" style="font-size: 0.7rem; border-radius: 8px; background: #ffffff;">
+                      🛒 Belanja (420 Rb)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-white border py-1 px-2 example-tx-chip" data-desc="Investasi Reksa Dana Saham" data-amount="1000000" style="font-size: 0.7rem; border-radius: 8px; background: #ffffff;">
+                      📈 Investasi (1 Jt)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-white border py-1 px-2 example-tx-chip" data-desc="Bayar Asuransi Kesehatan" data-amount="300000" style="font-size: 0.7rem; border-radius: 8px; background: #ffffff;">
+                      🛡️ Asuransi (300 Rb)
+                    </button>
+                  </div>
+                </div>
+
                 <form id="addTxForm">
                   <div class="form-group mb-2">
                     <input type="text" id="txDesc" class="form-control form-control-sm" placeholder="Nama transaksi (cth: Gaji bulanan, Kopi, Kos)" required autocomplete="off" style="font-size: 0.8rem;">
@@ -870,10 +898,10 @@
               </div>
             </section>
 
-            <!-- Admin Shortcut Button inside Voucher Page -->
-            <div class="text-center mt-3 mb-4">
-              <button type="button" class="btn btn-sm btn-outline-secondary font-weight-bold py-1 px-3 shadow-sm rounded-pill" onclick="app.openAdminVoucherModal()" style="font-size: 0.72rem; border-color: #cbd5e1; color: #475569;">
-                <i class="bi bi-gear-fill mr-1 text-warning"></i> Kelola Target Voucher (Admin / Juri)
+            <!-- Admin Shortcut Button inside Voucher Page (Khusus Admin) -->
+            <div class="text-center mt-3 mb-4 d-none" id="voucherPageAdminShortcut">
+              <button type="button" class="btn btn-sm btn-outline-warning font-weight-bold py-1 px-3 shadow-sm rounded-pill" onclick="app.openAdminVoucherModal()" style="font-size: 0.72rem; border-color: #f59e0b; color: #b45309;">
+                <i class="bi bi-gear-fill mr-1 text-warning"></i> Kelola Target Voucher (Admin Portal)
               </button>
             </div>
 
@@ -949,7 +977,7 @@
                       <div class="small text-muted" style="font-size: 0.68rem;">Buat reward diskon belanja & tentukan syarat klaim</div>
                     </div>
                   </div>
-                  <i class="bi bi-chevron-right text-muted"></i>
+                  <span class="badge badge-warning text-dark font-weight-bold" id="adminVoucherAccessBadge" style="font-size: 0.65rem;">Khusus Admin</span>
                 </button>
 
                 <!-- Reset Database -->
