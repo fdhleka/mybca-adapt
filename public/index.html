@@ -11,7 +11,7 @@
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- Custom ADAPT Theme Stylesheet -->
-  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.4.0">
+  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.5.0">
 </head>
 <body class="pace-done no-breadcrumb">
 
@@ -580,19 +580,23 @@
 
               <!-- Score Plaque (Plakat) & Progress Bar -->
               <div class="d-flex align-items-center gap-3 mb-2" style="gap: 0.95rem;">
-                <!-- Prestigious Award Plaque (Plakat Finansial) -->
-                <div id="healthScorePlaque" class="score-plaque plaque-silver">
-                  <div class="plaque-sheen"></div>
-                  <div class="plaque-inner">
-                    <div class="plaque-top-icon">
-                      <i id="plaqueIcon" class="bi bi-award-fill"></i>
+                <!-- Prestigious Circular Medallion Plaque (Plakat Bundar Mewah 3D) -->
+                <div id="healthScorePlaque" class="score-plaque-circle plaque-silver">
+                  <div class="plaque-outer-rim">
+                    <div class="plaque-mid-ring">
+                      <div class="plaque-glass-sheen"></div>
+                      <div class="plaque-core">
+                        <div class="plaque-top-icon">
+                          <i id="plaqueIcon" class="bi bi-award-fill"></i>
+                        </div>
+                        <div class="plaque-score-wrap">
+                          <span id="scoreNum" class="score-num">45</span>
+                        </div>
+                        <div class="plaque-label">PTS</div>
+                      </div>
                     </div>
-                    <div class="plaque-score-wrap">
-                      <span id="scoreNum" class="score-num">45</span>
-                    </div>
-                    <div class="plaque-label">SKOR PTS</div>
-                    <div class="plaque-ribbon" id="plaqueTierRibbon">SILVER</div>
                   </div>
+                  <div class="plaque-bottom-ribbon" id="plaqueTierRibbon">SILVER</div>
                 </div>
                 <div class="flex-grow-1">
                   <div class="d-flex justify-content-between font-weight-bold small mb-1">
@@ -1565,7 +1569,7 @@
   <!-- ===================================================================== -->
   <!-- 5. JAVASCRIPT APPLICATION CONTROLLER & MOBILE SUB-PAGE HELPER         -->
   <!-- ===================================================================== -->
-  <script src="/js/app.js?v=1.4.0"></script>
+  <script src="/js/app.js?v=1.5.0"></script>
 
   <script>
     // iPhone 14 Mobile Web App Navigation & Interactive Engine

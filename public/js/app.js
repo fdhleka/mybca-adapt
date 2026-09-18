@@ -693,10 +693,10 @@
       cardEl.className = `adapt-card health-card-tier tier-${tierLower}`;
     }
 
-    // 2. Dynamic Plakat (Plaque) Theme
+    // 2. Dynamic Plakat (Circular Plaque) Theme
     const plaqueEl = document.getElementById('healthScorePlaque');
     if (plaqueEl) {
-      plaqueEl.className = `score-plaque plaque-${tierLower}`;
+      plaqueEl.className = `score-plaque-circle plaque-${tierLower}`;
     }
 
     const plaqueIcon = document.getElementById('plaqueIcon');

@@ -2300,220 +2300,307 @@ body {
 }
 
 /* ==========================================================================
-   DYNAMIC TIER CARD STYLING & FINANCIAL HEALTH PLAQUE (PLAKAT FINANSIAL)
+   TIER-COLORED CARD BACKGROUNDS & LUXURY CIRCULAR MEDALLION PLAQUE
    ========================================================================== */
 
-/* 1. Dynamic Tier Card Border & Ambient Aura */
+/* 1. Dynamic Full Tier-Colored Card Backgrounds */
 .health-card-tier {
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
-  position: relative;
-}
-
-/* Tier Bronze: Warm Copper Metallic Glow */
-.health-card-tier.tier-bronze {
-  border: 1.5px solid #cd7f32 !important;
-  background: linear-gradient(180deg, #fffbf7 0%, #ffffff 100%) !important;
-  box-shadow: 0 4px 18px rgba(205, 127, 50, 0.15), 0 0 0 1px rgba(205, 127, 50, 0.18) !important;
-}
-.health-card-tier.tier-bronze .adapt-card-title {
-  color: #7c2d12;
-}
-
-/* Tier Silver: Platinum Chrome Metallic Glow */
-.health-card-tier.tier-silver {
-  border: 1.5px solid #94a3b8 !important;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
-  box-shadow: 0 4px 22px rgba(148, 163, 184, 0.28), 0 0 0 1px rgba(148, 163, 184, 0.35) !important;
-}
-.health-card-tier.tier-silver .adapt-card-title {
-  color: #334155;
-}
-
-/* Tier Gold: 24K Royal Gold Metallic Glow */
-.health-card-tier.tier-gold {
-  border: 1.5px solid #f59e0b !important;
-  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 100%) !important;
-  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.2), 0 0 0 1px rgba(245, 158, 11, 0.38) !important;
-}
-.health-card-tier.tier-gold .adapt-card-title {
-  color: #92400e;
-}
-
-/* Tier Diamond: Crystalline Holographic Cyan Glow */
-.health-card-tier.tier-diamond {
-  border: 1.5px solid #06b6d4 !important;
-  background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%) !important;
-  box-shadow: 0 4px 26px rgba(6, 182, 212, 0.24), 0 0 0 1px rgba(6, 182, 212, 0.42) !important;
-}
-.health-card-tier.tier-diamond .adapt-card-title {
-  color: #0e7490;
-}
-
-/* 2. Prestigious Plakat Finansial (Award Plaque / Trophy Emblem) */
-.score-plaque {
-  width: 84px;
-  min-height: 98px;
-  border-radius: 14px 14px 18px 18px;
-  padding: 3.5px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 
-    0 8px 18px -3px rgba(0, 0, 0, 0.2),
-    inset 0 1px 2px rgba(255, 255, 255, 0.85),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
-  flex-shrink: 0;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  user-select: none;
+  border-radius: 20px !important;
 }
 
-/* Diagonal Glass Sheen Reflection */
-.plaque-sheen {
+/* Tier Bronze: Rich Antique Copper/Bronze Metallic Gradient */
+.health-card-tier.tier-bronze {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 35%, #fed7aa 70%, #fdba74 100%) !important;
+  border: 2px solid #ea580c !important;
+  box-shadow: 0 8px 24px rgba(194, 65, 12, 0.2), 0 0 0 1px rgba(234, 88, 12, 0.2) !important;
+}
+.health-card-tier.tier-bronze .adapt-card-title {
+  color: #7c2d12 !important;
+}
+.health-card-tier.tier-bronze .score-breakdown-box {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(234, 88, 12, 0.25) !important;
+  backdrop-filter: blur(6px);
+}
+.health-card-tier.tier-bronze .progress-bar-container {
+  background: rgba(124, 45, 18, 0.12) !important;
+}
+.health-card-tier.tier-bronze .progress-bar-fill {
+  background: linear-gradient(90deg, #ea580c 0%, #9a3412 100%) !important;
+}
+
+/* Tier Silver: Luxury Brushed Platinum/Silver Metallic Gradient */
+.health-card-tier.tier-silver {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 35%, #cbd5e1 70%, #94a3b8 100%) !important;
+  border: 2px solid #64748b !important;
+  box-shadow: 0 8px 26px rgba(71, 85, 105, 0.25), 0 0 0 1px rgba(148, 163, 184, 0.35) !important;
+}
+.health-card-tier.tier-silver .adapt-card-title {
+  color: #0f172a !important;
+}
+.health-card-tier.tier-silver .score-breakdown-box {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(100, 116, 139, 0.28) !important;
+  backdrop-filter: blur(6px);
+}
+.health-card-tier.tier-silver .progress-bar-container {
+  background: rgba(15, 23, 42, 0.14) !important;
+}
+.health-card-tier.tier-silver .progress-bar-fill {
+  background: linear-gradient(90deg, #475569 0%, #0f172a 100%) !important;
+}
+
+/* Tier Gold: Opulent 24K Royal Gold & Champagne Metallic Gradient */
+.health-card-tier.tier-gold {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 30%, #fde68a 65%, #fbbf24 100%) !important;
+  border: 2px solid #d97706 !important;
+  box-shadow: 0 8px 28px rgba(217, 119, 6, 0.28), 0 0 0 1px rgba(245, 158, 11, 0.35) !important;
+}
+.health-card-tier.tier-gold .adapt-card-title {
+  color: #78350f !important;
+}
+.health-card-tier.tier-gold .score-breakdown-box {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(217, 119, 6, 0.3) !important;
+  backdrop-filter: blur(6px);
+}
+.health-card-tier.tier-gold .progress-bar-container {
+  background: rgba(120, 53, 15, 0.12) !important;
+}
+.health-card-tier.tier-gold .progress-bar-fill {
+  background: linear-gradient(90deg, #f59e0b 0%, #b45309 100%) !important;
+}
+
+/* Tier Diamond: Crystalline Radiant Cyan Prism Gradient */
+.health-card-tier.tier-diamond {
+  background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 30%, #bae6fd 65%, #38bdf8 100%) !important;
+  border: 2px solid #0284c7 !important;
+  box-shadow: 0 8px 30px rgba(2, 132, 199, 0.28), 0 0 0 1px rgba(6, 182, 212, 0.4) !important;
+}
+.health-card-tier.tier-diamond .adapt-card-title {
+  color: #0c4a6e !important;
+}
+.health-card-tier.tier-diamond .score-breakdown-box {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(2, 132, 199, 0.3) !important;
+  backdrop-filter: blur(6px);
+}
+.health-card-tier.tier-diamond .progress-bar-container {
+  background: rgba(12, 74, 110, 0.12) !important;
+}
+.health-card-tier.tier-diamond .progress-bar-fill {
+  background: linear-gradient(90deg, #06b6d4 0%, #0369a1 100%) !important;
+}
+
+/* 2. Luxury Circular Medallion Plaque (Plakat Bundar Mewah 3D) */
+.score-plaque-circle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  user-select: none;
+  width: 86px;
+}
+
+/* Outer 3D Metallic Rim */
+.plaque-outer-rim {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  padding: 3.5px;
+  position: relative;
+  box-shadow: 
+    0 8px 20px -3px rgba(0, 0, 0, 0.3),
+    inset 0 2px 3px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.35);
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+/* Mid Concentric Ring with Fine Mill Rim */
+.plaque-mid-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 2.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+/* Glass Lens Curved Sheen Highlight */
+.plaque-glass-sheen {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 55%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 65%);
-  border-radius: 12px 12px 0 0;
+  height: 52%;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
-  z-index: 3;
+  z-index: 5;
 }
 
-/* Inner Recessed Enamel Plate */
-.plaque-inner {
-  background: #ffffff;
-  border-radius: 10px 10px 14px 14px;
-  flex: 1;
+/* Recessed Enamel Medallion Core */
+.plaque-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f8fafc 55%, #e2e8f0 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.45rem 0.25rem 0.38rem 0.25rem;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+  justify-content: center;
+  box-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.12),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 2;
+  padding: 2px 0;
 }
 
-/* Plaque Top Emblem / Crest */
-.plaque-top-icon {
-  font-size: 0.95rem;
+/* Medallion Top Crest Icon */
+.plaque-core .plaque-top-icon {
+  font-size: 0.82rem;
   line-height: 1;
-  margin-top: 1px;
+  margin-top: -1px;
 }
 
-/* Plaque Score Number */
-.plaque-score-wrap {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
+/* Medallion Embossed Score Number */
+.plaque-core .plaque-score-wrap {
+  line-height: 1;
   margin: 1px 0;
 }
 
-.plaque-score-wrap .score-num {
-  font-size: 1.55rem;
+.plaque-core .score-num {
+  font-size: 1.6rem;
   font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
 }
 
-/* Plaque Sub-Label */
-.plaque-label {
-  font-size: 0.53rem;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  color: #94a3b8;
-  text-transform: uppercase;
+/* Tiny PTS Unit */
+.plaque-core .plaque-label {
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 1px;
   line-height: 1;
-  margin-bottom: 2px;
+  text-transform: uppercase;
+  margin-top: -1px;
 }
 
-/* Plaque Bottom Ribbon / Tier Tag */
-.plaque-ribbon {
-  font-size: 0.58rem;
+/* Plaque Bottom Ribbon (Curved Banner overlapping bottom rim) */
+.plaque-bottom-ribbon {
+  font-size: 0.6rem;
   font-weight: 900;
-  letter-spacing: 0.6px;
-  padding: 2px 7px;
+  letter-spacing: 0.8px;
+  padding: 2.5px 9px;
   border-radius: 99px;
   text-transform: uppercase;
   color: #ffffff;
-  line-height: 1.15;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
+  line-height: 1;
+  margin-top: -8px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* --- THEME 1: SILVER PLAKAT (Chrome & Platinum Metallic) --- */
-.score-plaque.plaque-silver {
-  background: linear-gradient(145deg, #f8fafc 0%, #cbd5e1 25%, #94a3b8 65%, #64748b 100%);
-  border: 1px solid #cbd5e1;
+/* --- THEME 1: SILVER CIRCULAR MEDALLION (Platinum Bullion) --- */
+.score-plaque-circle.plaque-silver .plaque-outer-rim {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #94a3b8 50%, #64748b 75%, #cbd5e1 100%);
+  border: 1.5px solid #94a3b8;
 }
-.score-plaque.plaque-silver .plaque-top-icon {
+.score-plaque-circle.plaque-silver .plaque-mid-ring {
+  background: linear-gradient(180deg, #f1f5f9 0%, #94a3b8 100%);
+}
+.score-plaque-circle.plaque-silver .plaque-top-icon {
+  color: #475569;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
+}
+.score-plaque-circle.plaque-silver .score-num {
+  color: #0f172a;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+.score-plaque-circle.plaque-silver .plaque-label {
   color: #64748b;
-  filter: drop-shadow(0 1px 2px rgba(100, 116, 139, 0.3));
 }
-.score-plaque.plaque-silver .score-num {
-  color: #1e293b;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
-}
-.score-plaque.plaque-silver .plaque-ribbon {
-  background: linear-gradient(135deg, #64748b 0%, #334155 100%);
-  box-shadow: 0 2px 6px rgba(51, 65, 85, 0.4);
+.score-plaque-circle.plaque-silver .plaque-bottom-ribbon {
+  background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
 }
 
-/* --- THEME 2: GOLD PLAKAT (24K Polished Gold & Royal Amber) --- */
-.score-plaque.plaque-gold {
-  background: linear-gradient(145deg, #fef08a 0%, #f59e0b 30%, #d97706 70%, #92400e 100%);
-  border: 1px solid #fbbf24;
+/* --- THEME 2: GOLD CIRCULAR MEDALLION (24K Gold Bullion) --- */
+.score-plaque-circle.plaque-gold .plaque-outer-rim {
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 25%, #d97706 50%, #78350f 75%, #fef08a 100%);
+  border: 1.5px solid #f59e0b;
 }
-.score-plaque.plaque-gold .plaque-top-icon {
-  color: #d97706;
-  filter: drop-shadow(0 1px 2px rgba(217, 119, 6, 0.35));
+.score-plaque-circle.plaque-gold .plaque-mid-ring {
+  background: linear-gradient(180deg, #fef3c7 0%, #d97706 100%);
 }
-.score-plaque.plaque-gold .score-num {
+.score-plaque-circle.plaque-gold .plaque-top-icon {
   color: #b45309;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
 }
-.score-plaque.plaque-gold .plaque-ribbon {
-  background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
-  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.45);
+.score-plaque-circle.plaque-gold .score-num {
+  color: #78350f;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+.score-plaque-circle.plaque-gold .plaque-label {
+  color: #b45309;
+}
+.score-plaque-circle.plaque-gold .plaque-bottom-ribbon {
+  background: linear-gradient(135deg, #f59e0b 0%, #92400e 100%);
 }
 
-/* --- THEME 3: BRONZE PLAKAT (Antique Metallic Copper) --- */
-.score-plaque.plaque-bronze {
-  background: linear-gradient(145deg, #ffedd5 0%, #d97706 30%, #9a3412 70%, #7c2d12 100%);
-  border: 1px solid #f97316;
+/* --- THEME 3: BRONZE CIRCULAR MEDALLION (Antique Copper Coin) --- */
+.score-plaque-circle.plaque-bronze .plaque-outer-rim {
+  background: linear-gradient(135deg, #fed7aa 0%, #f97316 25%, #c2410c 50%, #7c2d12 75%, #fed7aa 100%);
+  border: 1.5px solid #ea580c;
 }
-.score-plaque.plaque-bronze .plaque-top-icon {
+.score-plaque-circle.plaque-bronze .plaque-mid-ring {
+  background: linear-gradient(180deg, #ffedd5 0%, #c2410c 100%);
+}
+.score-plaque-circle.plaque-bronze .plaque-top-icon {
   color: #9a3412;
-  filter: drop-shadow(0 1px 2px rgba(154, 52, 18, 0.35));
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
 }
-.score-plaque.plaque-bronze .score-num {
+.score-plaque-circle.plaque-bronze .score-num {
   color: #7c2d12;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
-.score-plaque.plaque-bronze .plaque-ribbon {
+.score-plaque-circle.plaque-bronze .plaque-label {
+  color: #9a3412;
+}
+.score-plaque-circle.plaque-bronze .plaque-bottom-ribbon {
   background: linear-gradient(135deg, #ea580c 0%, #7c2d12 100%);
-  box-shadow: 0 2px 6px rgba(124, 45, 18, 0.45);
 }
 
-/* --- THEME 4: DIAMOND PLAKAT (Crystalline Cyan Prism) --- */
-.score-plaque.plaque-diamond {
-  background: linear-gradient(145deg, #e0f2fe 0%, #38bdf8 30%, #0284c7 70%, #0c4a6e 100%);
-  border: 1px solid #38bdf8;
+/* --- THEME 4: DIAMOND CIRCULAR MEDALLION (Cyan Crystal Star) --- */
+.score-plaque-circle.plaque-diamond .plaque-outer-rim {
+  background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 25%, #0284c7 50%, #0c4a6e 75%, #e0f2fe 100%);
+  border: 1.5px solid #0284c7;
 }
-.score-plaque.plaque-diamond .plaque-top-icon {
+.score-plaque-circle.plaque-diamond .plaque-mid-ring {
+  background: linear-gradient(180deg, #f0fdfa 0%, #0284c7 100%);
+}
+.score-plaque-circle.plaque-diamond .plaque-top-icon {
   color: #0284c7;
-  filter: drop-shadow(0 1px 2px rgba(2, 132, 199, 0.4));
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
 }
-.score-plaque.plaque-diamond .score-num {
+.score-plaque-circle.plaque-diamond .score-num {
   color: #0369a1;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
-.score-plaque.plaque-diamond .plaque-ribbon {
-  background: linear-gradient(135deg, #06b6d4 0%, #0369a1 100%);
-  box-shadow: 0 2px 6px rgba(3, 105, 161, 0.5);
+.score-plaque-circle.plaque-diamond .plaque-label {
+  color: #0284c7;
+}
+.score-plaque-circle.plaque-diamond .plaque-bottom-ribbon {
+  background: linear-gradient(135deg, #06b6d4 0%, #075985 100%);
 }
 
 /* Fallback Score Circle (Legacy Support) */
