@@ -736,6 +736,18 @@
       rewardEl.textContent = `${(gamification.reward_points || 0).toLocaleString('id-ID')} Poin BCA`;
     }
 
+    // 4. In-Card Financial Health Score Badge Sync
+    const cardScoreEl = document.getElementById('cardHealthScoreVal');
+    if (cardScoreEl) cardScoreEl.textContent = gamification.score;
+
+    const cardTierText = document.getElementById('cardHealthTierText');
+    if (cardTierText) cardTierText.textContent = (gamification.tier || 'Silver').toUpperCase();
+
+    const cardTierPill = document.getElementById('cardHealthTierPill');
+    if (cardTierPill) {
+      cardTierPill.className = `m-card-tier-pill tier-pill-${tierLower}`;
+    }
+
     const breakdownContainer = document.getElementById('scoreBreakdown');
     if (breakdownContainer && gamification.breakdown) {
       const b = gamification.breakdown;

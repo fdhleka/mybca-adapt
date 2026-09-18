@@ -11,7 +11,7 @@
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- Custom ADAPT Theme Stylesheet -->
-  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.5.0">
+  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.6.0">
 </head>
 <body class="pace-done no-breadcrumb">
 
@@ -394,6 +394,19 @@
                 </button>
               </div>
 
+              <!-- In-Card Financial Health Score Display -->
+              <div class="m-card-health-row" id="cardHealthPill" onclick="document.getElementById('healthScoreCard').scrollIntoView({behavior:'smooth'})" title="Lihat rincian Skor Kesehatan Finansial">
+                <div class="d-flex align-items-center gap-1">
+                  <i class="bi bi-shield-heart-fill text-danger"></i>
+                  <span class="m-card-health-txt">Skor Finansial:</span>
+                  <strong id="cardHealthScoreVal" class="m-card-health-val">45</strong>
+                  <span class="m-card-health-unit">PTS</span>
+                </div>
+                <span id="cardHealthTierPill" class="m-card-tier-pill tier-pill-silver">
+                  <i class="bi bi-award-fill"></i> <span id="cardHealthTierText">SILVER</span>
+                </span>
+              </div>
+
               <!-- Card Balance with Eye Toggle -->
               <div class="m-card-balance-box">
                 <div class="m-card-balance-label">Saldo Rekening Utama:</div>
@@ -435,63 +448,59 @@
               </div>
             </div>
 
-            <!-- 2. CASHFLOW WIDGET (Arus Kas Ringkasan dengan Diagram Bulat) -->
-            <div class="cashflow-card">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
-                  <span class="badge badge-primary px-2 py-0 font-weight-bold" style="font-size: 0.65rem;">
-                    <i class="bi bi-pie-chart-fill mr-1"></i> ARUS KAS
-                  </span>
-                  <strong class="small text-dark">Rasio Pemasukan & Pengeluaran</strong>
-                </div>
-                <span id="cashflowHomeBadge" class="badge badge-success px-2 py-1 font-weight-bold" style="font-size: 0.68rem;">
-                  <i class="bi bi-arrow-up-right mr-1"></i>Surplus
+            <!-- 2. AI ENGINE 3: Financial Health Gamification Score Card (SWAPPED TO TOP) -->
+            <div class="adapt-card health-card-tier tier-silver" id="healthScoreCard">
+              <div class="adapt-card-header">
+                <h6 class="adapt-card-title">
+                  <i class="bi bi-shield-heart-fill text-danger"></i> Skor Kesehatan Finansial
+                </h6>
+                <span id="tierBadge" class="tier-badge badge-silver">
+                  <i class="bi bi-award-fill"></i> Level Silver
                 </span>
               </div>
 
-              <!-- Diagram Bulat Mini & Metrik -->
-              <div class="m-cf-chart-wrap" style="padding: 0.2rem 0 0.5rem 0;">
-                <div class="m-cf-donut-box" style="width: 78px; height: 78px;">
-                  <svg viewBox="0 0 100 100" class="m-cf-donut-svg">
-                    <circle cx="50" cy="50" r="38" class="m-cf-donut-bg"></circle>
-                    <circle id="cfHomeDonutIn" cx="50" cy="50" r="38" class="m-cf-donut-in"
-                            stroke-dasharray="143 95" stroke-dashoffset="0"></circle>
-                    <circle id="cfHomeDonutOut" cx="50" cy="50" r="38" class="m-cf-donut-out"
-                            stroke-dasharray="95 143" stroke-dashoffset="-143"></circle>
-                  </svg>
-                  <div class="m-cf-donut-center">
-                    <span class="m-cf-donut-center-label">NET</span>
-                    <strong class="m-cf-donut-center-val text-success" id="cfHomeDonutCenterVal" style="font-size: 0.74rem;">+60%</strong>
+              <!-- Score Plaque (Plakat) & Progress Bar -->
+              <div class="d-flex align-items-center gap-3 mb-2" style="gap: 0.95rem;">
+                <!-- Prestigious Circular Medallion Plaque (Plakat Bundar Mewah 3D) -->
+                <div id="healthScorePlaque" class="score-plaque-circle plaque-silver">
+                  <div class="plaque-outer-rim">
+                    <div class="plaque-mid-ring">
+                      <div class="plaque-glass-sheen"></div>
+                      <div class="plaque-core">
+                        <div class="plaque-top-icon">
+                          <i id="plaqueIcon" class="bi bi-award-fill"></i>
+                        </div>
+                        <div class="plaque-score-wrap">
+                          <span id="scoreNum" class="score-num">45</span>
+                        </div>
+                        <div class="plaque-label">PTS</div>
+                      </div>
+                    </div>
                   </div>
+                  <div class="plaque-bottom-ribbon" id="plaqueTierRibbon">SILVER</div>
                 </div>
-
-                <div class="m-cf-legend-box">
-                  <div class="m-cf-legend-item py-1">
-                    <span class="m-cf-legend-title">
-                      <i class="bi bi-circle-fill text-success" style="font-size: 0.45rem;"></i> Masuk (CR)
-                    </span>
-                    <span class="m-cf-legend-val text-success" id="cashflowHomeIn">+ Rp 0</span>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between font-weight-bold small mb-1">
+                    <span>Progres Level</span>
+                    <span id="rewardPoints" class="text-primary font-weight-bold">1,000 Poin BCA</span>
                   </div>
-                  <div class="m-cf-legend-item py-1">
-                    <span class="m-cf-legend-title">
-                      <i class="bi bi-circle-fill text-danger" style="font-size: 0.45rem;"></i> Keluar (DB)
-                    </span>
-                    <span class="m-cf-legend-val text-danger" id="cashflowHomeOut">- Rp 0</span>
+                  <div class="progress-bar-container">
+                    <div id="scoreProgressFill" class="progress-bar-fill"></div>
+                  </div>
+                  <div class="small text-muted" style="font-size: 0.72rem; line-height: 1.3;">
+                    Tingkatkan poin dengan aktivasi fitur & konsistensi menabung.
                   </div>
                 </div>
               </div>
 
-              <!-- Dual-color ratio bar -->
-              <div class="cashflow-ratio-track">
-                <div class="cashflow-bar-in" id="cashflowBarIn" style="width: 60%;"></div>
-                <div class="cashflow-bar-out" id="cashflowBarOut" style="width: 40%;"></div>
+              <!-- Granular Breakdown Box -->
+              <div class="small font-weight-bold text-muted mb-1" style="font-size: 0.75rem;">Rincian Komponen Skor:</div>
+              <div id="scoreBreakdown" class="score-breakdown-box">
+                <!-- Breakdown populated via JS -->
               </div>
-
-              <div class="d-flex justify-content-between align-items-center mt-2 pt-1 border-top" style="font-size: 0.72rem;">
-                <div class="text-muted">Sisa Arus Kas: <strong id="cashflowHomeNet" class="text-success">+ Rp 0</strong></div>
-                <a href="javascript:void(0);" class="text-primary font-weight-bold" onclick="document.getElementById('navTabMutasi').click()">
-                  Lihat Detail <i class="bi bi-chevron-right"></i>
-                </a>
+              <div class="mt-2 pt-1 border-top text-muted small d-flex justify-content-between" style="font-size: 0.7rem;">
+                <span>Status: <strong class="text-success">Live Engine</strong></span>
+                <span class="text-primary font-weight-bold">Algoritma 3 AI</span>
               </div>
             </div>
 
@@ -567,59 +576,63 @@
               <!-- Dynamically populated via JS -->
             </section>
 
-            <!-- 5. AI ENGINE 3: Financial Health Gamification Score Card -->
-            <div class="adapt-card health-card-tier tier-silver" id="healthScoreCard">
-              <div class="adapt-card-header">
-                <h6 class="adapt-card-title">
-                  <i class="bi bi-shield-heart-fill text-danger"></i> Skor Kesehatan Finansial
-                </h6>
-                <span id="tierBadge" class="tier-badge badge-silver">
-                  <i class="bi bi-award-fill"></i> Level Silver
+            <!-- 5. CASHFLOW WIDGET (Arus Kas Ringkasan dengan Diagram Bulat - SWAPPED HERE) -->
+            <div class="cashflow-card">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge badge-primary px-2 py-0 font-weight-bold" style="font-size: 0.65rem;">
+                    <i class="bi bi-pie-chart-fill mr-1"></i> ARUS KAS
+                  </span>
+                  <strong class="small text-dark">Rasio Pemasukan & Pengeluaran</strong>
+                </div>
+                <span id="cashflowHomeBadge" class="badge badge-success px-2 py-1 font-weight-bold" style="font-size: 0.68rem;">
+                  <i class="bi bi-arrow-up-right mr-1"></i>Surplus
                 </span>
               </div>
 
-              <!-- Score Plaque (Plakat) & Progress Bar -->
-              <div class="d-flex align-items-center gap-3 mb-2" style="gap: 0.95rem;">
-                <!-- Prestigious Circular Medallion Plaque (Plakat Bundar Mewah 3D) -->
-                <div id="healthScorePlaque" class="score-plaque-circle plaque-silver">
-                  <div class="plaque-outer-rim">
-                    <div class="plaque-mid-ring">
-                      <div class="plaque-glass-sheen"></div>
-                      <div class="plaque-core">
-                        <div class="plaque-top-icon">
-                          <i id="plaqueIcon" class="bi bi-award-fill"></i>
-                        </div>
-                        <div class="plaque-score-wrap">
-                          <span id="scoreNum" class="score-num">45</span>
-                        </div>
-                        <div class="plaque-label">PTS</div>
-                      </div>
-                    </div>
+              <!-- Diagram Bulat Mini & Metrik -->
+              <div class="m-cf-chart-wrap" style="padding: 0.2rem 0 0.5rem 0;">
+                <div class="m-cf-donut-box" style="width: 78px; height: 78px;">
+                  <svg viewBox="0 0 100 100" class="m-cf-donut-svg">
+                    <circle cx="50" cy="50" r="38" class="m-cf-donut-bg"></circle>
+                    <circle id="cfHomeDonutIn" cx="50" cy="50" r="38" class="m-cf-donut-in"
+                            stroke-dasharray="143 95" stroke-dashoffset="0"></circle>
+                    <circle id="cfHomeDonutOut" cx="50" cy="50" r="38" class="m-cf-donut-out"
+                            stroke-dasharray="95 143" stroke-dashoffset="-143"></circle>
+                  </svg>
+                  <div class="m-cf-donut-center">
+                    <span class="m-cf-donut-center-label">NET</span>
+                    <strong class="m-cf-donut-center-val text-success" id="cfHomeDonutCenterVal" style="font-size: 0.74rem;">+60%</strong>
                   </div>
-                  <div class="plaque-bottom-ribbon" id="plaqueTierRibbon">SILVER</div>
                 </div>
-                <div class="flex-grow-1">
-                  <div class="d-flex justify-content-between font-weight-bold small mb-1">
-                    <span>Progres Level</span>
-                    <span id="rewardPoints" class="text-primary font-weight-bold">1,000 Poin BCA</span>
+
+                <div class="m-cf-legend-box">
+                  <div class="m-cf-legend-item py-1">
+                    <span class="m-cf-legend-title">
+                      <i class="bi bi-circle-fill text-success" style="font-size: 0.45rem;"></i> Masuk (CR)
+                    </span>
+                    <span class="m-cf-legend-val text-success" id="cashflowHomeIn">+ Rp 0</span>
                   </div>
-                  <div class="progress-bar-container">
-                    <div id="scoreProgressFill" class="progress-bar-fill"></div>
-                  </div>
-                  <div class="small text-muted" style="font-size: 0.72rem; line-height: 1.3;">
-                    Tingkatkan poin dengan aktivasi fitur & konsistensi menabung.
+                  <div class="m-cf-legend-item py-1">
+                    <span class="m-cf-legend-title">
+                      <i class="bi bi-circle-fill text-danger" style="font-size: 0.45rem;"></i> Keluar (DB)
+                    </span>
+                    <span class="m-cf-legend-val text-danger" id="cashflowHomeOut">- Rp 0</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Granular Breakdown Box -->
-              <div class="small font-weight-bold text-muted mb-1" style="font-size: 0.75rem;">Rincian Komponen Skor:</div>
-              <div id="scoreBreakdown" class="score-breakdown-box">
-                <!-- Breakdown populated via JS -->
+              <!-- Dual-color ratio bar -->
+              <div class="cashflow-ratio-track">
+                <div class="cashflow-bar-in" id="cashflowBarIn" style="width: 60%;"></div>
+                <div class="cashflow-bar-out" id="cashflowBarOut" style="width: 40%;"></div>
               </div>
-              <div class="mt-2 pt-1 border-top text-muted small d-flex justify-content-between" style="font-size: 0.7rem;">
-                <span>Status: <strong class="text-success">Live Engine</strong></span>
-                <span class="text-primary font-weight-bold">Algoritma 3 AI</span>
+
+              <div class="d-flex justify-content-between align-items-center mt-2 pt-1 border-top" style="font-size: 0.72rem;">
+                <div class="text-muted">Sisa Arus Kas: <strong id="cashflowHomeNet" class="text-success">+ Rp 0</strong></div>
+                <a href="javascript:void(0);" class="text-primary font-weight-bold" onclick="document.getElementById('navTabMutasi').click()">
+                  Lihat Detail <i class="bi bi-chevron-right"></i>
+                </a>
               </div>
             </div>
 
@@ -1569,7 +1582,7 @@
   <!-- ===================================================================== -->
   <!-- 5. JAVASCRIPT APPLICATION CONTROLLER & MOBILE SUB-PAGE HELPER         -->
   <!-- ===================================================================== -->
-  <script src="/js/app.js?v=1.5.0"></script>
+  <script src="/js/app.js?v=1.6.0"></script>
 
   <script>
     // iPhone 14 Mobile Web App Navigation & Interactive Engine
