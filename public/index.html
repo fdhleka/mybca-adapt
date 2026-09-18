@@ -11,7 +11,7 @@
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- Custom ADAPT Theme Stylesheet -->
-  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.2.0">
+  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.3.0">
 </head>
 <body class="pace-done no-breadcrumb">
 
@@ -1176,21 +1176,22 @@
   <!-- ===================================================================== -->
   <!-- 4. SMART BUNDLE DETAILED MODAL                                       -->
   <!-- ===================================================================== -->
-  <div class="modal fade" id="smartBundleModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.6);">
+  <div class="modal fade" id="smartBundleModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+      <div class="modal-content shadow-lg border-0">
         <div class="modal-header bg-primary text-white py-3">
-          <h6 class="modal-title font-weight-bold text-white mb-0">
-            <i class="bi bi-gift-fill text-warning mr-1"></i> Penawaran Smart Bundle myBCA ADAPT
-          </h6>
-          <button type="button" class="close text-white" id="btnCloseModal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <div class="modal-drag-pill"></div>
+          <div class="modal-header-row">
+            <h6 class="modal-title font-weight-bold text-white mb-0 d-flex align-items-center gap-1">
+              <i class="bi bi-gift-fill text-warning mr-1"></i> Penawaran Smart Bundle
+            </h6>
+            <button type="button" class="close text-white" id="btnCloseModal" aria-label="Close">✕</button>
+          </div>
         </div>
         <div class="modal-body p-3" id="modalBundleContent">
           <!-- Modal content populated dynamically -->
         </div>
-        <div class="modal-footer bg-light py-2">
+        <div class="modal-footer bg-light py-2 px-3">
           <button type="button" class="btn btn-secondary btn-sm" id="btnDismissModal">Tutup</button>
           <button type="button" class="btn btn-primary btn-sm font-weight-bold" id="btnClaimModalBundle">
             <i class="bi bi-lightning-charge-fill mr-1"></i> Aktifkan Bundle Sekarang
@@ -1203,28 +1204,29 @@
   <!-- ===================================================================== -->
   <!-- 4.1 FEATURE ONBOARDING & SALDO REGISTRATION MODAL                     -->
   <!-- ===================================================================== -->
-  <div class="modal fade" id="featureOnboardingModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1060;">
+  <div class="modal fade" id="featureOnboardingModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+      <div class="modal-content shadow-lg border-0">
         
         <!-- Modal Header -->
         <div class="modal-header text-white py-3 px-3" style="background: linear-gradient(135deg, #005caa 0%, #0088ff 100%);">
-          <div class="d-flex align-items-center gap-2">
-            <div class="bg-white text-primary p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
-              <i id="onboardingHeaderIcon" class="bi bi-graph-up h5 mb-0"></i>
+          <div class="modal-drag-pill"></div>
+          <div class="modal-header-row">
+            <div class="d-flex align-items-center gap-2">
+              <div class="bg-white text-primary p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                <i id="onboardingHeaderIcon" class="bi bi-graph-up h5 mb-0"></i>
+              </div>
+              <div>
+                <h6 class="modal-title font-weight-bold text-white mb-0" id="onboardingModalTitle">Pendaftaran Fitur</h6>
+                <div class="text-white-50 small" id="onboardingModalSubtitle" style="font-size: 0.725rem;">myBCA Solution</div>
+              </div>
             </div>
-            <div>
-              <h6 class="modal-title font-weight-bold text-white mb-0" id="onboardingModalTitle">Pendaftaran Fitur</h6>
-              <div class="text-white-50 small" id="onboardingModalSubtitle" style="font-size: 0.725rem;">myBCA Solution</div>
-            </div>
+            <button type="button" class="close text-white" id="btnCloseOnboardingModal" aria-label="Close">✕</button>
           </div>
-          <button type="button" class="close text-white" id="btnCloseOnboardingModal" aria-label="Close" style="opacity: 0.85;">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
 
         <!-- Modal Body -->
-        <div class="modal-body p-3" id="onboardingModalBody" style="max-height: 75vh; overflow-y: auto;">
+        <div class="modal-body p-3" id="onboardingModalBody">
           <!-- Dynamic Content -->
         </div>
 
@@ -1243,39 +1245,40 @@
   <!-- ===================================================================== -->
   <!-- 4.2 ADMIN VOUCHER & TARGET QUEST MANAGER MODAL                        -->
   <!-- ===================================================================== -->
-  <div class="modal fade" id="adminVoucherModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1070;">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+  <div class="modal fade" id="adminVoucherModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content shadow-lg border-0">
         
         <!-- Modal Header -->
         <div class="modal-header text-white py-3 px-3" style="background: linear-gradient(135deg, #002e5b 0%, #005caa 100%);">
-          <div class="d-flex align-items-center gap-2">
-            <div class="bg-warning text-dark p-2 rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;">
-              <i class="bi bi-ticket-perforated-fill h5 mb-0"></i>
-            </div>
-            <div>
-              <div class="badge badge-warning text-dark font-weight-bold px-2 py-0 mb-1" style="font-size: 0.65rem;">
-                <i class="bi bi-shield-lock-fill mr-1"></i> ADMIN PORTAL
+          <div class="modal-drag-pill"></div>
+          <div class="modal-header-row">
+            <div class="d-flex align-items-center gap-2">
+              <div class="bg-warning text-dark p-2 rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 36px; height: 36px;">
+                <i class="bi bi-ticket-perforated-fill h5 mb-0"></i>
               </div>
-              <h6 class="modal-title font-weight-bold text-white mb-0">Pengaturan Voucher & Target Quest</h6>
+              <div>
+                <div class="badge badge-warning text-dark font-weight-bold px-2 py-0 mb-1" style="font-size: 0.65rem;">
+                  <i class="bi bi-shield-lock-fill mr-1"></i> ADMIN PORTAL
+                </div>
+                <h6 class="modal-title font-weight-bold text-white mb-0">Pengaturan Voucher & Quest</h6>
+              </div>
             </div>
+            <button type="button" class="close text-white" id="btnCloseAdminVoucherModal" aria-label="Close">✕</button>
           </div>
-          <button type="button" class="close text-white" id="btnCloseAdminVoucherModal" aria-label="Close" style="opacity: 0.85;">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
 
         <!-- Modal Body with Sub-Tabs -->
-        <div class="modal-body p-3" style="max-height: 80vh; overflow-y: auto;">
-          <ul class="nav nav-pills mb-3 border-bottom pb-2" id="adminVoucherTabs" role="tablist">
-            <li class="nav-item">
+        <div class="modal-body p-3">
+          <ul class="nav nav-pills mb-3 admin-voucher-tabs-pills" id="adminVoucherTabs" role="tablist">
+            <li class="nav-item w-50">
               <a class="nav-link active font-weight-bold py-1 px-2 small" id="tab-create-voucher" data-toggle="pill" href="#paneCreateVoucher" role="tab">
-                <i class="bi bi-plus-circle-fill mr-1 text-warning"></i> Set Voucher Baru
+                <i class="bi bi-plus-circle-fill mr-1 text-warning"></i> Set Baru
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item w-50">
               <a class="nav-link font-weight-bold py-1 px-2 small" id="tab-list-voucher" data-toggle="pill" href="#paneListVoucher" role="tab">
-                <i class="bi bi-list-check mr-1 text-primary"></i> Daftar Voucher (<span id="adminVoucherListCount">0</span>)
+                <i class="bi bi-list-check mr-1 text-primary"></i> Daftar (<span id="adminVoucherListCount">0</span>)
               </a>
             </li>
           </ul>
@@ -1285,7 +1288,7 @@
             <!-- Tab 1: Form Create Voucher -->
             <div class="tab-pane fade show active" id="paneCreateVoucher" role="tabpanel">
               <form id="adminCreateVoucherForm">
-                <div class="card border mb-2">
+                <div class="card border mb-2" style="border-radius: 12px; overflow: hidden;">
                   <div class="card-header bg-light py-1 font-weight-bold small text-primary">Informasi Dasar Voucher</div>
                   <div class="card-body p-2">
                     <div class="form-group mb-2">
@@ -1303,8 +1306,8 @@
                           <option value="Shopping">Shopping / Retail</option>
                           <option value="F&B">F&B / Kuliner</option>
                           <option value="Investment">Investment / Welma</option>
-                          <option value="Lifestyle">Lifestyle & Entertainment</option>
-                          <option value="Travel">Travel & Transportasi</option>
+                          <option value="Lifestyle">Lifestyle & Ent.</option>
+                          <option value="Travel">Travel & Transport</option>
                         </select>
                       </div>
                     </div>
@@ -1312,13 +1315,13 @@
                       <div class="col-6">
                         <label class="small font-weight-bold text-dark mb-1">Tipe Reward</label>
                         <select id="adminVoucherRewardType" class="form-control form-control-sm">
-                          <option value="DISCOUNT">Potongan Diskon (Rp)</option>
-                          <option value="CASHBACK">Cashback Rekening (Rp)</option>
-                          <option value="POINTS">Bonus Poin BCA</option>
+                          <option value="DISCOUNT">Diskon (Rp)</option>
+                          <option value="CASHBACK">Cashback (Rp)</option>
+                          <option value="POINTS">Poin BCA</option>
                         </select>
                       </div>
                       <div class="col-6">
-                        <label class="small font-weight-bold text-dark mb-1">Nilai Reward (Rp) <span class="text-danger">*</span></label>
+                        <label class="small font-weight-bold text-dark mb-1">Nilai (Rp) <span class="text-danger">*</span></label>
                         <input type="number" id="adminVoucherRewardValue" class="form-control form-control-sm" placeholder="50000" min="5000" step="5000" required>
                       </div>
                     </div>
@@ -1335,7 +1338,7 @@
                   </div>
                 </div>
 
-                <div class="card border border-warning mb-2" style="background: #fffdf6;">
+                <div class="card border border-warning mb-2" style="background: #fffdf6; border-radius: 12px; overflow: hidden;">
                   <div class="card-header bg-warning text-dark py-1 font-weight-bold small">Target Quest Nasabah</div>
                   <div class="card-body p-2">
                     <div class="form-group mb-2">
@@ -1423,25 +1426,24 @@
   <!-- ===================================================================== -->
   <!-- 4.3 USER VOUCHER CLAIM CELEBRATION & E-VOUCHER MODAL                 -->
   <!-- ===================================================================== -->
-  <div class="modal fade" id="userVoucherClaimModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1080;">
+  <div class="modal fade" id="userVoucherClaimModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+      <div class="modal-content shadow-lg border-0">
         
         <!-- Celebration Top Banner -->
         <div class="text-center text-white py-3 px-3 position-relative" style="background: linear-gradient(135deg, #005caa 0%, #0088ff 100%);">
-          <div class="bg-warning text-dark rounded-circle mx-auto d-flex align-items-center justify-content-center shadow" style="width: 48px; height: 48px; font-size: 1.5rem;">
+          <div class="modal-drag-pill"></div>
+          <div class="bg-warning text-dark rounded-circle mx-auto d-flex align-items-center justify-content-center shadow" style="width: 44px; height: 44px; font-size: 1.4rem;">
             🎉
           </div>
-          <h5 class="font-weight-bold mt-2 mb-0 text-white">Target Finansial Tercapai!</h5>
+          <h6 class="font-weight-bold mt-2 mb-0 text-white" style="font-size: 1rem;">Target Finansial Tercapai!</h6>
           <div class="text-white-50 small" style="font-size: 0.725rem;">Voucher Spesial Berhasil Kamu Buka & Diklaim</div>
-          <button type="button" class="close text-white position-absolute" id="btnCloseUserClaimModal" aria-label="Close" style="top: 10px; right: 14px; opacity: 0.9;">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="close text-white" id="btnCloseUserClaimModal" aria-label="Close">✕</button>
         </div>
 
         <!-- E-Voucher Digital Coupon Card -->
-        <div class="p-3" style="background: #f8fafc;">
-          <div class="bg-white border p-3 rounded shadow-sm text-center position-relative" style="border: 2px dashed #005caa !important;">
+        <div class="modal-body p-3" style="background: #f8fafc;">
+          <div class="bg-white border p-3 rounded shadow-sm text-center position-relative" style="border: 2px dashed #005caa !important; border-radius: 14px;">
             <span class="badge badge-primary px-2 py-1 font-weight-bold mb-1" id="claimModalMerchantBadge">INDOMARET</span>
             <h6 class="font-weight-bold text-dark mb-1" id="claimModalTitle">Voucher Belanja Rp 50.000</h6>
             <div class="text-muted small mb-2" id="claimModalDesc" style="font-size: 0.725rem;">Potongan belanja langsung di gerai.</div>
@@ -1476,7 +1478,7 @@
         <div class="modal-footer bg-light py-2 px-3 d-flex justify-content-between">
           <button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold" id="btnDismissUserClaim">Tutup</button>
           <button type="button" class="btn btn-primary btn-sm font-weight-bold" id="btnUseVoucherNow" onclick="app.useVoucherNow()">
-            <i class="bi bi-bag-check-fill mr-1"></i> Gunakan Voucher Sekarang
+            <i class="bi bi-bag-check-fill mr-1"></i> Gunakan Voucher
           </button>
         </div>
 
@@ -1487,24 +1489,25 @@
   <!-- ===================================================================== -->
   <!-- 4.4 PENGATURAN PRIVASI & PERSONALISASI AI (UU PDP - BAB 4.3.F)        -->
   <!-- ===================================================================== -->
-  <div class="modal fade" id="privacySettingsModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; background: rgba(0,0,0,0.65); z-index: 1080;">
+  <div class="modal fade" id="privacySettingsModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content shadow-lg border-0" style="border-radius: 18px; overflow: hidden;">
+      <div class="modal-content shadow-lg border-0">
         <div class="modal-header text-white py-3 px-3" style="background: linear-gradient(135deg, #002e5b 0%, #005caa 100%);">
-          <div class="d-flex align-items-center gap-2">
-            <div class="bg-success text-white p-2 rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 36px; height: 36px;">
-              <i class="bi bi-shield-check h5 mb-0"></i>
-            </div>
-            <div>
-              <div class="badge badge-light text-primary font-weight-bold px-2 py-0 mb-1" style="font-size: 0.65rem;">
-                UU NO. 27/2022 (UU PDP)
+          <div class="modal-drag-pill"></div>
+          <div class="modal-header-row">
+            <div class="d-flex align-items-center gap-2">
+              <div class="bg-success text-white p-2 rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 36px; height: 36px;">
+                <i class="bi bi-shield-check h5 mb-0"></i>
               </div>
-              <h6 class="modal-title font-weight-bold text-white mb-0" style="font-size: 0.95rem;">Privasi & Personalisasi Adaptif</h6>
+              <div>
+                <div class="badge badge-light text-primary font-weight-bold px-2 py-0 mb-1" style="font-size: 0.65rem;">
+                  UU NO. 27/2022 (UU PDP)
+                </div>
+                <h6 class="modal-title font-weight-bold text-white mb-0" style="font-size: 0.95rem;">Privasi & Personalisasi Adaptif</h6>
+              </div>
             </div>
+            <button type="button" class="close text-white" id="btnClosePrivacyModal" onclick="app.closePrivacyModal()" aria-label="Close">✕</button>
           </div>
-          <button type="button" class="close text-white" id="btnClosePrivacyModal" onclick="app.closePrivacyModal()" aria-label="Close" style="opacity: 0.85;">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div class="modal-body p-3">
           <p class="text-muted small mb-3" style="font-size: 0.74rem; line-height: 1.4;">
@@ -1552,7 +1555,7 @@
   <!-- ===================================================================== -->
   <!-- 5. JAVASCRIPT APPLICATION CONTROLLER & MOBILE SUB-PAGE HELPER         -->
   <!-- ===================================================================== -->
-  <script src="/js/app.js?v=1.2.0"></script>
+  <script src="/js/app.js?v=1.3.0"></script>
 
   <script>
     // iPhone 14 Mobile Web App Navigation & Interactive Engine

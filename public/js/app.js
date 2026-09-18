@@ -2386,6 +2386,33 @@
     const refreshAdminVouchersBtn = document.getElementById('btnRefreshAdminVouchers');
     if (refreshAdminVouchersBtn) refreshAdminVouchersBtn.addEventListener('click', loadAdminVouchersList);
 
+    // User Voucher Claim Modal Controls
+    const closeUserClaimBtn = document.getElementById('btnCloseUserClaimModal');
+    if (closeUserClaimBtn) closeUserClaimBtn.addEventListener('click', closeUserClaimModal);
+
+    const dismissUserClaimBtn = document.getElementById('btnDismissUserClaim');
+    if (dismissUserClaimBtn) dismissUserClaimBtn.addEventListener('click', closeUserClaimModal);
+
+    // Universal Backdrop Click to Dismiss Any Open Modal
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+          modal.classList.remove('show');
+        }
+      });
+    });
+
+    // ESC key to close any active modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.show').forEach(m => {
+          m.style.display = 'none';
+          m.classList.remove('show');
+        });
+      }
+    });
+
     // Admin Voucher Form Target Type Change Handler
     const targetTypeSelect = document.getElementById('adminVoucherTargetType');
     const catContainer = document.getElementById('adminCategoryContainer');
