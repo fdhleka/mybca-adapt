@@ -928,25 +928,17 @@
         <p class="text-white-50 small mb-2" style="font-size: 0.73rem; line-height: 1.35;">${desc}</p>
 
         <!-- Promotional Highlight Box -->
-        <div class="p-2 mb-2 rounded d-flex align-items-center justify-content-between" style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2);">
-          <div class="d-flex align-items-center gap-2">
-            <span style="font-size: 1.25rem;">🎁</span>
-            <div>
-              <div class="font-weight-bold text-warning small" style="font-size: 0.76rem;">Bonus Reward Ekstra +${bonusPts} PTS</div>
-              <div class="text-white-50" style="font-size: 0.66rem;">Dapatkan proteksi & bundle finansial lengkap dalam 1-klik</div>
-            </div>
+        <div class="p-2 mb-2 rounded d-flex align-items-center" style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); gap: 0.65rem;">
+          <span style="font-size: 1.25rem;">🎁</span>
+          <div class="flex-grow-1">
+            <div class="font-weight-bold text-warning small" style="font-size: 0.76rem;">Bonus Reward Ekstra +${bonusPts} PTS</div>
+            <div class="text-white-50" style="font-size: 0.66rem;">Dapatkan proteksi & bundle finansial lengkap dalam 1-klik</div>
           </div>
-          <button type="button" class="btn btn-sm text-white-50 p-0" onclick="app.openBundleModal()" style="font-size: 0.72rem; text-decoration: underline;">
-            Lihat Rincian
-          </button>
         </div>
 
-        <div class="pt-2 border-top d-flex gap-2" style="border-color: rgba(255,255,255,0.15) !important;">
-          <button type="button" class="btn-claim-bundle-lg flex-grow-1" onclick="app.claimBundle('${ruleId}', '${bundleName}')">
+        <div class="pt-2 border-top" style="border-color: rgba(255,255,255,0.15) !important;">
+          <button type="button" class="btn-claim-bundle-lg w-100 d-flex align-items-center justify-content-center" onclick="app.claimBundle('${ruleId}', '${bundleName}')">
             <i class="bi bi-lightning-charge-fill mr-1"></i> Klaim Promo Bundle (+${bonusPts} PTS)
-          </button>
-          <button type="button" class="btn btn-outline-light btn-sm font-weight-bold px-2" style="border-radius: 12px; font-size: 0.72rem; white-space: nowrap;" onclick="app.openBundleModal()">
-            <i class="bi bi-receipt mr-1"></i> Rincian
           </button>
         </div>
       </div>
