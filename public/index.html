@@ -11,7 +11,7 @@
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- Custom ADAPT Theme Stylesheet -->
-  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.6.0">
+  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.7.0">
 </head>
 <body class="pace-done no-breadcrumb">
 
@@ -394,22 +394,19 @@
                 </button>
               </div>
 
-              <!-- In-Card Financial Health Score Display -->
-              <div class="m-card-health-row" id="cardHealthPill" onclick="document.getElementById('healthScoreCard').scrollIntoView({behavior:'smooth'})" title="Lihat rincian Skor Kesehatan Finansial">
-                <div class="d-flex align-items-center gap-1">
-                  <i class="bi bi-shield-heart-fill text-danger"></i>
-                  <span class="m-card-health-txt">Skor Finansial:</span>
-                  <strong id="cardHealthScoreVal" class="m-card-health-val">45</strong>
-                  <span class="m-card-health-unit">PTS</span>
-                </div>
-                <span id="cardHealthTierPill" class="m-card-tier-pill tier-pill-silver">
-                  <i class="bi bi-award-fill"></i> <span id="cardHealthTierText">SILVER</span>
-                </span>
-              </div>
-
-              <!-- Card Balance with Eye Toggle -->
+              <!-- Card Balance with Eye Toggle & In-Card Health Score Badge -->
               <div class="m-card-balance-box">
-                <div class="m-card-balance-label">Saldo Rekening Utama:</div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="m-card-balance-label mb-0">Saldo Rekening Utama:</div>
+                  <!-- Sleek In-Card Financial Health Badge -->
+                  <div class="m-card-health-tag" id="cardHealthPill" onclick="document.getElementById('healthScoreCard').scrollIntoView({behavior:'smooth'})" title="Skor Kesehatan Finansial: Klik untuk lihat plakat">
+                    <i class="bi bi-shield-heart-fill text-danger mr-1"></i>
+                    <span class="m-card-health-tag-pts"><strong id="cardHealthScoreVal">45</strong> PTS</span>
+                    <span id="cardHealthTierPill" class="m-card-tier-pill tier-pill-silver">
+                      <span id="cardHealthTierText">SILVER</span>
+                    </span>
+                  </div>
+                </div>
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="d-flex align-items-center">
                     <span class="h6 mb-0 mr-2 font-weight-normal text-white-50">IDR</span>
@@ -493,11 +490,25 @@
                 </div>
               </div>
 
-              <!-- Granular Breakdown Box -->
-              <div class="small font-weight-bold text-muted mb-1" style="font-size: 0.75rem;">Rincian Komponen Skor:</div>
-              <div id="scoreBreakdown" class="score-breakdown-box">
-                <!-- Breakdown populated via JS -->
+              <!-- Collapsible Granular Breakdown Dropdown -->
+              <div class="score-breakdown-accordion mt-2 mb-1">
+                <button type="button" class="btn-breakdown-toggle" id="btnToggleBreakdown" onclick="app.toggleBreakdownDropdown()" aria-expanded="false">
+                  <div class="d-flex align-items-center gap-1">
+                    <i class="bi bi-pie-chart-fill text-primary mr-1"></i>
+                    <span>Rincian Komponen Skor</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="badge badge-light border text-muted px-1 py-0 font-weight-normal" style="font-size: 0.65rem;">4 Komponen</span>
+                    <i class="bi bi-chevron-down toggle-chevron ml-1" id="breakdownChevron"></i>
+                  </div>
+                </button>
+                <div id="scoreBreakdownWrapper" class="score-breakdown-collapse collapsed mt-1">
+                  <div id="scoreBreakdown" class="score-breakdown-box">
+                    <!-- Breakdown populated via JS -->
+                  </div>
+                </div>
               </div>
+
               <div class="mt-2 pt-1 border-top text-muted small d-flex justify-content-between" style="font-size: 0.7rem;">
                 <span>Status: <strong class="text-success">Live Engine</strong></span>
                 <span class="text-primary font-weight-bold">Algoritma 3 AI</span>
@@ -1143,63 +1154,6 @@
       <!-- Smartphone Hardware Home Indicator -->
       <div class="m-home-bar"></div>
 
-    </div>
-  </main>
-
-  <!-- ===================================================================== -->
-  <!-- 3. AUDIT ENGINE INSPECTOR DRAWER (MODE JURI)                          -->
-  <!-- ===================================================================== -->
-  <div id="drawerBackdrop" class="drawer-backdrop"></div>
-  <aside id="inspectorDrawer" class="inspector-drawer">
-    <div class="d-flex justify-content-between align-items-center border-bottom pb-2" style="border-color: #334155 !important;">
-      <div class="d-flex align-items-center gap-2">
-        <h5 class="font-weight-bold text-warning mb-0" style="font-size: 0.95rem;"><i class="bi bi-cpu-fill mr-1"></i> AUDIT ENGINE INSPECTOR</h5>
-        <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">LIVE TRACE</span>
-      </div>
-      <button type="button" id="btnCloseInspector" class="btn btn-sm btn-outline-light py-0 px-2" aria-label="Tutup Inspector">✕</button>
-    </div>
-
-    <!-- Mathematical Formula 1 (Algoritma 1) -->
-    <div class="formula-box" style="border-left: 4px solid #00a3e0 !important;">
-      <div class="small font-weight-bold text-info"><i class="bi bi-calculator"></i> Algoritma 1: Rule-Based Propensity Vector</div>
-      <div class="formula-math-display">S(f) = w_freq * Norm(Freq) + w_amt * Norm(Amt)</div>
-      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
-        Menghitung vektor kecenderungan adopsi fitur dari frekuensi (60%) & nominal (40%) transaksi.
-      </div>
-    </div>
-
-    <!-- Mathematical Formula 2 (Algoritma 2) -->
-    <div class="formula-box" style="border-left: 4px solid #f59e0b !important;">
-      <div class="small font-weight-bold text-warning"><i class="bi bi-calculator"></i> Algoritma 2: Life Event Pattern Shift</div>
-      <div class="formula-math-display">Confidence(E) = Σ (w_c * min(1, N_curr / N_thresh))</div>
-      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
-        Mendeteksi kemunculan sinyal transaksi baru secara konsisten antar-periode (Threshold >= 60%).
-      </div>
-    </div>
-
-    <!-- Mathematical Formula 3 (Algoritma 3) -->
-    <div class="formula-box" style="border-left: 4px solid #10b981 !important;">
-      <div class="small font-weight-bold text-success"><i class="bi bi-calculator"></i> Algoritma 3: Financial Health Weighted Score</div>
-      <div class="formula-math-display">Score = Base(20) + Σ P_features + Bonus_time + Bonus_save</div>
-      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
-        Bobot terukur: Base (20), Fitur Aktif (+10-20), Ketepatan Bayar (+15), Konsistensi Menabung (+15). Max: 100.
-      </div>
-    </div>
-
-    <!-- Real-time Decision Log Stream Box -->
-    <div class="d-flex flex-column flex-grow-1">
-      <div class="d-flex justify-content-between align-items-center mb-1">
-        <span class="small font-weight-bold text-warning" style="font-size: 0.8rem;"><i class="bi bi-terminal-fill"></i> Live Decision Trace Logs:</span>
-        <button type="button" id="btnRefreshLogs" class="btn btn-outline-secondary btn-sm py-0 text-white-50" style="font-size: 0.7rem;">
-          <i class="bi bi-arrow-repeat"></i> Refresh
-        </button>
-      </div>
-      <div id="logStream" class="log-stream-container">
-        <!-- Logs dynamically appended via JS -->
-      </div>
-    </div>
-  </aside>
-
   <!-- ===================================================================== -->
   <!-- 4. SMART BUNDLE DETAILED MODAL                                       -->
   <!-- ===================================================================== -->
@@ -1576,13 +1530,70 @@
     </div>
   </div>
 
-  <!-- Global Toast Notification Container -->
-  <div id="toastContainer"></div>
+  <!-- In-Phone Toast Notification Container -->
+  <div id="toastContainer" class="phone-toast-container"></div>
+
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 3. AUDIT ENGINE INSPECTOR DRAWER (MODE JURI)                          -->
+  <!-- ===================================================================== -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  <aside id="inspectorDrawer" class="inspector-drawer">
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-2" style="border-color: #334155 !important;">
+      <div class="d-flex align-items-center gap-2">
+        <h5 class="font-weight-bold text-warning mb-0" style="font-size: 0.95rem;"><i class="bi bi-cpu-fill mr-1"></i> AUDIT ENGINE INSPECTOR</h5>
+        <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.65rem;">LIVE TRACE</span>
+      </div>
+      <button type="button" id="btnCloseInspector" class="btn btn-sm btn-outline-light py-0 px-2" aria-label="Tutup Inspector">✕</button>
+    </div>
+
+    <!-- Mathematical Formula 1 (Algoritma 1) -->
+    <div class="formula-box" style="border-left: 4px solid #00a3e0 !important;">
+      <div class="small font-weight-bold text-info"><i class="bi bi-calculator"></i> Algoritma 1: Rule-Based Propensity Vector</div>
+      <div class="formula-math-display">S(f) = w_freq * Norm(Freq) + w_amt * Norm(Amt)</div>
+      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
+        Menghitung vektor kecenderungan adopsi fitur dari frekuensi (60%) & nominal (40%) transaksi.
+      </div>
+    </div>
+
+    <!-- Mathematical Formula 2 (Algoritma 2) -->
+    <div class="formula-box" style="border-left: 4px solid #f59e0b !important;">
+      <div class="small font-weight-bold text-warning"><i class="bi bi-calculator"></i> Algoritma 2: Life Event Pattern Shift</div>
+      <div class="formula-math-display">Confidence(E) = Σ (w_c * min(1, N_curr / N_thresh))</div>
+      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
+        Mendeteksi kemunculan sinyal transaksi baru secara konsisten antar-periode (Threshold >= 60%).
+      </div>
+    </div>
+
+    <!-- Mathematical Formula 3 (Algoritma 3) -->
+    <div class="formula-box" style="border-left: 4px solid #10b981 !important;">
+      <div class="small font-weight-bold text-success"><i class="bi bi-calculator"></i> Algoritma 3: Financial Health Weighted Score</div>
+      <div class="formula-math-display">Score = Base(20) + Σ P_features + Bonus_time + Bonus_save</div>
+      <div class="small text-muted mt-1" style="font-size: 0.725rem;">
+        Bobot terukur: Base (20), Fitur Aktif (+10-20), Ketepatan Bayar (+15), Konsistensi Menabung (+15). Max: 100.
+      </div>
+    </div>
+
+    <!-- Real-time Decision Log Stream Box -->
+    <div class="d-flex flex-column flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <span class="small font-weight-bold text-warning" style="font-size: 0.8rem;"><i class="bi bi-terminal-fill"></i> Live Decision Trace Logs:</span>
+        <button type="button" id="btnRefreshLogs" class="btn btn-outline-secondary btn-sm py-0 text-white-50" style="font-size: 0.7rem;">
+          <i class="bi bi-arrow-repeat"></i> Refresh
+        </button>
+      </div>
+      <div id="logStream" class="log-stream-container">
+        <!-- Logs dynamically appended via JS -->
+      </div>
+    </div>
+  </aside>
 
   <!-- ===================================================================== -->
   <!-- 5. JAVASCRIPT APPLICATION CONTROLLER & MOBILE SUB-PAGE HELPER         -->
   <!-- ===================================================================== -->
-  <script src="/js/app.js?v=1.6.0"></script>
+  <script src="/js/app.js?v=1.7.0"></script>
 
   <script>
     // iPhone 14 Mobile Web App Navigation & Interactive Engine

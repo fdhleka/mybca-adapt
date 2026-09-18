@@ -107,12 +107,23 @@ body {
   .d-lg-flex { display: flex !important; }
 }
 
-/* Full Width Toggle Mode */
+/* Full Screen / Full Width Toggle Mode */
 .smartphone-device.full-width-mode {
   width: 100% !important;
-  max-width: 500px !important;
-  height: calc(100vh - 75px) !important;
-  border-radius: 28px !important;
+  max-width: 100% !important;
+  height: calc(100vh - 48px) !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+.smartphone-device.full-width-mode .smartphone-island,
+.smartphone-device.full-width-mode .m-home-bar {
+  display: none !important;
+}
+.smartphone-device.full-width-mode .smartphone-screen {
+  height: calc(100vh - 48px - 65px) !important;
+  border-radius: 0 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1066,45 +1077,37 @@ body {
   pointer-events: none;
 }
 
-/* In-Card Financial Health Score Badge */
-.m-card-health-row {
-  display: flex;
+/* Sleek In-Card Financial Health Badge Tag (Inside Balance Header) */
+.m-card-health-tag {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.35rem;
   background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  border-radius: 12px;
-  padding: 0.35rem 0.65rem;
-  margin: 0.5rem 0 0.45rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 14px;
+  padding: 0.18rem 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  user-select: none;
 }
 
-.m-card-health-row:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.45);
-  transform: scale(1.01);
+.m-card-health-tag:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }
 
-.m-card-health-txt {
+.m-card-health-tag-pts {
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.92);
-  font-weight: 500;
-}
-
-.m-card-health-val {
-  font-size: 0.9rem;
-  font-weight: 800;
   color: #ffffff;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
-.m-card-health-unit {
-  font-size: 0.62rem;
-  opacity: 0.85;
-  font-weight: 600;
+.m-card-health-tag-pts strong {
+  font-weight: 800;
+  font-size: 0.8rem;
 }
 
 .m-card-tier-pill {
@@ -2758,6 +2761,51 @@ body {
   gap: 0.25rem;
 }
 
+/* Breakdown Accordion Dropdown */
+.score-breakdown-accordion {
+  width: 100%;
+}
+
+.btn-breakdown-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 0.42rem 0.7rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-breakdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.toggle-chevron {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.75rem;
+}
+
+.score-breakdown-collapse.collapsed {
+  display: none;
+}
+
+.score-breakdown-collapse.open {
+  display: block;
+  animation: breakdownFadeIn 0.22s ease-out;
+}
+
+@keyframes breakdownFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Life Event Banner */
 .m-monitoring-card {
   background: #ffffff;
@@ -2960,61 +3008,80 @@ body {
   word-break: break-word;
 }
 
-/* Toast Notifications */
+/* In-Phone Toast Notification Container */
+.phone-toast-container {
+  position: absolute;
+  bottom: 5.2rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1080;
+  pointer-events: none;
+  padding: 0 1rem;
+}
+
+/* Toast Notifications (Inside Phone Bezel) */
 .toast-adapt {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
   background: #005caa;
   color: #ffffff;
-  padding: 0.7rem 1.15rem;
-  border-radius: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 0.65rem 1.05rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   font-weight: 600;
-  font-size: 0.825rem;
-  z-index: 1090;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  animation: slideUpToast 0.3s ease-out;
-  max-width: 85vw;
-  text-align: center;
+  pointer-events: auto;
+  max-width: 92% !important;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  animation: slideUpToast 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideUpToast {
-  from { transform: translate(-50%, 100%); opacity: 0; }
-  to { transform: translate(-50%, 0); opacity: 1; }
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 /* ==========================================================================
-   AUTHENTIC MOBILE-FIRST MODAL & BOTTOM-SHEET SYSTEM (PROFESSIONAL UI/UX)
+   AUTHENTIC IN-PHONE MODAL & BOTTOM-SHEET SYSTEM (CONFINED TO PHONE SCREEN)
    ========================================================================== */
 
-/* Universal Modal Overlay Backdrop */
-.modal {
-  position: fixed !important;
+/* Universal Modal Overlay Backdrop (Strictly Inside Smartphone Frame) */
+.modal,
+.smartphone-device .modal {
+  position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  width: 100vw !important;
-  height: 100dvh !important;
-  max-height: 100dvh !important;
-  z-index: 2000 !important;
-  background: rgba(15, 23, 42, 0.72) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  border-radius: inherit !important;
+  z-index: 1060 !important;
+  background: rgba(15, 23, 42, 0.68) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 12px !important;
+  align-items: flex-end !important; /* Bottom-sheet appearance */
+  justify-content: center !important;
+  padding: 0 !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
   transition: opacity 0.25s ease;
 }
 
-.modal.show {
+.modal.show,
+.smartphone-device .modal.show {
   display: flex !important;
   animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -3024,44 +3091,53 @@ body {
   to { opacity: 1; }
 }
 
-/* Modal Dialog Box */
-.modal-dialog {
+/* Modal Dialog Box (Mobile Bottom Sheet inside Phone) */
+.modal-dialog,
+.smartphone-device .modal-dialog {
   position: relative !important;
   width: 100% !important;
-  max-width: min(425px, calc(100vw - 24px)) !important;
-  margin: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 26px 26px 0 0 !important;
+  max-height: 94% !important;
+  height: auto !important;
   pointer-events: auto !important;
   display: flex !important;
   flex-direction: column !important;
-  max-height: calc(100dvh - 32px) !important;
-  animation: modalDialogPop 0.26s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: center center;
+  animation: modalSheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-origin: bottom center;
 }
 
-/* Ensure modal-lg doesn't blow out on simulator or mobile */
-.modal-dialog.modal-lg {
-  max-width: min(425px, calc(100vw - 24px)) !important;
+.modal-dialog.modal-lg,
+.smartphone-device .modal-dialog.modal-lg {
+  max-width: 100% !important;
 }
 
-@keyframes modalDialogPop {
-  from { transform: translateY(16px) scale(0.97); opacity: 0.8; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
+@keyframes modalSheetSlideUp {
+  from { transform: translateY(100%); opacity: 0.6; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* Modal Content Card */
-.modal-content {
+.modal-content,
+.smartphone-device .modal-content {
   width: 100% !important;
-  max-height: calc(100dvh - 32px) !important;
+  max-height: 94% !important;
   display: flex !important;
   flex-direction: column !important;
   background: #ffffff !important;
-  border-radius: 22px !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 
-    0 25px 50px -12px rgba(15, 23, 42, 0.4),
-    0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 26px 26px 0 0 !important;
+  border: none !important;
+  box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.35) !important;
   overflow: hidden !important;
   position: relative !important;
+}
+
+.modal-body,
+.smartphone-device .modal-body {
+  overflow-y: auto !important;
+  max-height: calc(90vh - 120px) !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Drag Handle Bar (iOS Sheet Aesthetic) */

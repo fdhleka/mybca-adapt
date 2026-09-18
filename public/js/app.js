@@ -791,6 +791,31 @@
     }
   }
 
+  function toggleBreakdownDropdown() {
+    const wrap = document.getElementById('scoreBreakdownWrapper');
+    const chev = document.getElementById('breakdownChevron');
+    const btn = document.getElementById('btnToggleBreakdown');
+    if (!wrap) return;
+    const isCollapsed = wrap.classList.contains('collapsed');
+    if (isCollapsed) {
+      wrap.classList.remove('collapsed');
+      wrap.classList.add('open');
+      if (chev) chev.style.transform = 'rotate(180deg)';
+      if (btn) {
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    } else {
+      wrap.classList.add('collapsed');
+      wrap.classList.remove('open');
+      if (chev) chev.style.transform = 'rotate(0deg)';
+      if (btn) {
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
+
   // --- Algoritma 1: Contextual Feature Recommendations ---
   function renderRecommendationsFeed() {
     const container = document.getElementById('recommendationsList');
@@ -890,31 +915,38 @@
       <div class="life-event-banner-box">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <span class="badge badge-warning text-dark font-weight-bold" style="font-size: 0.68rem; border-radius: 6px;">
-            <i class="bi bi-stars mr-1"></i> Smart Bundle Terdeteksi (${confidence}% Match)
+            <i class="bi bi-tag-fill mr-1"></i> Penawaran Promo Eksklusif
           </span>
           <button type="button" class="btn btn-outline-light btn-sm font-weight-bold py-0 px-2" style="font-size: 0.7rem; border-radius: 6px;" onclick="app.openBundleModal()">
-            <i class="bi bi-info-circle mr-1"></i> Rincian
+            <i class="bi bi-info-circle mr-1"></i> Rincian Paket
           </button>
         </div>
 
-        <h5 class="font-weight-bold text-white mb-1" style="font-size: 0.95rem; line-height: 1.3;">
-          <i class="bi bi-gift-fill text-warning mr-1"></i> ${bundleName}
+        <h5 class="font-weight-bold text-white mb-1" style="font-size: 0.98rem; line-height: 1.3;">
+          <i class="bi bi-stars text-warning mr-1"></i> Promo Spesial: ${bundleName}
         </h5>
-        <p class="text-white-50 small mb-2" style="font-size: 0.72rem; line-height: 1.35;">${desc}</p>
+        <p class="text-white-50 small mb-2" style="font-size: 0.73rem; line-height: 1.35;">${desc}</p>
 
-        <div class="mb-2">
-          <div class="small text-white-50 mb-1" style="font-size: 0.68rem;">Sinyal Transaksi Terverifikasi:</div>
-          <div class="d-flex flex-wrap">${signalBadges}</div>
+        <!-- Promotional Highlight Box -->
+        <div class="p-2 mb-2 rounded d-flex align-items-center justify-content-between" style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2);">
+          <div class="d-flex align-items-center gap-2">
+            <span style="font-size: 1.25rem;">🎁</span>
+            <div>
+              <div class="font-weight-bold text-warning small" style="font-size: 0.76rem;">Bonus Reward Ekstra +${bonusPts} PTS</div>
+              <div class="text-white-50" style="font-size: 0.66rem;">Dapatkan proteksi & bundle finansial lengkap dalam 1-klik</div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-sm text-white-50 p-0" onclick="app.openBundleModal()" style="font-size: 0.72rem; text-decoration: underline;">
+            Lihat Rincian
+          </button>
         </div>
 
-        <div class="pt-2 border-top" style="border-color: rgba(255,255,255,0.15) !important;">
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <span class="small text-warning font-weight-bold" style="font-size: 0.72rem;">
-              🎁 Reward: +${bonusPts} Poin Kesehatan Finansial
-            </span>
-          </div>
-          <button type="button" class="btn-claim-bundle-lg" onclick="app.claimBundle('${ruleId}', '${bundleName}')">
-            <i class="bi bi-lightning-charge-fill mr-1"></i> Aktifkan Paket Bundle Sekaligus (+${bonusPts} PTS Bonus)
+        <div class="pt-2 border-top d-flex gap-2" style="border-color: rgba(255,255,255,0.15) !important;">
+          <button type="button" class="btn-claim-bundle-lg flex-grow-1" onclick="app.claimBundle('${ruleId}', '${bundleName}')">
+            <i class="bi bi-lightning-charge-fill mr-1"></i> Klaim Promo Bundle (+${bonusPts} PTS)
+          </button>
+          <button type="button" class="btn btn-outline-light btn-sm font-weight-bold px-2" style="border-radius: 12px; font-size: 0.72rem; white-space: nowrap;" onclick="app.openBundleModal()">
+            <i class="bi bi-receipt mr-1"></i> Rincian
           </button>
         </div>
       </div>
@@ -1651,22 +1683,31 @@
 
     content.innerHTML = `
       <div class="text-center mb-3">
-        <span class="badge badge-warning text-dark font-weight-bold px-3 py-1">
-          Confidence Level: ${Math.round(lifeEvent.confidence || 75)}%
+        <span class="badge badge-warning text-dark font-weight-bold px-3 py-1" style="font-size: 0.72rem;">
+          <i class="bi bi-stars mr-1"></i> Akurasi Deteksi AI: ${Math.round(lifeEvent.confidence || 75)}% Match
         </span>
-        <h4 class="font-weight-bold text-primary mt-2">${bundleName}</h4>
-        <p class="text-muted small">${lifeEvent.description || ''}</p>
+        <h5 class="font-weight-bold text-primary mt-2 mb-1">${bundleName}</h5>
+        <p class="text-muted small mb-0" style="font-size: 0.75rem;">${lifeEvent.description || ''}</p>
       </div>
-      <div class="mb-3">
-        <div class="small font-weight-bold text-muted mb-1">Sinyal Mutasi yang Memicu Deteksi:</div>
-        <div>${signals.map(s => `<span class="badge badge-light border text-dark mr-1">${s}</span>`).join('')}</div>
+
+      <div class="mb-3 p-2 rounded" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+        <div class="small font-weight-bold text-dark mb-1" style="font-size: 0.74rem;">
+          <i class="bi bi-search text-primary mr-1"></i> Sinyal Transaksi yang Memicu Rekomendasi:
+        </div>
+        <div class="d-flex flex-wrap gap-1">
+          ${signals.map(s => `<span class="badge badge-white border text-dark mr-1 mb-1 font-weight-normal py-1 px-2" style="background:#ffffff; font-size: 0.68rem;"><i class="bi bi-check2-circle text-success mr-1"></i>${s}</span>`).join('')}
+        </div>
       </div>
+
       <div class="mb-3">
-        <div class="small font-weight-bold text-muted mb-2">Fitur-Fitur dalam Paket:</div>
+        <div class="small font-weight-bold text-muted mb-2" style="font-size: 0.74rem;">
+          <i class="bi bi-boxes text-primary mr-1"></i> Rincian Fitur yang Diaktifkan Sekaligus:
+        </div>
         ${featsHtml}
       </div>
-      <div class="alert alert-info border-0 text-center small font-weight-bold mb-0">
-        🎁 Paket ini memberikan total akumulasi poin fitur serta tambahan bonus <strong>+${bonusPts} Poin Gamifikasi</strong>!
+
+      <div class="alert alert-info border-0 text-center small font-weight-bold mb-0 py-2" style="border-radius: 12px; font-size: 0.75rem;">
+        🎁 Mengaktifkan bundle ini akan mengaktifkan seluruh fitur di atas dan memberikan bonus instan <strong>+${bonusPts} Poin Gamifikasi</strong>!
       </div>
     `;
 
@@ -2583,6 +2624,7 @@
     closePrivacyModal,
     togglePrivacySetting,
     deleteAdminVoucher,
+    toggleBreakdownDropdown,
     quickSimulateAction: function (actionName) {
       if (actionName === 'Investasi' || actionName === 'Welma') {
         openFeatureOnboarding('conservative_invest', 'Investasi Welma (Reksa Dana & Deposito)');
