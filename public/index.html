@@ -11,7 +11,7 @@
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- Custom ADAPT Theme Stylesheet -->
-  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.8.0">
+  <link rel="stylesheet" href="/css/custom-adapt.css?v=1.8.1">
 </head>
 <body class="pace-done no-breadcrumb">
 
@@ -394,62 +394,55 @@
                 </button>
               </div>
 
-              <!-- Card Balance & Bottom-Right Financial Health Badge -->
+              <!-- Card Balance with Eye Toggle -->
               <div class="m-card-balance-box">
-                <div class="d-flex align-items-end justify-content-between">
-                  <!-- Lower Left: Saldo Rekening Utama -->
-                  <div>
-                    <div class="m-card-balance-label mb-1">Saldo Rekening Utama:</div>
-                    <div class="d-flex align-items-center">
-                      <span class="h6 mb-0 mr-2 font-weight-normal text-white-50">IDR</span>
-                      <!-- Masked State (Default) -->
-                      <div id="balanceMaskedGroup" class="d-flex align-items-center">
-                        <span class="masked-bullet-dot"></span>
-                        <span class="masked-bullet-dot"></span>
-                        <span class="masked-bullet-dot"></span>
-                        <span class="masked-bullet-dot"></span>
-                        <span class="masked-bullet-dot"></span>
-                        <span class="masked-bullet-dot"></span>
-                      </div>
-                      <!-- Unmasked State -->
-                      <div id="balanceNumericGroup" class="d-none font-weight-bold h5 mb-0 text-white" style="display: none !important;">
-                        <span id="dashBalanceValue">14.500.000</span>
-                      </div>
-                      <!-- Eye Toggle Button -->
-                      <button type="button" id="btnToggleBalance" class="btn-eye-toggle ml-2" title="Tampilkan/Sembunyikan Saldo">
-                        <i class="bi bi-eye-slash-fill" id="balanceEyeIcon"></i>
-                      </button>
+                <div class="m-card-balance-label mb-1">Saldo Rekening Utama:</div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <span class="h6 mb-0 mr-2 font-weight-normal text-white-50">IDR</span>
+                    <!-- Masked State (Default) -->
+                    <div id="balanceMaskedGroup" class="d-flex align-items-center">
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                      <span class="masked-bullet-dot"></span>
+                    </div>
+                    <!-- Unmasked State -->
+                    <div id="balanceNumericGroup" class="d-none font-weight-bold h5 mb-0 text-white" style="display: none !important;">
+                      <span id="dashBalanceValue">14.500.000</span>
                     </div>
                   </div>
-
-                  <!-- Di Bawah Kanan Kartu: Skor Kesehatan Finansial Badge -->
-                  <div class="m-card-health-tag-br" id="cardHealthPill" onclick="document.getElementById('healthScoreCard').scrollIntoView({behavior:'smooth'})" title="Skor Kesehatan Finansial: Klik untuk lihat plakat">
-                    <div class="m-card-health-br-top">
-                      <i class="bi bi-shield-heart-fill text-danger"></i>
-                      <span class="m-card-health-br-lbl">Skor Finansial</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-1 justify-content-end">
-                      <strong id="cardHealthScoreVal" class="m-card-health-br-score">45</strong>
-                      <span class="m-card-health-br-unit">PTS</span>
-                      <span id="cardHealthTierPill" class="m-card-tier-pill tier-pill-silver ml-1">
-                        <span id="cardHealthTierText">SILVER</span>
-                      </span>
-                    </div>
-                  </div>
+                  <!-- Eye Toggle Button -->
+                  <button type="button" id="btnToggleBalance" class="btn-eye-toggle" title="Tampilkan/Sembunyikan Saldo">
+                    <i class="bi bi-eye-slash-fill" id="balanceEyeIcon"></i>
+                  </button>
                 </div>
               </div>
 
-              <!-- Quick In-Card Actions -->
+              <!-- Quick In-Card Actions & Skor Kesehatan Finansial (Setara & Bener-Bener di Bawah) -->
               <div class="m-card-actions-row">
-                <button type="button" class="m-card-action-btn" onclick="document.getElementById('navTabMutasi').click()">
-                  <i class="bi bi-clock-history"></i> Mutasi
-                </button>
-                <button type="button" class="m-card-action-btn" onclick="app.quickSimulateAction('Transfer')">
-                  <i class="bi bi-arrow-left-right"></i> Transfer
-                </button>
-                <button type="button" class="m-card-action-btn" onclick="app.quickSimulateAction('BagiBagi')">
-                  <i class="bi bi-envelope-paper-heart"></i> BagiBagi
-                </button>
+                <div class="m-card-actions-group">
+                  <button type="button" class="m-card-action-btn" onclick="document.getElementById('navTabMutasi').click()">
+                    <i class="bi bi-clock-history"></i> Mutasi
+                  </button>
+                  <button type="button" class="m-card-action-btn" onclick="app.quickSimulateAction('Transfer')">
+                    <i class="bi bi-arrow-left-right"></i> Transfer
+                  </button>
+                  <button type="button" class="m-card-action-btn" onclick="app.quickSimulateAction('BagiBagi')">
+                    <i class="bi bi-envelope-paper-heart"></i> BagiBagi
+                  </button>
+                </div>
+
+                <!-- Di Bawah Kanan Kartu: Setara Baris Tombol Aksi Mutasi/Transfer -->
+                <div class="m-card-health-pill-bottom" id="cardHealthPill" onclick="document.getElementById('healthScoreCard').scrollIntoView({behavior:'smooth'})" title="Skor Kesehatan Finansial: Klik untuk lihat plakat">
+                  <i class="bi bi-shield-heart-fill text-danger"></i>
+                  <span class="m-card-health-pill-score"><strong id="cardHealthScoreVal">45</strong><span class="m-card-health-pill-unit">PTS</span></span>
+                  <span id="cardHealthTierPill" class="m-card-tier-pill tier-pill-silver">
+                    <span id="cardHealthTierText">SILVER</span>
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -1601,7 +1594,7 @@
   <!-- ===================================================================== -->
   <!-- 5. JAVASCRIPT APPLICATION CONTROLLER & MOBILE SUB-PAGE HELPER         -->
   <!-- ===================================================================== -->
-  <script src="/js/app.js?v=1.8.0"></script>
+  <script src="/js/app.js?v=1.8.1"></script>
 
   <script>
     // iPhone 14 Mobile Web App Navigation & Interactive Engine
