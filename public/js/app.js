@@ -685,6 +685,39 @@
     const gamification = state.aiStatus?.gamification;
     if (!gamification) return;
 
+    const tierLower = (gamification.tier || 'bronze').toLowerCase();
+
+    // 1. Dynamic Card Border & Metallic Glow
+    const cardEl = document.getElementById('healthScoreCard');
+    if (cardEl) {
+      cardEl.className = `adapt-card health-card-tier tier-${tierLower}`;
+    }
+
+    // 2. Dynamic Plakat (Plaque) Theme
+    const plaqueEl = document.getElementById('healthScorePlaque');
+    if (plaqueEl) {
+      plaqueEl.className = `score-plaque plaque-${tierLower}`;
+    }
+
+    const plaqueIcon = document.getElementById('plaqueIcon');
+    if (plaqueIcon) {
+      if (tierLower === 'diamond') {
+        plaqueIcon.className = 'bi bi-gem';
+      } else if (tierLower === 'gold') {
+        plaqueIcon.className = 'bi bi-trophy-fill';
+      } else if (tierLower === 'silver') {
+        plaqueIcon.className = 'bi bi-award-fill';
+      } else {
+        plaqueIcon.className = 'bi bi-shield-fill-check';
+      }
+    }
+
+    const plaqueRibbon = document.getElementById('plaqueTierRibbon');
+    if (plaqueRibbon) {
+      plaqueRibbon.textContent = (gamification.tier || 'Bronze').toUpperCase();
+    }
+
+    // 3. Score Number & Progress
     const scoreNumEl = document.getElementById('scoreNum');
     if (scoreNumEl) scoreNumEl.textContent = gamification.score;
 
@@ -693,7 +726,7 @@
 
     const tierBadge = document.getElementById('tierBadge');
     if (tierBadge) {
-      const badgeClass = `badge-${(gamification.tier || 'bronze').toLowerCase()}`;
+      const badgeClass = `badge-${tierLower}`;
       tierBadge.className = `tier-badge ${badgeClass}`;
       tierBadge.innerHTML = `<i class="bi bi-award-fill"></i> Level ${gamification.tier}`;
     }

@@ -2299,7 +2299,224 @@ body {
   margin-bottom: 0;
 }
 
-/* Score Circle */
+/* ==========================================================================
+   DYNAMIC TIER CARD STYLING & FINANCIAL HEALTH PLAQUE (PLAKAT FINANSIAL)
+   ========================================================================== */
+
+/* 1. Dynamic Tier Card Border & Ambient Aura */
+.health-card-tier {
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  position: relative;
+}
+
+/* Tier Bronze: Warm Copper Metallic Glow */
+.health-card-tier.tier-bronze {
+  border: 1.5px solid #cd7f32 !important;
+  background: linear-gradient(180deg, #fffbf7 0%, #ffffff 100%) !important;
+  box-shadow: 0 4px 18px rgba(205, 127, 50, 0.15), 0 0 0 1px rgba(205, 127, 50, 0.18) !important;
+}
+.health-card-tier.tier-bronze .adapt-card-title {
+  color: #7c2d12;
+}
+
+/* Tier Silver: Platinum Chrome Metallic Glow */
+.health-card-tier.tier-silver {
+  border: 1.5px solid #94a3b8 !important;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+  box-shadow: 0 4px 22px rgba(148, 163, 184, 0.28), 0 0 0 1px rgba(148, 163, 184, 0.35) !important;
+}
+.health-card-tier.tier-silver .adapt-card-title {
+  color: #334155;
+}
+
+/* Tier Gold: 24K Royal Gold Metallic Glow */
+.health-card-tier.tier-gold {
+  border: 1.5px solid #f59e0b !important;
+  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 100%) !important;
+  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.2), 0 0 0 1px rgba(245, 158, 11, 0.38) !important;
+}
+.health-card-tier.tier-gold .adapt-card-title {
+  color: #92400e;
+}
+
+/* Tier Diamond: Crystalline Holographic Cyan Glow */
+.health-card-tier.tier-diamond {
+  border: 1.5px solid #06b6d4 !important;
+  background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%) !important;
+  box-shadow: 0 4px 26px rgba(6, 182, 212, 0.24), 0 0 0 1px rgba(6, 182, 212, 0.42) !important;
+}
+.health-card-tier.tier-diamond .adapt-card-title {
+  color: #0e7490;
+}
+
+/* 2. Prestigious Plakat Finansial (Award Plaque / Trophy Emblem) */
+.score-plaque {
+  width: 84px;
+  min-height: 98px;
+  border-radius: 14px 14px 18px 18px;
+  padding: 3.5px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    0 8px 18px -3px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.85),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+/* Diagonal Glass Sheen Reflection */
+.plaque-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 65%);
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Inner Recessed Enamel Plate */
+.plaque-inner {
+  background: #ffffff;
+  border-radius: 10px 10px 14px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.25rem 0.38rem 0.25rem;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+/* Plaque Top Emblem / Crest */
+.plaque-top-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+/* Plaque Score Number */
+.plaque-score-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 1px 0;
+}
+
+.plaque-score-wrap .score-num {
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+}
+
+/* Plaque Sub-Label */
+.plaque-label {
+  font-size: 0.53rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+/* Plaque Bottom Ribbon / Tier Tag */
+.plaque-ribbon {
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  padding: 2px 7px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.15;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+/* --- THEME 1: SILVER PLAKAT (Chrome & Platinum Metallic) --- */
+.score-plaque.plaque-silver {
+  background: linear-gradient(145deg, #f8fafc 0%, #cbd5e1 25%, #94a3b8 65%, #64748b 100%);
+  border: 1px solid #cbd5e1;
+}
+.score-plaque.plaque-silver .plaque-top-icon {
+  color: #64748b;
+  filter: drop-shadow(0 1px 2px rgba(100, 116, 139, 0.3));
+}
+.score-plaque.plaque-silver .score-num {
+  color: #1e293b;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+.score-plaque.plaque-silver .plaque-ribbon {
+  background: linear-gradient(135deg, #64748b 0%, #334155 100%);
+  box-shadow: 0 2px 6px rgba(51, 65, 85, 0.4);
+}
+
+/* --- THEME 2: GOLD PLAKAT (24K Polished Gold & Royal Amber) --- */
+.score-plaque.plaque-gold {
+  background: linear-gradient(145deg, #fef08a 0%, #f59e0b 30%, #d97706 70%, #92400e 100%);
+  border: 1px solid #fbbf24;
+}
+.score-plaque.plaque-gold .plaque-top-icon {
+  color: #d97706;
+  filter: drop-shadow(0 1px 2px rgba(217, 119, 6, 0.35));
+}
+.score-plaque.plaque-gold .score-num {
+  color: #b45309;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+.score-plaque.plaque-gold .plaque-ribbon {
+  background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.45);
+}
+
+/* --- THEME 3: BRONZE PLAKAT (Antique Metallic Copper) --- */
+.score-plaque.plaque-bronze {
+  background: linear-gradient(145deg, #ffedd5 0%, #d97706 30%, #9a3412 70%, #7c2d12 100%);
+  border: 1px solid #f97316;
+}
+.score-plaque.plaque-bronze .plaque-top-icon {
+  color: #9a3412;
+  filter: drop-shadow(0 1px 2px rgba(154, 52, 18, 0.35));
+}
+.score-plaque.plaque-bronze .score-num {
+  color: #7c2d12;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+.score-plaque.plaque-bronze .plaque-ribbon {
+  background: linear-gradient(135deg, #ea580c 0%, #7c2d12 100%);
+  box-shadow: 0 2px 6px rgba(124, 45, 18, 0.45);
+}
+
+/* --- THEME 4: DIAMOND PLAKAT (Crystalline Cyan Prism) --- */
+.score-plaque.plaque-diamond {
+  background: linear-gradient(145deg, #e0f2fe 0%, #38bdf8 30%, #0284c7 70%, #0c4a6e 100%);
+  border: 1px solid #38bdf8;
+}
+.score-plaque.plaque-diamond .plaque-top-icon {
+  color: #0284c7;
+  filter: drop-shadow(0 1px 2px rgba(2, 132, 199, 0.4));
+}
+.score-plaque.plaque-diamond .score-num {
+  color: #0369a1;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+.score-plaque.plaque-diamond .plaque-ribbon {
+  background: linear-gradient(135deg, #06b6d4 0%, #0369a1 100%);
+  box-shadow: 0 2px 6px rgba(3, 105, 161, 0.5);
+}
+
+/* Fallback Score Circle (Legacy Support) */
 .score-circle {
   width: 70px;
   height: 70px;
@@ -2312,13 +2529,6 @@ body {
   border: 4px solid #005caa;
   box-shadow: 0 3px 10px rgba(0, 91, 170, 0.15);
   flex-shrink: 0;
-}
-
-.score-num {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: #003d75;
-  line-height: 1;
 }
 
 .score-max-text {
