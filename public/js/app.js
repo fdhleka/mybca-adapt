@@ -2448,13 +2448,6 @@
     const adminForm = document.getElementById('adminCreateVoucherForm');
     if (adminForm) adminForm.addEventListener('submit', handleAdminCreateVoucher);
 
-    // User Voucher Claim Modal Controls
-    const closeUserClaimBtn = document.getElementById('btnCloseUserClaimModal');
-    if (closeUserClaimBtn) closeUserClaimBtn.addEventListener('click', closeUserClaimModal);
-
-    const dismissUserClaimBtn = document.getElementById('btnDismissUserClaim');
-    if (dismissUserClaimBtn) dismissUserClaimBtn.addEventListener('click', closeUserClaimModal);
-
     // Frame View Mode Toggle (iPhone 14 / Full Width)
     const toggleFrameBtn = document.getElementById('btnToggleFrameMode');
     if (toggleFrameBtn) {
