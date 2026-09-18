@@ -1099,6 +1099,60 @@ body {
   transform: translateY(-1px);
 }
 
+/* In-Card Financial Health Badge Tag - Bottom Right Placement */
+.m-card-health-tag-br {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  padding: 0.28rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration: none !important;
+}
+
+.m-card-health-tag-br:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+.m-card-health-br-top {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.12rem;
+}
+
+.m-card-health-br-lbl {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.m-card-health-br-score {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.m-card-health-br-unit {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+  margin-left: 0.1rem;
+}
+
 .m-card-health-tag-pts {
   font-size: 0.72rem;
   color: #ffffff;
